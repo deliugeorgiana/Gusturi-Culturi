@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Site web de prezentare a rețetelor tradiționale și culturii culinare mondiale">
+    <meta name="keywords" content="rețete tradiționale, bucătărie internațională, cultură culinară, preparate mondiale, gastronomie">
+    <meta name="author" content="Gusturi&Culturi">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    
+    <title>Gusturi & Culturi - Rețete și Tradiții Culinare</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="./resurse/imagini/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="Gusturi&Culturi" />
+    <link rel="manifest" href="/site.webmanifest" />
+</head>
+<body>
+    <header>
+        <h1>Gusturi Mondiale</h1>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#acasa">Acasă</a>
+                    <ul>
+                        <li><a href="#despre">Despre Noi</a></li>
+                        <li><a href="#prezentare">Prezentare</a></li>
+                    </ul>
+                </li>
+                <li><a href="#retete">Rețete</a></li>
+                <li><a href="#cultura">Cultură Culinară</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="acasa">
+            <h2>Bun venit la Gusturi&Culturi</h2>
+            
+            <article id="prezentare">
+                <h3>Descoperă lumea prin bucate</h3>
+                <p>Suntem pasionații care aduc <b>tradițiile culinare</b> ale lumii direct la tine. <em>O călătorie gustativă</em> prin <strong>rețete autentice</strong>!</p>
+                
+                <figure>
+                    <picture>
+                        <source media="(max-width: 480px)" srcset="./resurse/imagini/platou-mic.jpg">
+                        <source media="(max-width: 1024px)" srcset="./resurse/imagini/platou-mediu.jpg">
+                        <img src="./resurse/imagini/Poza-platouri.jpg" alt="Platou internațional de bucate" usemap="#platou-map">
+                    </picture>
+                    <figcaption>Rețete internaționale - <q>Gustul fără frontiere</q></figcaption>
+                    
+                    <map name="platou-map">
+                        <area shape="rect" coords="34,44,270,350" href="retete/italia.html" alt="Rețete italienești" target="_blank">
+                        <area shape="circle" coords="450,150,75" href="retete/franta.html" alt="Rețete franțuzești" target="_blank">
+                    </map>
+                </figure>
+            </article>
+            
+            <section id="statistici">
+                <h3>Statistici Culinare</h3>
+                <p>Am pregătit câteva informații fascinante despre gastronomie:</p>
+                <ol>
+                    <li><dfn>Pizza</dfn> - originară din <i lang="it">Italia</i></li>
+                    <li><cite>Cartea Recordurilor Culinare</cite> conține peste 1000 de rețete unice</li>
+                    <dl>
+                        <dt>Pateuri cu Umplutură de Cartofi</dt>
+                        <dd>Preparat ucrainean pe bază de aluat, cartofi și diverse condimente.</dd>
+                        <dt>Okroshka</dt>
+                        <dd>Supă rece tradițională rusească pe bază de chefir și legume.</dd>
+                    </dl>
+                    
+                </ol>
+            </section>
+            <aside>
+                <h3>Știați că?</h3>
+                <p>Cel mai mare croissant din lume a cântărit 200 kg!</p>
+            </aside>
+            
+        </section>
+        
+
+        <section id="retete">
+            <h2>Rețete Speciale</h2>
+            
+            <details>
+                <summary>Care este cea mai populară rețetă?</summary>
+                <p>Pizza <abbr title="Napoletană">Nap.</abbr> este un favorit global!</p>
+                <p>Inițial foloseam <s>pătrunjel</s>, dar acum recomandăm <ins>busuioc</ins> pentru un gust mai autentic.</p>
+            </details>
+            
+            <details>
+                <summary>Cum pregătim rețetele?</summary>
+                <p>Cu <strong>ingrediente proaspete</strong> și <em>multă pasiune</em>.</p>
+            </details>
+            
+            <blockquote>
+                <p>„Mâncarea este limbajul iubirii pe care îl vorbim cu toții."</p>
+            </blockquote>
+        </section>
+
+        <section id="video">
+            <h2>Tutorial Rețete</h2>
+            <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/hrG40alLaRA" allowfullscreen></iframe>
+            
+            <ul>
+                <li><a href="https://www.youtube.com/embed/hrG40alLaRA" target="videoFrame">Rețetă Pateuri cu Umplutură de Cartofi</a></li>
+                <li><a href="https://www.youtube.com/embed/S3DE92LKKkk" target="videoFrame">Rețetă Supă Okroshka</a></li>
+            </ul>
+            
+            <p>
+                <embed src="./resurse/pdf/carte-retete.pdf" type="application/pdf" width="600" height="400">
+                <a href="./resurse/pdf/carte-retete.pdf" download>Descarcă Carte Rețete</a>
+            </p>
+        </section>
+
+        <section id="formule">
+            <h2>Formule Culinare</h2>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                    <mi>Q</mi>
+                    <mo>=</mo>
+                    <mi>m</mi>
+                    <mo>×</mo>
+                    <mi>c</mi>
+                    <mo>×</mo>
+                    <mi>Δ</mi>
+                    <mi>T</mi>
+                </mrow>
+            </math>
+            <p>Formula căldurii specifice în prepararea mâncării</p>
+        </section>
+    </main>
+
+    <footer id="contact">
+        <h2>Contact</h2>
+        <address>
+            <p>Telefon: <a href="tel:+40724567890">+40 724 567 890</a></p>
+            <p>Email: <a href="mailto:contact@gusturimondiale.ro">contact@gusturimondiale.ro</a></p>
+            <p>Locație: <a href="https://goo.gl/maps/FacultateaMatematicaSiInformatica" target="_blank">Facultatea de Matematică și Informatică</a></p>
+            <p>Chat: <a href="skype:gusturimondiale?chat">Skype</a> | <a href="https://wa.me/40724567890">WhatsApp</a></p>
+        </address>
+        
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.915308571453!2d26.102855315666892!3d44.43759527910162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff5e7aaaaab1%3A0x57a4e182c4f97c0d!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1651234567890!5m2!1sro!2sro" width="600" height="450" style="border:0;" allowfullscreen></iframe>
+        
+        <p><a href="#top">Înapoi sus</a></p>
+        
+        <small>&copy; <time datetime="2025-03-01">1 Martie 2025</time> Gusturi&Culturi. Toate drepturile rezervate.</small>
+    </footer>
+</body>
+</html>
