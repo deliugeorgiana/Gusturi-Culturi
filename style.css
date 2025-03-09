@@ -1,0 +1,299 @@
+:root {
+
+    --culoare-primara: #005f99; /*Culoare pt evidentierea chenarului princ*/
+    --culoare-secundara: #062b14; /* Minititluri*/
+    --culoare-accent: #4068b3; /*Linii de evidentiere+un chenar stiati ca */
+    --culoare-text: #01080f; 
+    --culoare-bg-deschis: #74c8e2; /* fundal */
+    --culoare-bg-mediu: #4b8ccc; /* fundal chenare */
+    --culoare-bg-inchis: #4b8ccb; /* chenar footer */
+
+ 
+    /* spatieri laterale ex 1 */
+    --spatiere-laterala-mare: 10%;
+    --spatiere-laterala-medie: 6%;
+    --spatiere-laterala-mica: 3%;
+    
+    /* spatieri elemente de grid ex 2 */
+    --grid-gap-mare: 25px;
+    --grid-gap-mediu: 15px;
+    --grid-gap-mic: 8px;
+    
+    /* ex 4 padding*/
+    --padding-text: 20px;
+    
+    /* rotunjire si umbra chenare*/
+    --border-radius: 10px;
+    --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    
+    /* dimensiuni */
+    --media-max-width: 100%;
+    --media-min-width: 300px;
+}
+
+/* incadrare*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--culoare-text);
+    background-color: var(--culoare-bg-deschis);
+    line-height: 1.6;
+    /* spatiere laterala */
+    padding-left: var(--spatiere-laterala-mare);
+    padding-right: var(--spatiere-laterala-mare);
+}
+
+/* layout principal */
+header, main, footer {
+    margin-bottom: 30px;
+}
+
+/* header ex 3*/
+header {
+    background-color: var(--culoare-primara);
+    color: rgb(159, 239, 245);
+    padding: var(--padding-text);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-top: 20px;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+/* navigatie*/
+nav ul {
+    display: flex;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+nav ul li {
+    position: relative;
+}
+
+nav a {
+    color: rgb(153, 213, 228);
+    text-decoration: none;
+    padding: 8px 12px;
+    display: inline-block;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: var(--culoare-secundara);
+}
+
+nav ul li ul {
+    display: none;
+    position: absolute;
+    background-color: var(--culoare-primara);
+    min-width: 200px;
+    z-index: 1;
+    border-radius: var(--border-radius);
+    flex-direction: column;
+    padding: 10px;
+}
+
+nav ul li:hover > ul {
+    display: flex;
+}
+
+/* main */
+main {
+    padding: var(--padding-text);
+}
+
+/* stilizare sectiuni*/
+section {
+    background-color: rgb(140, 209, 241);
+    border-radius: var(--border-radius);
+    padding: var(--padding-text);
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+}
+
+section h2 {
+    color: var(--culoare-primara);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--culoare-accent);
+    padding-bottom: 10px;
+}
+
+/* griduri setari */
+.categorii-container, 
+.ingrediente-grid, 
+.sarbatori-container, 
+.bucatarii-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--grid-gap-mare); /* Conform cerinței 2 */
+}
+
+/* articole din grid */
+.categorie, 
+.ingredient, 
+.sarbatoare, 
+.bucatarie {
+    background-color: var(--culoare-bg-mediu);
+    border-radius: var(--border-radius);
+    padding: var(--padding-text);
+    box-shadow: var(--box-shadow);
+}
+
+.categorie h3, 
+.ingredient h3, 
+.sarbatoare h3, 
+.bucatarie h3 {
+    color: var(--culoare-secundara);
+    margin-bottom: 15px;
+}
+
+/* elemente media */
+img, iframe, embed {
+    max-width: var(--media-max-width);
+    min-width: var(--media-min-width);
+    height: auto;
+    border-radius: 5px;
+    display: block;
+    margin: 15px 0;
+}
+
+figure {
+    margin: 20px 0;
+}
+
+figcaption {
+    font-style: italic;
+    text-align: center;
+    padding: 8px;
+}
+
+/* liste */
+ul, ol {
+    padding-left: 20px;
+    margin: 15px 0;
+}
+
+/* link uri */
+a {
+    color: var(--culoare-secundara);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--culoare-primara);
+    text-decoration: underline;
+}
+
+/* detalii+citate */
+details {
+    margin: 15px 0;
+}
+
+summary {
+    cursor: pointer;
+    color: var(--culoare-secundara);
+    font-weight: bold;
+}
+
+blockquote {
+    background-color: var(--culoare-bg-mediu);
+    border-left: 5px solid var(--culoare-accent);
+    padding: 15px;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+/*footer ex 3*/
+footer {
+    background-color: var(--culoare-bg-inchis);
+    color: var(--culoare-text);
+    padding: var(--padding-text);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    border-top: 3px solid var(--culoare-primara);
+}
+
+footer h2 {
+    color: var(--culoare-primara);
+    margin-bottom: 20px;
+}
+
+address {
+    margin: 20px 0;
+}
+
+/* medida*/
+@media (max-width: 1024px) {
+    /* ecran mid*/
+    :root {
+        --grid-gap-mare: var(--grid-gap-mediu);
+    }
+    
+    body {
+        padding-left: var(--spatiere-laterala-medie);
+        padding-right: var(--spatiere-laterala-medie);
+    }
+    
+    img, iframe, embed {
+        max-width: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* ecran mic */
+    :root {
+        --grid-gap-mare: var(--grid-gap-mic);
+    }
+    
+    body {
+        padding-left: var(--spatiere-laterala-mica);
+        padding-right: var(--spatiere-laterala-mica);
+    }
+    
+    nav ul {
+        flex-direction: column;
+    }
+    
+    img, iframe, embed {
+        max-width: 100%;
+        min-width: 200px;
+    }
+    
+    .categorii-container, 
+    .ingrediente-grid, 
+    .sarbatori-container, 
+    .bucatarii-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+:focus {
+    outline: 3px solid var(--culoare-accent);
+}
+
+aside {
+    background-color: var(--culoare-accent);
+    border-radius: var(--border-radius);
+    padding: var(--padding-text);
+    margin: 20px 0;
+    border-left: 5px solid var(--culoare-secundara);
+}
+
+aside h3 {
+    color: var(--culoare-primara);
+}
+
+
