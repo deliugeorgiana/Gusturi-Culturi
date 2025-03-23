@@ -20,6 +20,16 @@
 
     <!-- CSS legatura -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
 </head>
 <body>
     <header>
@@ -268,7 +278,7 @@
             <details>
                 <summary>Care este cea mai populară rețetă?</summary>
                 <p>Pizza <abbr title="Napoletană">Nap.</abbr> este un favorit global!</p>
-                <p>Inițial foloseam <s>pătrunjel</s>, dar acum recomandăm <ins>busuioc</ins> pentru un gust mai autentic.</p>
+                <p>Inițial foloseam <s>oregano</s>, dar acum recomandăm <ins>busuioc</ins> pentru un gust mai autentic.</p>
             </details>
             
             <details>
@@ -279,22 +289,96 @@
             <blockquote>
                 <p>„Mâncarea este limbajul iubirii pe care îl vorbim cu toții."</p>
             </blockquote>
+
+            <h3>Cele mai populare rețete tradiționale</h3>
+<div class="table-container">
+    <table class="recipes-table">
+        <caption>Clasamentul rețetelor tradiționale după numărul de preparări</caption>
+        <thead>
+            <tr>
+                <th>Denumire rețetă</th>
+                <th>Țara de origine</th>
+                <th>Timp de preparare</th>
+                <th>Dificultate</th>
+                <th>Popularitate <i class="fa-solid fa-star"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sarmale cu mămăligă</td>
+                <td>România</td>
+                <td>180 min</td>
+                <td>Medie</td>
+                <td>98%</td>
+            </tr>
+            <tr>
+                <td>Pizza Napoletana</td>
+                <td>Italia</td>
+                <td>90 min</td>
+                <td>Medie</td>
+                <td>96%</td>
+            </tr>
+            <tr>
+                <td>Paella</td>
+                <td>Spania</td>
+                <td>60 min</td>
+                <td>Ridicată</td>
+                <td>92%</td>
+            </tr>
+            <tr>
+                <td colspan="1">Boeuf Bourguignon</td>
+                <td>Franța</td>
+                <td>240 min</td>
+                <td>Ridicată</td>
+                <td>89%</td>
+            </tr>
+            <tr>
+                <td>Cozonac tradițional</td>
+                <td rowspan="2">România</td>
+                <td>120 min</td>
+                <td>Medie</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Ciorbă de burtă</td>
+                <td>180 min</td>
+                <td>Scăzută</td>
+                <td>82%</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Total rețete populare</td>
+                <td>6</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<p class="icon-text">
+    <i class="fa-solid fa-utensils"></i> Toate rețetele noastre sunt autentice și testate de bucătari profesioniști 
+    <i class="fa-solid fa-bell fa-shake"></i> Fiți atenți la timpul de preparare!
+</p>
         </section>
 
         <section id="video">
             <h2>Tutorial Rețete</h2>
-            <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/hrG40alLaRA" allowfullscreen></iframe>
-            
-            <ul>
-                <li><a href="https://www.youtube.com/embed/hrG40alLaRA" target="videoFrame">Rețetă Pateuri cu Umplutură de Cartofi</a></li>
-                <li><a href="https://www.youtube.com/embed/S3DE92LKKkk" target="videoFrame">Rețetă Supă Okroshka</a></li>
-            </ul>
-            
+        
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                    <a href="https://www.youtube.com/embed/hrG40alLaRA" target="videoFrame">Rețetă Pateuri</a>
+                    <a href="https://www.youtube.com/embed/S3DE92LKKkk" target="videoFrame">Rețetă Supă Okroshka</a>
+                </div>
+        
+                <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/hrG40alLaRA" allowfullscreen></iframe>
+            </div>
+        
             <p>
                 <embed src="./resurse/pdf/carte-retete.pdf" type="application/pdf" width="600" height="400">
                 <a href="./resurse/pdf/carte-retete.pdf" download>Descarcă Carte Rețete</a>
             </p>
         </section>
+        
 
         <section id="formule">
             <h2>Formule Culinare</h2>
@@ -311,6 +395,28 @@
                 </mrow>
             </math>
             <p>Formula căldurii specifice în prepararea mâncării</p>
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-primary); font-weight: bold;">Q</span>
+                    <span>Energia termică (J)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-secondary); font-style: italic;">m</span>
+                    <span>Masa alimentului (kg)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-accent); font-style: italic;">c</span>
+                    <span>Căldură specifică (J/kg·°C)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-accent); font-weight: bold;">Δ</span>
+                    <span>Diferența de</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-secondary); font-style: italic;">T</span>
+                    <span>Temperatură (°C)</span>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -325,7 +431,8 @@
         
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2848.915308571453!2d26.102855315666892!3d44.43759527910162!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff5e7aaaaab1%3A0x57a4e182c4f97c0d!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83!5e0!3m2!1sro!2sro!4v1651234567890!5m2!1sro!2sro" width="600" height="450" style="border:0;" allowfullscreen></iframe>
         
-        <p><a href="#top">Înapoi sus</a></p>
+        <p><a href="#top" id="link-top" title="Înapoi sus"></a></p>
+
         
         <small>&copy; <time datetime="2025-03-01">1 Martie 2025</time> Gusturi&Culturi. Toate drepturile rezervate.</small>
     </footer>
