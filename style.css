@@ -609,6 +609,8 @@ aside {
     transition: transform 0.3s ease;
 }
 
+
+
 /* Animatii*/
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
@@ -740,11 +742,11 @@ aside {
 
     .grid-container {
         grid-template-areas:
-            "zone1 zone1 zone1"
-            "zone3 zone2 zone4"
-            "zone5 zone2 zone6" 
-            "zone7 zone7 zone8"
-            "zone8 zone8 zone8";
+            "zone1 zone1 zone1 zone 1"
+            "zone3 zone2 zone 2 zone4"
+            "zone8 zone8 zone8 zone 8" 
+            "zone7 zone 7 zone5 zone6"
+            "zone8 zone8 zone8 zone 8";
         grid-template-columns: 1fr 2fr 1fr;
         grid-template-rows: auto auto auto auto auto;
     }
@@ -796,7 +798,19 @@ aside {
         max-width: var(--media-max-width-medium);
         min-width: var(--media-min-width-medium);
     }
+
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; 
+        margin-bottom: 1rem;
+    }
+    
+    .table-container table {
+        min-width: 500px; 
+    }
 }
+
 
 /* Ecran mic (telefon) */
 @media screen and (max-width: 767px) {
@@ -864,5 +878,16 @@ aside {
     img, video, iframe {
         max-width: var(--media-max-width-small);
         min-width: var(--media-min-width-small);
+    }
+    .table-container {
+        width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch; 
+        margin-bottom: 1rem;
+    }
+    
+
+    .table-container table {
+        min-width: 500px; 
     }
 }
