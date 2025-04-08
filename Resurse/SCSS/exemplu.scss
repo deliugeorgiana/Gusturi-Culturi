@@ -1,9 +1,0 @@
-.c1{
-    $bunic: &;
-        div{
-            @at-root p #{$bunic}:hover{
-              background:green;
-            }
-        }
-  }
-  

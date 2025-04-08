@@ -18,37 +18,57 @@
     <meta name="apple-mobile-web-app-title" content="Gusturi&Culturi" />
     <link rel="manifest" href="/site.webmanifest" />
 
-    <!-- CSS legatura -->
+    <!-- CSS legaturi -->
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.scss">
+    <link rel="stylesheet" href="nav.css">
+
 
     <!-- Google Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
     <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    
+    <!--JavaScript-->
+    <script src="script.js"></script>
 </head>
 <body>
     <header>
         <h1>Gusturi & Culturi</h1>
-        <nav>
-            <ul>
-                <li>
-                    <a href="#acasa">Acasă</a>
-                    <ul>
+        <nav class="meniu principal">
+            <input type="checkbox" id="hamburgerToggle" class="hamburger-toggle" hidden>
+            <label for="hamburgerToggle" id="hamburgerLabel">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+            <ul class="meniu-lista">
+                <li class="meniu-element">
+                    <a href="#acasa" class="home-link">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="home-text">Acasă</span>
+                    </a>
+                    <ul class="submeniu">
                         <li><a href="#despre">Despre Noi</a></li>
                         <li><a href="#prezentare">Prezentare</a></li>
                     </ul>
                 </li>
-                <li><a href="#retete">Rețete</a></li>
-                <li><a href="#categorii">Categorii</a></li>
-                <li><a href="#ingrediente">Ingrediente</a></li>
-                <li><a href="#sarbatori">Sărbători</a></li>
-                <li><a href="#international">Internațional</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="meniu-element">
+                    <a href="#retete">Rețete</a>
+                    <ul class="submeniu">
+                        <li><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
+                        <li><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
+                        <li><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
+                    </ul>
+                </li>
+                <li class="meniu-element"><a href="#categorii">Categorii</a></li>
+                <li class="meniu-element"><a href="#ingrediente">Ingrediente</a></li>
+                <li class="meniu-element"><a href="#sarbatori">Sărbători</a></li>
+                <li class="meniu-element"><a href="#international">Internațional</a></li>
+                <li class="meniu-element"><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>

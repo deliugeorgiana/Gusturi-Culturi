@@ -1,0 +1,125 @@
+/* nav.css */
+@media screen and (max-width: 800px) {
+    #hamburgerLabel {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        justify-content: space-between;
+        height: 20px;
+        width: 30px;
+        top: 10px;
+        left: 10px;
+        padding: 1rem;
+        cursor: pointer;
+        background-color: var(--background-header, #871609); /* Folosim fallback */
+        z-index: 10;
+    }
+
+    #hamburgerLabel span {
+        height: 3px;
+        width: 100%;
+        background-color: white;
+        border-radius: 3px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    /* Transformăm liniile în X când checkbox-ul e bifat */
+    #hamburgerToggle:checked + #hamburgerLabel span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    #hamburgerToggle:checked + #hamburgerLabel span:nth-child(2) {
+        opacity: 0;
+    }
+    #hamburgerToggle:checked + #hamburgerLabel span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    nav.principal {
+        display: block; /* Păstrăm nav-ul vizibil pentru a lucra cu copiii săi */
+    }
+
+    .meniu-lista {
+        display: none; /* Ascundem meniul implicit */
+        position: fixed;
+        top: 0;
+        left: -100%; /* Începem din stânga, în afara ecranului */
+        width: 100%;
+        height: 100vh;
+        background-color: var(--background-header, #871609);
+        flex-direction: column;
+        padding-top: 60px;
+        transition: left 0.3s ease-in-out;
+        z-index: 9;
+    }
+
+    #hamburgerToggle:checked ~ .meniu-lista {
+        display: flex;
+        left: 0; /* Meniul apare din stânga */
+    }
+
+    .meniu-lista > li {
+        width: 100%;
+        text-align: center;
+        animation: showSubmenu 0.5s forwards;
+    }
+
+    .meniu-lista li ul.submeniu {
+        position: static;
+        display: none;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .meniu-lista li:hover ul.submeniu {
+        display: block;
+    }
+
+    @keyframes showSubmenu {
+        0% {
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+/* Stiluri generale pentru ecran mare */
+nav.principal .meniu-lista {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+nav.principal .meniu-lista li {
+    position: relative;
+    margin: 0 0.5rem;
+}
+
+nav.principal .meniu-lista li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: rgb(197, 104, 104);
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+nav.principal .meniu-lista li a:hover {
+    background-color: #5D1D16;
+}
+
+nav.principal .meniu-lista li ul.submeniu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #871609;
+    width: 200px;
+}
+
+nav.principal .meniu-lista li:hover ul.submeniu {
+    display: flex;
+    flex-direction: column;
+}
