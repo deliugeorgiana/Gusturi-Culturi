@@ -1,0 +1,91 @@
+/* Tabel */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+th, td {
+    border: 1px solid var(--color-border);
+    padding: 0.8rem;
+    text-align: left;
+}
+
+th {
+    background-color: rgba(255, 195, 188, 0.3);
+}
+
+.table-container {
+    overflow-x: auto;
+    margin: 2rem 0;
+    box-shadow: var(--box-shadow);
+    border-radius: var(--box-border-radius);
+}
+
+.recipes-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 5px double var(--color-primary);
+    caption-side: bottom;
+}
+
+.recipes-table caption {
+    padding: 1rem;
+    font-style: italic;
+    text-align: center;
+    color: var(--color-text-light);
+    margin-top: 0.5rem;
+}
+
+.recipes-table th {
+    background-color: var(--color-primary);
+    color: var(--color-text-inverse);
+    padding: 1rem;
+    text-align: left;
+    border: 1px solid var(--color-border);
+}
+
+.recipes-table td {
+    padding: 0.8rem;
+    border: 1px solid var(--color-border);
+    transition: all 0.75s ease;
+}
+
+
+.recipes-table td:nth-child(odd) {
+    color: var(--color-accent);
+}
+
+.recipes-table td:nth-child(even) {
+    color: var(--color-secondary);
+}
+
+.recipes-table tbody tr:hover {
+    background-color: var(--color-lightest);
+}
+
+.recipes-table tbody tr:hover td {
+    color: var(--color-text);
+    border-width: 5px;
+    font-weight: 500;
+}
+
+.recipes-table tfoot {
+    background-color: rgba(255, 195, 188, 0.3);
+    font-weight: bold;
+}
+
+
+dl {
+    margin: 1rem 0;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 0.8rem;
+}
+
+dd {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}

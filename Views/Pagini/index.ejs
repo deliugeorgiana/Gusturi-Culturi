@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Gusturi&Culturi oferă rețete tradiționale și internaționale, videouri cu demonstrații de gătit și sfaturi culinare.">
+        <meta name="keywords" content="rețete, Gusturi&Culturi, bucătărie, internațional, preparate, tradițional, gătit">
+        <title>Gusturi&Culturi</title>
+        
+        <%- include("../fragmente/head.ejs") %>
+    </head>
+    <body>
+
+    <%- include("../fragmente/header.ejs") %>
+
+    <main>
+        <div id="grid-pagina">
+            <section id="welcome">
+                <h2>Bine ați venit</h2>
+                <button type="button" class="btn btn-primary btn-lg">Explorează</button>
+                <p class="intro">Vă mulțumim că vizitați site-ul nostru. Descoperă rețete din toate colțurile lumii!</p>
+                <p><b>Ip: </b><%- locals.ip %></p>
+                <div class="intro-oferte">
+                    <div>Aperitive</div>
+                    <div>Feluri principale</div>
+                    <div>Deserturi</div>
+                    <div>Băuturi</div>
+                    <div>Specialități</div>
+                </div>
+                <p class="anunt intro">Explorați diversitatea culinară internațională fără să părăsiți bucătăria dumneavoastră, cu ajutorul rețetelor noastre detaliate și videoclipurilor explicative.</p>
+                <div id="dv-prezentare-1">
+                    <div id="dv-prezentare">
+                    <picture>
+                        <source srcset="/resurse/imagini/cooking-small.jpg" media="(max-width:700px)"/>
+                        <source srcset="/resurse/imagini/cooking-medium.jpg" media="(max-width:1200px)"/>
+                        <img src="/resurse/imagini/cooking-large.jpg" alt="preparare mancare"/>
+                    </picture>
+                </div>
+            </div>
+            <hr class="retete"/>
+            <div id="container-video">
+                <img class="farfurie" src="/resurse/imagini/farfurie-traditional.png" alt="farfurie tradițională">
+                <div id="centrare-video">
+                    <div id="clip-video">
+                        <div id="stil-video">
+                            <video width="320" height="240" playsinline autoplay loop muted>
+                                <source src="/resurse/video/CookingDemo.mp4" type="video/mp4">
+                                <source src="/resurse/video/CookingDemo.ogv" type="video/ogv">
+                                <track default src="data:image/png;base64, V0VCVlRUIC0gRGVtbyBnxIN0aXQKCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwIGxpbmU6MApQcmVnxIN0aXJlIGluZ3JlZGllbnRlISEhCgowMDowMy4wMDAgLS0+IDAwOjA3LjAwMCBsaW5lOjAKQXRlbsibaSBsYSBjYW50aXTEg8ibaWxlIQoKMDA6MDkuMDAwIC0tPiAwMDoxNC4wMDAgbGluZTowClVwcywgYW0gc2NEg3BhdCBjZXZhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgUHV0ZW0gxIFtYsSDdW7Eg3TEg8ibaQ0KCg==" kind="captions" srclang="ro" label="romana">
+                                <track src="data:image/png;base64, V0VCVlRUIC0gQ29va2luZyBEZW1vDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpQcmVwYXJpbmcgaW5ncmVkaWVudHMhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkJlIGNhcmVmdWwgd2l0aCB0aGUgcXVhbnRpdGllcyENCg0KMDA6MDkuMDAwIC0tPiAwMDoxNC4wMDANCk9vcHMsIEkgZHJvcHBlZCBzb21ldGhpbmchDQoNCjAwOjE0LjUwMCAtLT4gMDA6MTkuMDAwDQpEb2Vzbid0IG1hdHRlciEgV2UgY2FuIGltcHJvdmlzZSENCg0K" kind="captions" srclang="en" label="engleza">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            <section id="noutati">
+                <h2>Noutăți</h2>
+                <article>
+                    <h3 class="titlu">Ateliere culinare online</h3>
+                    <p><b>Gusturi&Culturi</b> oferă <b>sesiuni de gătit online cu <s>10%</s> <ins>15%</ins> reducere</b> pentru toate înscrierile efectuate în avans cu 7 zile.</p>
+                    <p>Oferta este valabilă doar pentru atelierele din weekend de pe platforma <abbr title="Gusturi&Culturi">G&C</abbr>.</p>
+                    <p>Dacă vă înscrieți la mai mult de trei <b>ateliere</b> primiți și un set de condimente cadou!</p>
+                </article>
+                <article>
+                    <h3>E-book de rețete</h3>
+                    <p>Gusturi&Culturi oferă un nou e-book de rețete cuprinzând:</p>
+                    <ol>
+                        <li><i lang="en">Street food</i> internațional</li>
+                        <li>Un set de 4 rețete de deserturi vegane</li>
+                        <li>Preparate tradiționale reinventate</li>
+                        <li><i>Băuturi</i> de sezon</li>
+                        <li>Gratis: un ghid de condimente esențiale</li>
+                        <li>Gratis: o planificare săptămânală a meselor</li>
+                        <li>Gratis: acces la un webinar despre tehnici de bază în bucătărie</li>
+                    </ol>
+                </article>
+                <article>
+                    <h3 class="titlu bcd">Colecția sezonală</h3>
+                    <p>Descoperiți noua noastră colecție de rețete de primăvară, cu ingrediente proaspete și preparate ușoare. Ideale pentru mesele în aer liber și picnicuri.</p>
+                    <ol>
+                        <li>Salate creative cu verdețuri de sezon.</li>
+                        <li>Tartine și aperitive rapide pentru oaspeți.</li>
+                        <li>Deserturi ușoare cu fructe proaspete.</li>
+                        <li>Băuturi răcoritoare și mocktail-uri.</li>
+                    </ol>
+                </article>
+                <article>
+                    <h3>Parteneriate culinare</h3>
+                    <p>Am dezvoltat noi parteneriate cu producători locali pentru a vă recomanda cele mai bune ingrediente pentru rețetele noastre. Descoperiți harta interactivă a producătorilor pe pagina noastră dedicată.</p>
+                    <ol>
+                        <li>Producători de lactate artizanale.</li>
+                        <li>Fermieri cu legume și fructe ecologice.</li>
+                        <li>Apicultori și producători de miere locală.</li>
+                        <li>Măcelării tradiționale cu produse certificate.</li>
+                    </ol>
+                </article>
+            </section>
+            <section id="categorii">
+                <h2>Categorii de rețete</h2>
+
+                <p>Vă oferim o multitudine de rețete pentru toate gusturile și ocaziile.</p>
+                <section>
+                    <h3>Bucătărie tradițională românească</h3>
+                    <p>Redescoperă rețetele autentice ale bucătăriei românești!</p>
+                    <p>Avem rețete de:</p>
+                    <ul>
+                        <li>sarmale</li>
+                        <li>ciorbă de burtă</li>
+                        <li>mămăligă</li>
+                        <li>cozonac</li>
+                        <li>plăcinte</li>
+                        <li>țuică fiartă</li>
+                    </ul>
+                </section>
+                <section>
+                    <h3>Bucătărie internațională</h3>
+                    <p>Explorați gusturi din toate colțurile lumii cu rețetele noastre internaționale!</p>
+                    <p>Bucătării disponibile:</p>
+                    <ul>
+                        <li>italiană</li>
+                        <li>japoneză</li>
+                        <li>mexicană</li>
+                        <li>indiană</li>
+                        <li>thailandeză</li>
+                        <li>franțuzească</li>
+                        <li>grecească</li>
+                        <li>libaneză</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Diete speciale</h3>
+                    <p>Rețete adaptate pentru diverse nevoi și preferințe alimentare:</p>
+                    <ul>
+                        <li>vegetariene</li>
+                        <li>vegane</li>
+                        <li>fără gluten</li>
+                        <li>low-carb</li>
+                        <li>keto</li>
+                    </ul>
+                </section>
+            </section>
+            <section id="program">
+                <h2>Program ateliere live</h2>
+                <table id="tab-program">
+                    <thead>
+                        <tr>
+                            <th>Cod</th>
+                            <th>Perioadă</th>
+                            <th>Zi</th>
+                            <th>Atelier dimineață</th>
+                            <th>Pauza</th>
+                            <th>Atelier seară</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td rowspan="5">Zile<br/>Lucrătoare</td>
+                            <td>Luni</td>
+                            <td>10-12</td>
+                            <td>12-17</td>
+                            <td>17-19</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Marți</td>
+                            <td>9-11</td>
+                            <td>11-17</td>
+                            <td>17-20</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Miercuri</td>
+                            <td>10-12</td>
+                            <td>12-17</td>
+                            <td>17-19</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Joi</td>
+                            <td>9-11</td>
+                            <td>11-17</td>
+                            <td>17-20</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Vineri</td>
+                            <td>9-11</td>
+                            <td>11-16</td>
+                            <td>16-19</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td rowspan="2">Weekend</td>
+                            <td>Sâmbătă</td>
+                            <td>10-13</td>
+                            <td>13-15</td>
+                            <td>15-18</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Duminică</td>
+                            <td>10-14</td>
+                            <td>-</td>
+                            <td>închis</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </section>
+            <figure id="fig1" class="fg-img">
+                <img src="/resurse/imagini/pasta.png" alt="pasta">
+                <figcaption>Paste Carbonara</figcaption>
+            </figure>
+            <figure id="fig2" class="fg-img">
+                <img src="/resurse/imagini/salad.png" alt="salad">
+                <figcaption>Salată mediteraneană</figcaption>
+            </figure>
+            <figure id="fig3" class="fg-img">
+                <img src="/resurse/imagini/soup.png" alt="soup">
+                <figcaption>Supă cremă de legume</figcaption>
+            </figure>
+            <section id="anunturi">
+                <h2>Anunțuri</h2>
+                <p><time datetime="2025-04-10">10 aprilie 2025</time> <strong>Lansare serie nouă de videouri!</strong></p>
+                <p><time datetime="2025-03-15">15 martie 2025</time> Am adăugat o nouă colecție de rețete asiatice</p>
+                <p><time datetime="2025-02-20">20 februarie 2025</time> Webinar gratuit despre tehnici de fermentare</p>
+                <p><time datetime="2025-01-15">15 ianuarie 2025</time> Colaborare specială cu Chef Andreea Popescu</p>
+                <p><time datetime="2024-12-20">20 decembrie 2024</time> Rețete festive pentru sărbătorile de iarnă</p>
+                <p><time datetime="2024-12-01">1 decembrie 2024</time> Ghid complet pentru preparate tradiționale românești</p>
+                <p><time datetime="2024-11-15">15 noiembrie 2024</time> Studiile au arătat că gătitul acasă este una din cele mai sănătoase obiceiuri. 
+                    Vă invităm să vă alăturați comunității noastre de pasionați de gătit! </p>
+            </section>
+            <section id="index-intrebari">
+                <h2>Întrebări frecvente</h2>
+                <details><summary>Cât timp durează în medie prepararea rețetelor?</summary>
+                    <p>Fiecare rețetă are indicat timpul de preparare. Avem categorii pentru rețete rapide (sub 30 minute), medii (30-60 minute) și elaborate (peste o oră).</p>
+                </details>
+                <details><summary>Pot adapta rețetele pentru dietele speciale?</summary>
+                    <p>Da! Majoritatea rețetelor au sugestii de substituire a ingredientelor pentru diverse diete și preferințe alimentare.</p>
+                </details>
+                <details><summary>Cât de dificile sunt rețetele pentru începători?</summary>
+                    <p>Avem o categorie specială pentru începători, cu rețete simple și explicații detaliate. De asemenea, videoclipurile noastre demonstrative sunt foarte utile!</p>
+                </details>
+                <details><summary>Oferiti consultanță personalizată pentru planificarea meselor?</summary>
+                    <p>Da, avem abonamente premium care includ consultanță personalizată cu nutriționiști și bucătari profesioniști!</p>
+                </details>
+            </section>
+        </div>
+        <section id="galerie-statica">
+            <h2>Galerie</h2>
+            <div id="grid-galerie">
+                <% 
+                    vect_luni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie"]
+                    d=new Date()
+                    luna_curenta=vect_luni[d.getMonth()]
+                    for (let imag of locals.imagini) {  %>
+                        <% if (imag.luni && imag.luni.includes(luna_curenta)) { %>
+                            <picture>
+                                <source srcset="<%- imag.fisier_mediu  %>" media="screen and (max-width:1000px)" />
+                                <img src="<%- imag.fisier  %>" alt="preparate culinare">
+                            </picture>
+                        <% } %>
+                <% } %>
+            </div>
+        </section>
+        <section id="videoteca">
+            <h2>Videoteca</h2>
+            <p>Pentru a vă ajuta să stăpâniți tehnicile de gătit esențiale, vă oferim o colecție de tutoriale video.
+                Urmăriți-le pentru a învăța de la bucătari cu experiență și a vă îmbunătăți abilitățile în bucătărie.</p>
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                <a href="https://www.youtube.com/embed/1IszT_guI08" target="ifr-video">Tehnici de bază</a>
+                <a href="https://www.youtube.com/embed/ZJy1ajvMU1k" target="ifr-video">Deserturi</a>
+                <a href="https://www.youtube.com/embed/eGKwDvCm5mw" target="ifr-video">Preparate tradiționale</a><br/>
+                </div>
+            
+                <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/1IszT_guI08" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+    <%- include("../fragmente/footer.ejs") %>
+
+    </body>
+</html>

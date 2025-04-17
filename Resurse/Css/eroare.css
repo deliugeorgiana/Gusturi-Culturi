@@ -1,0 +1,39 @@
+#err-imag{
+    background-size:100% auto;
+    background-position:center center;
+    background-repeat:no-repeat;
+    width:30%;
+}
+
+#err-imag img{
+    width:100%;
+}
+#err-coloane{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8em;
+    padding-left: 1em;
+}
+
+#err-coloane section{
+    font-size:2em;
+    padding-left:1em;
+}
+#err-coloane h2{
+    font-size:2em;
+}
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    color: var(--culoare-rosie);
+    background-color: var(--culoare-neagra);
+    padding: 10px;
+    margin-left: -5px;
+    margin-bottom: -10px;
+    margin-right: -5px;
+    border-radius: 10px;
+    box-shadow: 0px -4px 8px var(--culoare-rosie);
+}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description"
+        content="Site-ul Gusturi & Culturi este dedicat pasionaților de gastronomie și cultură, oferind rețete tradiționale din întreaga lume, articole despre obiceiuri culinare și povești despre mâncărurile care ne unesc."/>
+        <meta name="keywords" content="Gusturi & Culturi, rețete, gastronomie, cultură, tradiții culinare, povești despre mâncare" />
+        <meta name="author" content="Gusturi & Culturi" />
+        <title>Despre noi - Gusturi & Culturi</title>
+
+        <%- include("../fragmente/head.ejs") %>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee+Spice&family=Comfortaa:wght@300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="../resurse/css/video-despre-noi.css">
+    </head>
+    <body>
+        <%- include("../fragmente/header.ejs") %>
+        <main>
+            <p>Easter Egg!</p>
+            <video controls preload="metadata" style="width:80%;height:auto" poster="../resurse/video/doge.jpg">
+                    <!--SOURCES-->
+                    <source src="../resurse/video/freddy-freddy-fazbear.mp4" type="video/mp4">
+                    <source src="../resurse/video/freddy-freddy-fazbear.ogv" type="video/ogv">
+                    <!--TRACKS-->
+                    <track  default src="resurse/video/tracks/captions_ro.vtt" kind="captions" srclang="ro" label="romană" />
+                    <track src="resurse/video/tracks/captions_en.vtt" kind="captions" srclang="en" label="engleză" />
+            </video>
+        </main>
+</html>

@@ -1,0 +1,139 @@
+@media screen and (max-width: 768px) {
+    .container {
+        padding-left: var(--padding-small);
+        padding-right: var(--padding-small);
+    }
+
+    html {
+        font-size: 12px;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+        padding-left: 45%;
+    }
+
+    h2 {
+        font-size: .9rem;
+    }
+
+    header {
+        max-width: 95%;
+        margin: 0 auto;
+    }
+
+    #grid-pagina {
+        display: block;
+        gap: 5px;
+    }
+
+    main {
+        padding: 0;
+        margin: 0;
+    }
+
+    .container-tabel {
+        overflow-x: scroll;
+    }
+
+    .contaier-iframe {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+    }
+
+    #taburi-iframe {
+        display: flex;
+        justify-content: center;
+
+        >a {
+            border-radius: 8px;
+            margin-right: 3px;
+        }
+    }
+
+    #buton-acasa {
+        padding-bottom: 5px;
+    }
+
+    #hamburger-fa {
+        display: block;
+        margin: 0 auto;
+        padding-top: 5.5px;
+        padding-bottom: 1em;
+        padding-left: 50%;
+    }
+
+    #hamburger {
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+        height: 0;
+        padding-bottom: 10px;
+
+        &::after {
+            content: "";
+            width: 100%;
+            height: 50%;
+            left: 0;
+            top: 0;
+        }
+
+        &:hover {
+            nav {
+                display: flex;
+                flex-direction: column;
+                animation-name: animatie_submeniu;
+                animation-duration: .5s;
+                animation-timing-function: linear;
+                animation-fill-mode: forwards;
+            }
+        }
+    }
+
+    nav {
+        display: none;
+        text-align: center;
+
+        ul {
+            display: block;
+
+            .buton-meniu {
+                position: relative;
+
+                ul {
+                    display: none;
+                    position: absolute;
+                    top: -100%;
+                    left: 0;
+                    z-index: 10;
+                    background-color: var(--culoare-neagra);
+                    width: 100%;
+                }
+
+                &:hover {
+                    ul {
+                        display: block;
+                    }
+                }
+            }
+
+            li {
+                margin-bottom: 0;
+                background-color: var(--culoare-neagra);
+            }
+        }
+    }
+
+    @keyframes animatie_submeniu {
+        0% {
+            clip-path: polygon(0 0, 0 0, 0 50%, 0 100%, 0 100%);
+        }
+
+        100% {
+            clip-path: polygon(0% 0%, 100% 0%, 125% 50%, 100% 100%, 0% 100%);
+        }
+    }
+}

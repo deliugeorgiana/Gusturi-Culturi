@@ -1,0 +1,201 @@
+
+:root {
+    --color-primary: #871609;      /*fundal header, footer */
+    --color-secondary: #DC6659;    /*coloane, elemente math, gradient */
+    --color-accent: #5D1D16;       /* linkuri, umbre */
+    --color-light: #FF9C91;        /* fundal tab-uri iframe */
+    --color-lightest: #9c6761; 
+}
+
+.container {
+    /* max-width: 1800px; */
+    margin: 0 auto;
+    padding-left: var(--padding-large);
+    padding-right: var(--padding-large);
+}
+
+html{
+    transition: font-size 100ms ease-in;
+}
+
+/* HEADER */
+
+header {
+    background-color: var(--culoare-neagra);
+    color: var(--culoare-rosie);
+    padding: 20px;
+    margin-left: -5px;
+    margin-top: -20px;
+    margin-right: -5px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px var(--culoare-rosie);
+}
+
+header a {
+    color: var(--culoare-gri);
+}
+
+a:hover {
+    color: var(--culoare-rosie);
+}
+
+a:active {
+    color: var(--culoare-rosie);
+}
+
+h1 {
+    padding-left: 25px;
+    color: var(--culoare-rosie);
+    font-family: "Tektur", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    transition: font-size 100ms ease-in;
+}
+
+h1 a {
+    text-decoration: none;
+    color: var(--culoare-rosie);
+}
+
+h2{
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400 ;
+    font-style: normal;
+    transition: font-size 100ms ease-in-out;
+}
+/* BODY */
+
+body {
+
+    background-color: rgb(26, 26, 26);
+    color: var(--culoare-gri);
+    margin: 5px;
+    overflow-x: hidden;
+}
+
+a:hover {
+    color: var(--culoare-rosie);
+}
+
+h2 {
+    color: var(--culoare-rosie);
+    padding-left: 30px;
+    padding-top: 10px;
+}
+
+h3 {
+    padding-top: 5px;
+    padding-left: 60px;
+    margin: 0;
+}
+
+
+main{
+    padding-left: 20px;
+    padding-right: 20px;
+}
+main #stilizare-linkuri-etapa4 a {
+    position: relative;
+    /* color: black; */
+    text-decoration: none;
+    background-image: radial-gradient(circle, var(--culoare-gri) 0%, var(--culoare-gri) 40%, transparent 80%, transparent 100%);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 0% 0%;
+    transition: background-size 0.4s ease;
+    z-index: 0;
+}
+
+main #stilizare-linkuri-etapa4 a:hover {
+    background-size: 100% 100%;
+}
+#stilizare-linkuri-etapa4 a:visited{
+    color: var(--culoare-rosie);
+}
+#stilizare-linkuri-etapa4 a[href^="http"]::before{
+    content: "⮳";
+    font-size: 1.5rem;
+}
+#stilizare-linkuri-etapa4 a:hover{
+    color: var(--culoare-gri);
+}
+#stilizare-linkuri-etapa4 a:active{
+    border:1px solid var(--culoare-rosie);
+}
+/* FOOTER */
+footer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--culoare-rosie);
+    background-color: var(--culoare-neagra);
+    padding: 10px;
+    margin-left: -5px;
+    margin-bottom: -10px;
+    margin-right: -5px;
+    border-radius: 10px;
+    box-shadow: 0px -4px 8px var(--culoare-rosie);
+}
+
+footer address {
+    display: inline-flex;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+footer a {
+    color: var(--culoare-rosie);
+    text-decoration: none;
+    text-align: center;
+    font-style: normal;
+}
+
+#link-top {
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    background: transparent;
+    border: 1px solid var(--culoare-gri);
+    transform: rotate(45deg);
+    transition: background-color 200ms ease-in, opacity 200ms ease-in;
+}
+
+#link-top:hover {
+    opacity: 1;
+    background-color: var(--culoare-rosie);
+}
+
+#link-top:hover #triunghi{
+    color: var(--culoare-gri);
+
+}
+
+#triunghi {
+    margin-top: -5px;
+    margin-left: -5px;
+    height: 0;
+    width: 0;
+    display: inline-block;
+    color: var(--culoare-rosie);
+    border-bottom: 1.5rem solid;
+    border-left: .8rem solid transparent;
+    border-right: .8rem solid transparent;
+    vertical-align: top;
+    transform: rotate(-45deg) scale(.9);
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    transition: color 200ms ease-in;   
+}

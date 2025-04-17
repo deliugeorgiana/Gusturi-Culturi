@@ -1,0 +1,46 @@
+@media screen and (max-width: 1024px) {
+    .container {
+        padding-left: var(--padding-medium);
+        padding-right: var(--padding-medium);
+    }
+    html{
+        font-size: 14px;
+    }
+    h1{
+        font-size: 1.3rem;
+    }
+    h2{
+        font-size: 1.1rem;
+    }
+    header {
+        max-width: 96%;
+        margin: 0 auto;
+    }
+
+    #grid-pagina{
+        grid-template-areas: "prezentare prezentare prezentare"
+                             "anunturi anunturi calendar-evenimente"
+                             "tabel tabel utilizatori_online"
+                             "statistici site-server site-server"
+                             "diverse diverse diverse";
+        gap: 8px;
+    }
+    nav{
+        font-size: 11px;
+    }
+    .buton-meniu.home{
+        display: flex;
+        align-content: center;
+    }
+    #buton-acasa{
+        display: block;
+        margin: 0 auto;
+        padding-top: 5.5px;
+    }
+    #anchor-acasa{
+        display: none;
+    }
+    nav ul .buton-submeniu a{
+        font-size: 10px;
+    }
+}
