@@ -2,5 +2,28 @@
   "dependencies": {
     "ejs": "^3.1.10",
     "express": "^4.21.2"
-  }
+  },
+  "name": "gusturiculturi",
+  "version": "1.0.0",
+  "description": "Site de retete diversificate",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \\\"Error: not test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deliugeorgiana/Gusturi-Culturi.git"
+  },
+  "keywords": [
+    "retete",
+    "retete-culinare",
+    "international",
+    "sarbatori"
+  ],
+  "author": "Deliu Georgiana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/deliugeorgiana/Gusturi-Culturi/issues"
+  },
+  "homepage": "https://github.com/deliugeorgiana/Gusturi-Culturi#readme"
 }

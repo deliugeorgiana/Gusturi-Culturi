@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="ro">
     <head>
+        <meta charset="UTF-8">
         <meta name="description"
         content="Site-ul Gusturi & Culturi este dedicat pasionaților de gastronomie și cultură, oferind rețete tradiționale din întreaga lume, articole despre obiceiuri culinare și povești despre mâncărurile care ne unesc."/>
         <meta name="keywords" content="Gusturi & Culturi, rețete, gastronomie, cultură, tradiții culinare, povești despre mâncare" />
-        <meta name="author" content="Gusturi & Culturi" />
+        <meta name="author" content="Deliu Georgiana" />
         <title>Despre noi - Gusturi & Culturi</title>
 
         <%- include("../fragmente/head.ejs") %>
@@ -14,16 +15,32 @@
         <link rel="stylesheet" href="../resurse/css/video-despre-noi.css">
     </head>
     <body>
-        <%- include("../fragmente/header.ejs") %>
-        <main>
-            <p>Easter Egg!</p>
-            <video controls preload="metadata" style="width:80%;height:auto" poster="../resurse/video/doge.jpg">
-                    <!--SOURCES-->
-                    <source src="../resurse/video/freddy-freddy-fazbear.mp4" type="video/mp4">
-                    <source src="../resurse/video/freddy-freddy-fazbear.ogv" type="video/ogv">
-                    <!--TRACKS-->
-                    <track  default src="resurse/video/tracks/captions_ro.vtt" kind="captions" srclang="ro" label="romană" />
-                    <track src="resurse/video/tracks/captions_en.vtt" kind="captions" srclang="en" label="engleză" />
-            </video>
-        </main>
+        <video controls preload="auto" poster="poster.jpg">
+            <!-- Surse video în formate diferite -->
+            <source src="video.mp4" type="video/mp4">
+            <source src="video.webm" type="video/webm">
+            
+            <!-- Trackuri subtitrări -->
+            <track 
+                src="subtitrare_ro.vtt" 
+                kind="subtitles" 
+                srclang="ro" 
+                label="Română" 
+                default>
+                
+            <track 
+                src="subtitrare_en.vtt" 
+                kind="subtitles" 
+                srclang="en" 
+                label="English">
+                
+            <track 
+                src="subtitrare_ru.vtt" 
+                kind="subtitles" 
+                srclang="ru" 
+                label="Русский">
+                
+            Browserul tău nu suportă elementul video.
+        </video>
+    </body>
 </html>

@@ -12,6 +12,7 @@
     --color-accent: #5D1D16;       /* linkuri, umbre */
     --color-light: #FF9C91;        /* fundal tab-uri iframe */
     --color-lightest: #9c6761;     /* border, dundal linkuri tabel */
+    --visited-link-color: #9c27b0; /* culoare linkuri vizitate */
     
     /* Culori derivate */
     --color-text: #333;
@@ -161,6 +162,54 @@ header h1 {
     font-size: var(--font-size-h1);
     margin-bottom: 1rem;
 }
+
+/*Et 4 */
+/* Styling for visited links */
+a:visited {
+    color: var(--visited-link-color);
+  }
+
+/* Styling for external links */
+a[href^="http"]::before {
+    content: "⮳";
+    font-size: 1.5em;
+    margin-right: 0.2em;
+    vertical-align: middle;
+    color: var(--external-link-color);
+    transition: color 0.3s ease;
+  }
+
+  a[href^="http"]:hover::before {
+    color: var(--link-hover-color);
+  }
+
+  /* Content link hover effect (links within main) */
+main a {
+    background-image: radial-gradient(
+      circle,
+      var(--radial-gradient-color) 0%,
+      var(--radial-gradient-color) 40%,
+      transparent 80%,
+      transparent 100%
+    );
+    background-position: center;
+    background-size: 0;
+    background-repeat: no-repeat;
+    transition: background-size 0.3s ease;
+  }
+  
+  /* Hover effect for content links */
+  main a:hover {
+    background-size: 100%;
+  }
+  
+  /* Active state for all links */
+  a:active {
+    border: 2px solid var(--active-border-color);
+    border-radius: 3px;
+    padding: 0.1em 0.3em;
+    margin: -0.1em -0.3em; 
+  }
 
 main {
     padding: 1rem;
