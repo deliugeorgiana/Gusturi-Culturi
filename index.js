@@ -1,3 +1,12 @@
+document.querySelectorAll('.meniu-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            this.classList.toggle('active');
+        }
+    });
+});
+
 const express= require("express");
 const path= require("path");
 const fs = require("fs");

@@ -1,46 +1,65 @@
-@media screen and (max-width: 1024px) {
-    .container {
-        padding-left: var(--padding-medium);
-        padding-right: var(--padding-medium);
+/* Media query pentru ecrane sub 1000px */
+@media screen and (max-width: 1000px) {
+    .meniu-lista {
+        gap: 0.3rem;
     }
-    html{
-        font-size: 14px;
+    
+    .meniu-element {
+        margin: 0 0.2rem;
     }
-    h1{
-        font-size: 1.3rem;
+    
+    .meniu-element a {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.9rem;
     }
-    h2{
-        font-size: 1.1rem;
+    
+    .submeniu {
+        width: 180px;
     }
-    header {
-        max-width: 96%;
-        margin: 0 auto;
+    
+    .submeniu li a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
     }
+    
+    /* Ajustam spatiile pentru a economisi spatiu */
+    .home-link {
+        gap: 0.3rem;
+    }
+    
+    /* Reducem putin spatiul in submeniu */
+    .submeniu {
+        padding: 0.3rem 0;
+    }
+}
 
-    #grid-pagina{
-        grid-template-areas: "prezentare prezentare prezentare"
-                             "anunturi anunturi calendar-evenimente"
-                             "tabel tabel utilizatori_online"
-                             "statistici site-server site-server"
-                             "diverse diverse diverse";
-        gap: 8px;
+@media screen and (max-width: 850px) {
+    .meniu-lista {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 0 0.5rem;
     }
-    nav{
-        font-size: 11px;
+    
+    .meniu-element {
+        margin: 0;
     }
-    .buton-meniu.home{
-        display: flex;
-        align-content: center;
+    
+    .meniu-element a {
+        padding: 0.5rem 0.5rem;
+        font-size: 0.85rem;
     }
-    #buton-acasa{
-        display: block;
-        margin: 0 auto;
-        padding-top: 5.5px;
-    }
-    #anchor-acasa{
+    
+    /* Reducem spatiul pentru text si marim iconul pentru acasa */
+    .home-text {
         display: none;
     }
-    nav ul .buton-submeniu a{
-        font-size: 10px;
+    
+    .home-link i {
+        font-size: 1.2rem;
+    }
+    
+    .home-link {
+        padding: 0.5rem;
+        justify-content: center;
     }
 }

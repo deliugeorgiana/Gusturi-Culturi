@@ -1,145 +1,409 @@
+/* Stiluri specifice pentru pagina principală */
 
-.imagine {
-    max-width: 38%;
+.grid-container {
+    display: grid;
+    gap: var(--grid-gap-large);
+    margin-bottom: 20px;
 }
 
-.fa-solid .fa-image .fa-bounce{
-   transform: scale(.7);
+.zone-1, .zone-2, .zone-3, .zone-4, .zone-5, .zone-6, .zone-7, .zone-8 {
+    padding: var(--zone-padding);
+    border-radius: var(--box-border-radius);
+    box-shadow: var(--box-shadow);
+    border: var(--box-border);
 }
 
-.text {
-    padding-left: 45px;
-    margin-right: 20px;
-    text-align: justify;
-    max-width: 95%
+.zone-1 {
+    grid-area: zone1;
+    background-color: #fff;
 }
 
-figure {
-    text-align: center;
+.zone-2 {
+    grid-area: zone2;
+    background-color: rgba(255, 195, 188, 0.1);
 }
 
-#linkuri-utile a {
-    color: var(--culoare-gri);
+.zone-3 {
+    grid-area: zone3;
+    background-color: rgba(255, 195, 188, 0.2);
+}
+
+.zone-4 {
+    grid-area: zone4;
+    background-color: rgba(255, 195, 188, 0.3);
+}
+
+.zone-5 {
+    grid-area: zone5;
+    background-color: rgba(255, 156, 145, 0.2);
+}
+
+.zone-6 {
+    grid-area: zone6;
+    background-color: rgba(255, 156, 145, 0.3);
+}
+
+.zone-7 {
+    grid-area: zone7;
+    background-color: rgba(255, 156, 145, 0.4);
+}
+
+.zone-8 {
+    grid-area: zone8;
+    padding: var(--zone-padding);
+    border-radius: var(--box-border-radius);
+    box-shadow: var(--box-shadow);
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-light) 100%);
+    color: var(--color-text-inverse);
+    border: 2px solid var(--color-primary);
+    position: relative;
+    overflow: hidden;
+}
+
+.zone-8::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(45deg);
+    pointer-events: none;
+}
+
+.zone-8 h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.zone-8 p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto 1rem auto;
+}
+
+.zone-8 a {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(255,255,255,0.2);
+    color: var(--color-text-inverse);
+    border-radius: 30px;
+    font-weight: bold;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+
+.zone-8 a:hover {
+    background-color: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     text-decoration: none;
 }
 
-#linkuri-utile a:hover {
-    color: var(--culoare-rosie);
-}
-
-#linkuri-utile a:active {
-    color: var(--culoare-rosie);
-}
-
-#informatii-utile details summary:hover {
-    color: var(--culoare-rosie);
-
-}
-
-#informatii-utile details {
-    cursor: pointer;
-    padding-left: 5px;
-}
-#grid-pagina {
+.z-pattern {
     display: grid;
-    grid-template-areas: "prezentare prezentare prezentare"
-                         "calendar-evenimente tabel anunturi"
-                         "utilizatori_online  tabel  anunturi"
-                         "utilizatori_online statistici site-server"
-                         "diverse diverse diverse";
-    /* grid-template-rows: repeat(3, 1fr); */
-    gap: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
-    transition: grid-template-areas 300ms ease-in-out;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1.5rem;
 }
 
-#grid-pagina > * {
-    /* outline: 1px solid white; */
-    padding: 20px;
+.z-pattern > div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+    text-align: left;
 }
 
-#prezentare{
-    grid-area: prezentare;
+.z-pattern > div:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: right;
 }
 
-#tabel{
-    grid-area: tabel;
+.z-pattern > div:nth-child(3) {
+    grid-column: 1;
+    grid-row: 2;
+    text-align: left;
 }
 
-#calendar_evenimente{
-    grid-area: calendar;
-}
-#anunturi{
-    grid-area: anunturi;
-}
-#utilizatori_online{
-    grid-area: utilizatori_online;
-}
-#statistici{
-    grid-area: statistici;
-}
-#site-server{
-    grid-area: site-server;
-}
-#diverse{
-    grid-area: diverse;
+.z-pattern > div:nth-child(4) {
+    grid-column: 2;
+    grid-row: 2;
+    text-align: right;
 }
 
-#linkuri {
-    margin: 0 auto;
-    padding-left: 5rem;
+/* Categorii, Sarbatori, Ingrediente, Bucatarii */
+.categorii-container, .sarbatori-container, .ingrediente-grid, .bucatarii-grid {
+    display: grid;
+    gap: 1.5rem;
 }
 
-#taburi-iframe > a{
-    display: flex;
-    width: 100px;
-    height: 40px;
-    border: 3px solid var(--culoare-gri);
-    background-color: rgba(199, 81, 77, .7);
+.categorie, .sarbatoare, .ingredient, .bucatarie {
+    padding: var(--zone-padding);
+    border-radius: var(--box-border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: rgb(209, 152, 152);
+    border: var(--box-border);
+    transition: all 0.3s ease;
+}
+
+.categorie:hover, .sarbatoare:hover, .ingredient:hover, .bucatarie:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Liste, detalii și definiții pentru secțiunile principale */
+details {
+    margin-bottom: 1rem;
+    padding: var(--zone-padding);
+    background-color: rgba(255, 195, 188, 0.3);
+    border-radius: var(--box-border-radius);
+    border: var(--box-border);
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0.5rem 0;
+}
+
+dl {
+    margin: 1rem 0;
+}
+
+dt {
+    font-weight: bold;
+    margin-top: 0.8rem;
+}
+
+dd {
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Sidebar */
+aside {
+    background-color: rgba(255, 195, 188, 0.3);
+    padding: var(--zone-padding);
+    border-radius: var(--box-border-radius);
+    border-left: 4px solid var(--color-primary);
+    margin: 1rem 0;
+    box-shadow: var(--box-shadow);
+}
+
+/* Formule */
+#formule {
     text-align: center;
+    margin: 2rem 0;
+}
+
+#formule math {
+    display: block;
+    margin: 1.5rem auto;
+    font-size: 2rem;
+}
+
+#formule mi:nth-of-type(2) {
+    color: var(--color-secondary);
+    font-style: italic;
+}
+
+#formule mi:nth-of-type(3) {
+    color: var(--color-accent);
+    font-style: italic;
+}
+
+#formule mi:nth-of-type(4) {
+    color: var(--color-accent);
+    font-weight: bold;
+    font-style: normal;
+}
+
+#formule mi:nth-of-type(5) {
+    color: var(--color-secondary);
+    font-style: italic;
+}
+
+#formule mo {
+    color: black;
+    font-weight: normal;
+    padding: 0 5px;
+}
+
+#formule math:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* stilizare iconuri */
+.icon-text {
+    margin: 2rem 0;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.icon-text i {
+    margin: 0 0.5rem;
+    color: var(--color-primary);
+}
+
+/* Container iframe */
+.container-iframe {
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    padding: 20px;
+    flex-wrap: wrap;
     justify-content: center;
-    margin: 0;
-    transition: color 300ms ease-in-out, background-color 300ms ease-in-out;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-    margin-bottom: 3px;
 }
 
-#taburi-iframe > a:hover{
-    background-color: var(--culoare-neagra);
-    color: var(--culoare-rosie);
+.taburi-iframe {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
 }
 
-.container-iframe{
+.taburi-iframe a {
+    display: inline-block;
+    width: 200px;
+    height: 40px;
+    background-color: var(--color-light);
+    color: var(--color-text-inverse);
+    text-align: center;
+    line-height: 40px;
+    text-decoration: none;
+    border-radius: 5px;
+    border: 1px solid var(--color-accent);
+    transition: background-color 0.3s ease;
+}
+
+.taburi-iframe a:hover {
+    background-color: var(--color-secondary);
+}
+
+/* Stiluri pentru legenda formulelor matematice */
+.legend {
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    padding: 0;  
-    min-width: 50%;
-    /* align-self: center; */
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
 }
 
-.container-iframe iframe{
-    border: 5px solid var(--culoare-gri);
-    margin: 0;
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-#pdfembed{
-    border: 0;
-    margin-left: 1em;
-    max-width: 80%;
+.legend-symbol {
+    font-size: 1.2rem;
 }
 
-.imgmap {
-    margin-left: 28px;
+/* Ecran Mare (desktop) */
+@media screen and (min-width: 992px) {
+    .grid-container {
+        grid-template-areas:
+            "zone1 zone1 zone1 zone1"
+            "zone3 zone2 zone2 zone4"
+            "zone8 zone8 zone8 zone8" 
+            "zone7 zone7 zone5 zone6"
+            "zone8 zone8 zone8 zone8";
+        grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: auto auto auto auto auto;
+    }
+
+    .categorii-container, .sarbatori-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .ingrediente-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .bucatarii-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-#harta iframe {
-    width: 99%;
-    margin-left: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-radius: 30px;
+/* Ecran mediu (tableta) */
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .grid-container {
+        grid-template-areas:
+            "zone1 zone1 zone1"
+            "zone2 zone2 zone2"
+            "zone3 zone4 zone5"
+            "zone6 zone7 zone8";
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: auto auto auto auto;
+        gap: var(--grid-gap-medium);
+    }
+
+    .categorii-container, .sarbatori-container, .ingrediente-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .bucatarii-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    img, video, iframe {
+        max-width: var(--media-max-width-medium);
+        min-width: var(--media-min-width-medium);
+    }
+}
+
+/* Ecran mic (telefon) */
+@media screen and (max-width: 767px) {
+    .grid-container {
+        grid-template-areas:
+            "zone1"
+            "zone2"
+            "zone3"
+            "zone4"
+            "zone5"
+            "zone6"
+            "zone7"
+            "zone8";
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(8, auto);
+        gap: var(--grid-gap-small);
+    }
+
+    .animate-fade, .animate-pulse {
+        animation: none;
+    }
+
+    .z-pattern {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+
+    .z-pattern > div {
+        grid-column: 1;
+        text-align: center;
+    }
+
+    .z-pattern > div:nth-child(1) { grid-row: 1; }
+    .z-pattern > div:nth-child(2) { grid-row: 2; }
+    .z-pattern > div:nth-child(3) { grid-row: 3; }
+    .z-pattern > div:nth-child(4) { grid-row: 4; }
+
+    .categorii-container, .sarbatori-container, .ingrediente-grid, .bucatarii-grid {
+        grid-template-columns: 1fr;
+    }
+
+    iframe {
+        height: 240px;
+        border: 4px solid white;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    
+    img, video, iframe {
+        max-width: var(--media-max-width-small);
+        min-width: var(--media-min-width-small);
+    }
 }

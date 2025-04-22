@@ -1,132 +1,169 @@
-#watermark, #absolut, #banner {
-    display: none;
-}
-
+/* Ascundem elementele neesențiale pentru printare */
 @media print {
+    // Elemente care nu trebuie printate
+    .container-iframe, .taburi-iframe, 
+    #hamburger-icon, #hamburger-toggle,
+    #link-top, iframe, embed, video,
+    .meniu-principal .fa-home {
+        display: none !important;
+    }
+
+    /* Banner informativ */
     #banner {
         display: block;
         position: absolute;
-        bottom: 0;
+        bottom: 2cm;
         left: 15%;
         width: 70%;
-        height: auto;
         text-align: center;
-        border: 4px inset black;
-        background-color: white;
+        border: 4px inset var(--color-primary);
         padding: 10px;
-        box-sizing: border-box;
+        font-family: 'Playfair Display', serif;
+        background-color: white;
+        z-index: 1000;
+        
+        &::after {
+            content: "Acesta este un proiect școlar despre gastronomie internațională";
+            display: block;
+            font-size: 1.2rem;
+            color: var(--color-primary);
+        }
     }
     
-    #absolut {
-        position: absolute;
-        display: inline-block;
-        top: 90%;
-        left: 20%;
-        height: auto;
-        width: 70%;
-        right: 0;
-        overflow: visible;
-    }
-
-    #absolut::after {
-        content: "Acesta este un proiect scolar!";
-        position: absolute;
-        font-size: 16px;
-        right: 0;
-        border: 5px double black;
-        width: 100%;
-        display: inline-block;
-        text-align: center;
-    }
-
-    h1 {
-        page-break-after: always;
-        margin-top: 50%;
-        text-align: center;
-        margin-left: 1cm;
-    }
-    nav ul{
-        display: block;
-    }
-    #grid-pagina {
-        font-size: 10px;
-        box-sizing: border-box;
-        page-break-before: always;
-        background-color: white;
-        display: block;
-    }
-
-    html, body {
-        width: 210mm;
-        overflow: visible !important;
-    }
-    p, summary, nav ul li a{
-        color: black;
-    }
-    th, td{
-        border: 1px solid black;
-        color: black;
-    }
-    #grid-pagina div:nth-child(5) {
-
-        page-break-before: always;
-    }
-
+    /* Watermark cu numele */
     #watermark {
         display: block;
         position: fixed;
-        /*apare pe toate paginile*/
         bottom: 0;
-        color: rgba(0, 0, 0, 0.4);
         right: 0;
+        
+        &::after {
+            content: "Gusturi & Culturi\A Realizat de [Numele Tău]";
+            white-space: pre;
+            opacity: 0.4;
+            padding: 0.5rem;
+            width: 5cm;
+            height: 1.5cm;
+            border: 3px solid var(--color-primary);
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.8rem;
+            color: var(--color-primary);
+            background-color: white;
+        }
     }
 
-    #watermark::after {
-        opacity: 0.4;
-        padding: 5px;
+    /* Layout pentru pagini printate */
+    #grid-pagina {
+        font-size: 12pt;
+        box-sizing: border-box;
+        page-break-before: always;
+        background-color: white;
         display: block;
-        background: white;
-        border: 3px solid black;
-        border-top-left-radius: 10px;
-        border-bottom-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        content: "Copyright Octavian Diaconescu";
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
-        color: black;
-        width: 4cm;
-        height: 2cm;
+        
+        > * {
+            margin-top: 0.75rem;
+            margin-bottom: 0.25rem;
+            page-break-inside: avoid;
+        }
     }
 
-    #link-top, #triunghi, #img, #linkuri, .container-iframe, #pdfembed, .imgmap {
-        display: none;
+    /* Meniu adaptat pentru printare */
+    nav.meniu-principal {
+        display: block !important;
+        width: 100%;
+        margin-bottom: 1cm;
+        
+        .meniu-lista {
+            display: flex !important;
+            flex-direction: column;
+            width: 100%;
+            padding-left: 0;
+            
+            > li {
+                display: block;
+                margin-top: 0.5rem;
+                margin-left: auto;
+                margin-right: auto;
+                
+                .meniu-link {
+                    color: black !important;
+                    height: auto;
+                    padding: 5px;
+                    
+                    &::after {
+                        display: none;
+                    }
+                    
+                    .link-text {
+                        display: inline !important;
+                    }
+                }
+            }
+        }
+        
+        .submeniu {
+            display: none !important;
+        }
     }
-    
+
+    /* Header adaptat */
+    header > h1 {
+        text-align: center;
+        margin-left: 0;
+        color: black !important;
+        font-size: 24pt !important;
+    }
+
+    /* Link-uri */
+    a {
+        text-decoration: none !important;
+        color: black !important;
+        
+        &[href^="http"]::after {
+            content: " (" attr(href) ")";
+            font-size: 0.8em;
+            color: #666;
+        }
+    }
+
+    /* Footer pe pagina nouă */
     footer {
         page-break-before: always;
+        color: black !important;
+        background-color: white !important;
+        
+        h2 {
+            color: black !important;
+        }
     }
-    header, footer{
-        box-shadow: none;
+
+    /* Setări pagină */
+    @page {
+        size: A4;
+        margin: 2cm;
+        
+        @top-left {
+            content: "Gusturi & Culturi";
+            font-family: 'Playfair Display', serif;
+            color: var(--color-primary);
+        }
+        
+        @bottom-right {
+            content: counter(page);
+            font-family: 'Montserrat', sans-serif;
+        }
     }
-}
 
-@page {
-    size: A4 portrait;
-    margin-bottom: 2cm;
-    margin-top: 2cm;
-    counter-increment: page;
-
-}
-@page:left {
-
-    margin-left: 3cm;
-    margin-right: 1cm;
-    /* border-radius: 20cm; */
-}
-
-@page:right {
-    margin-right: 3cm;
-    margin-left: 1cm;
+    @page :left {
+        margin-left: 3cm;
+        margin-right: 1cm;
+    }
+      
+    @page :right {
+        margin-left: 1cm;
+        margin-right: 3cm;
+    }
 }

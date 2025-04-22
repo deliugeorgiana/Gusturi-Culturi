@@ -1,125 +1,136 @@
-/* nav.css */
-@media screen and (max-width: 800px) {
-    #hamburgerLabel {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        justify-content: space-between;
-        height: 20px;
-        width: 30px;
-        top: 10px;
-        left: 10px;
-        padding: 1rem;
-        cursor: pointer;
-        background-color: var(--background-header, #871609); /* Folosim fallback */
-        z-index: 10;
-    }
-
-    #hamburgerLabel span {
-        height: 3px;
-        width: 100%;
-        background-color: white;
-        border-radius: 3px;
-        transition: all 0.3s ease-in-out;
-    }
-
-    /* Transformăm liniile în X când checkbox-ul e bifat */
-    #hamburgerToggle:checked + #hamburgerLabel span:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-    #hamburgerToggle:checked + #hamburgerLabel span:nth-child(2) {
-        opacity: 0;
-    }
-    #hamburgerToggle:checked + #hamburgerLabel span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    nav.principal {
-        display: block; /* Păstrăm nav-ul vizibil pentru a lucra cu copiii săi */
-    }
-
-    .meniu-lista {
-        display: none; /* Ascundem meniul implicit */
-        position: fixed;
-        top: 0;
-        left: -100%; /* Începem din stânga, în afara ecranului */
-        width: 100%;
-        height: 100vh;
-        background-color: var(--background-header, #871609);
-        flex-direction: column;
-        padding-top: 60px;
-        transition: left 0.3s ease-in-out;
-        z-index: 9;
-    }
-
-    #hamburgerToggle:checked ~ .meniu-lista {
-        display: flex;
-        left: 0; /* Meniul apare din stânga */
-    }
-
-    .meniu-lista > li {
-        width: 100%;
-        text-align: center;
-        animation: showSubmenu 0.5s forwards;
-    }
-
-    .meniu-lista li ul.submeniu {
-        position: static;
-        display: none;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.2);
-    }
-
-    .meniu-lista li:hover ul.submeniu {
-        display: block;
-    }
-
-    @keyframes showSubmenu {
-        0% {
-            opacity: 0;
-            transform: translateX(-20px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
+/* Stiluri pentru meniul principal - ecran mare */
+.meniu-principal {
+    position: relative;
+    width: 100%;
+    margin-top: 1rem;
 }
 
-/* Stiluri generale pentru ecran mare */
-nav.principal .meniu-lista {
+.meniu-lista {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-nav.principal .meniu-lista li {
+.meniu-element {
     position: relative;
     margin: 0 0.5rem;
 }
 
-nav.principal .meniu-lista li a {
+.meniu-element a {
     display: block;
     padding: 0.5rem 1rem;
-    color: rgb(197, 104, 104);
+    color: var(--color-text-inverse);
     text-decoration: none;
-    transition: background-color 0.3s;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
-nav.principal .meniu-lista li a:hover {
-    background-color: #5D1D16;
+.meniu-element a:hover {
+    background-color: var(--color-accent);
+    color: var(--color-text-inverse);
+    text-decoration: none;
+    transform: translateY(-2px);
 }
 
-nav.principal .meniu-lista li ul.submeniu {
+/* Submeniu */
+.submeniu {
     display: none;
     position: absolute;
     top: 100%;
     left: 0;
-    background-color: #871609;
+    background-color: var(--color-primary);
     width: 200px;
+    z-index: 100;
+    margin: 0;
+    padding: 0.5rem 0;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-nav.principal .meniu-lista li:hover ul.submeniu {
+.meniu-element:hover .submeniu {
+    display: block;
+    animation: fadeInDown 0.3s ease-in-out;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.submeniu li {
+    margin: 0;
+    width: 100%;
+    position: relative;
+}
+
+.submeniu li a {
+    padding: 0.5rem 1rem;
+    display: block;
+    color: var(--color-text-inverse);
+    transition: background-color 0.2s;
+    position: relative;
+}
+
+/* Double underline effect for submenu items */
+.submeniu li a::after {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0;
+    height: 3px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.submeniu li a::before {
+    content: '';
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 4px; /* Adjust this value to control the space between lines */
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease 0.1s;
+}
+
+.submeniu li a:hover::after,
+.submeniu li a:hover::before {
+    transform: scaleX(1);
+}
+
+.submeniu li a:hover {
+    background-color: var(--color-light);
+    transform: none;
+}
+
+/* Home link cu icon */
+.home-link {
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.home-link i {
+    font-size: 1.1rem;
+}
+
+/* Ascunde butonul hamburger pe ecrane mari */
+#hamburgerLabel {
+    display: none;
+}
+
+#hamburgerToggle {
+    display: none;
 }

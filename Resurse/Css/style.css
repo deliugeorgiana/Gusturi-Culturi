@@ -1,3 +1,10 @@
+@import url('Resurse/Css/general.css');
+@import url('Resurse/Css/pagina-principala.css');
+@import url('Resurse/Css/tabel.css');
+@import url('Resurse/Css/nav.css');
+@import url('Resurse/Css/nav1000.css');
+@import url('Resurse/Css/nav700.css');
+@import url('Resurse/Css/printare.css');
 :root {
     /* Paleta culori */
     --color-primary: #871609;      /*fundal header, footer */
