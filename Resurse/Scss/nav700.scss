@@ -137,3 +137,28 @@
         }
     }
 }
+
+@media screen and (max-width: 767px) {
+    $delay-step: 0.1s;
+    
+    @for $i from 1 through 3 {
+        #hamburgerLabel .hamburger-line:nth-child(#{$i}) {
+            animation: hamburgerAppear 0.6s ease-out ($i - 1) * $delay-step forwards;
+        }
+    }
+    
+    // When menu is active 
+    #hamburgerToggle:checked ~ #hamburgerLabel {
+        .hamburger-line {
+            &:nth-child(1) {
+                transform: translateY(10px) rotate(45deg);
+            }
+            &:nth-child(2) {
+                opacity: 0;
+            }
+            &:nth-child(3) {
+                transform: translateY(-10px) rotate(-45deg);
+            }
+        }
+    }
+}

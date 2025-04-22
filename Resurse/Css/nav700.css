@@ -63,6 +63,25 @@
         top: 9px;
         transform: rotate(-135deg);
     }
+
+    @keyframes hamburgerAppear {
+        0% {
+            opacity: 0;
+            transform: translateX(-20px);
+            background-color: var(--color-light);
+        }
+        50% {
+            opacity: 0.5;
+            transform: translateX(5px) scaleY(1.2);
+            background-color: var(--color-secondary);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0) scaleY(1);
+            background-color: var(--color-primary);
+        }
+    }
+    
     
     /* Stilizare meniu pentru mobile */
     .meniu-lista {
@@ -175,6 +194,7 @@
         background: rgba(0, 0, 0, 0.7);
         z-index: 99;
     }
+    
 }
 
 @media screen and (max-width: 480px) {
@@ -184,10 +204,41 @@
     }
     
     #hamburgerLabel {
-        top: 0.8rem;
+        display: none; // Hidden by default
+    
+    @media screen and (max-width: 767px) {
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 24px;
+        cursor: pointer;
+        z-index: 1000;
+        
+        .hamburger-line {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background-color: var(--color-primary);
+            transition: all 0.4s ease;
+            transform-origin: center;
+            
+            &:nth-child(1) {
+                top: 0;
+            }
+            
+            &:nth-child(2) {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            
+            &:nth-child(3) {
+                bottom: 0;
+            }
+        }
     }
     
     .meniu-element a {
         font-size: 18px;
+    }
     }
 }
