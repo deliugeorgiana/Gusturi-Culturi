@@ -1,285 +1,485 @@
 <!DOCTYPE html>
 <html lang="ro">
-    <head>
-        <meta name="description" content="Gusturi&Culturi oferă rețete tradiționale și internaționale, videouri cu demonstrații de gătit și sfaturi culinare.">
-        <meta name="keywords" content="rețete, Gusturi&Culturi, bucătărie, internațional, preparate, tradițional, gătit">
-        <title>Gusturi&Culturi</title>
-        
-        <%- include("../fragmente/head.ejs") %>
-    </head>
-    <body>
 
-    <%- include("../fragmente/header.ejs") %>
+<body>
+
 
     <main>
-        <div id="grid-pagina">
-            <section id="welcome">
-                <h2>Bine ați venit</h2>
-                <button type="button" class="btn btn-primary btn-lg">Explorează</button>
-                <p class="intro">Vă mulțumim că vizitați site-ul nostru. Descoperă rețete din toate colțurile lumii!</p>
-                <p><b>Ip: </b><%- locals.ip %></p>
-                <div class="intro-oferte">
-                    <div>Aperitive</div>
-                    <div>Feluri principale</div>
-                    <div>Deserturi</div>
-                    <div>Băuturi</div>
-                    <div>Specialități</div>
+        <section id="acasa">
+            <h2>Bun venit la Gusturi&Culturi</h2>
+            
+            <article id="despre">
+                <h2>Despre Noi</h2>
+                <div class="video-container">
+                    <video controls preload="auto" poster="./resurse/video/poster.jpg">
+                        <source src="./resurse/video/video.mp4" type="video/mp4">
+                        <source src="./resurse/video/video.webm" type="video/webm">
+                        <track label="Română" kind="subtitles" srclang="ro" src="./resurse/video/tracks/captions_ro.vtt" default>
+                        <track label="English" kind="subtitles" srclang="en" src="./Resurse/Video/Tracks/captions_en.vtt">
+                        <track label="Russian" kind="subtitles" srclang="ru" src="./resurse/video/tracks/captions_ru.vtt">
+                        Your browser does not support the video tag.
+                    </video>
                 </div>
-                <p class="anunt intro">Explorați diversitatea culinară internațională fără să părăsiți bucătăria dumneavoastră, cu ajutorul rețetelor noastre detaliate și videoclipurilor explicative.</p>
-                <div id="dv-prezentare-1">
-                    <div id="dv-prezentare">
-                    <picture>
-                        <source srcset="/resurse/imagini/cooking-small.jpg" media="(max-width:700px)"/>
-                        <source srcset="/resurse/imagini/cooking-medium.jpg" media="(max-width:1200px)"/>
-                        <img src="/resurse/imagini/cooking-large.jpg" alt="preparare mancare"/>
-                    </picture>
-                </div>
-            </div>
-            <hr class="retete"/>
-            <div id="container-video">
-                <img class="farfurie" src="/resurse/imagini/farfurie-traditional.png" alt="farfurie tradițională">
-                <div id="centrare-video">
-                    <div id="clip-video">
-                        <div id="stil-video">
-                            <video width="320" height="240" playsinline autoplay loop muted>
-                                <source src="/resurse/video/CookingDemo.mp4" type="video/mp4">
-                                <source src="/resurse/video/CookingDemo.ogv" type="video/ogv">
-                                <track default src="data:image/png;base64, V0VCVlRUIC0gRGVtbyBnxIN0aXQKCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwIGxpbmU6MApQcmVnxIN0aXJlIGluZ3JlZGllbnRlISEhCgowMDowMy4wMDAgLS0+IDAwOjA3LjAwMCBsaW5lOjAKQXRlbsibaSBsYSBjYW50aXTEg8ibaWxlIQoKMDA6MDkuMDAwIC0tPiAwMDoxNC4wMDAgbGluZTowClVwcywgYW0gc2NEg3BhdCBjZXZhIQoKMDA6MTQuNTAwIC0tPiAwMDoxOS4wMDAgbGluZTowCk51IGNvbnRlYXrEgyEgUHV0ZW0gxIFtYsSDdW7Eg3TEg8ibaQ0KCg==" kind="captions" srclang="ro" label="romana">
-                                <track src="data:image/png;base64, V0VCVlRUIC0gQ29va2luZyBEZW1vDQoNCjAwOjAwLjAwMCAtLT4gMDA6MDMuMDAwDQpQcmVwYXJpbmcgaW5ncmVkaWVudHMhISENCg0KMDA6MDMuMDAwIC0tPiAwMDowNy4wMDANCkJlIGNhcmVmdWwgd2l0aCB0aGUgcXVhbnRpdGllcyENCg0KMDA6MDkuMDAwIC0tPiAwMDoxNC4wMDANCk9vcHMsIEkgZHJvcHBlZCBzb21ldGhpbmchDQoNCjAwOjE0LjUwMCAtLT4gMDA6MTkuMDAwDQpEb2Vzbid0IG1hdHRlciEgV2UgY2FuIGltcHJvdmlzZSENCg0K" kind="captions" srclang="en" label="engleza">
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </section>
-            <section id="noutati">
-                <h2>Noutăți</h2>
-                <article>
-                    <h3 class="titlu">Ateliere culinare online</h3>
-                    <p><b>Gusturi&Culturi</b> oferă <b>sesiuni de gătit online cu <s>10%</s> <ins>15%</ins> reducere</b> pentru toate înscrierile efectuate în avans cu 7 zile.</p>
-                    <p>Oferta este valabilă doar pentru atelierele din weekend de pe platforma <abbr title="Gusturi&Culturi">G&C</abbr>.</p>
-                    <p>Dacă vă înscrieți la mai mult de trei <b>ateliere</b> primiți și un set de condimente cadou!</p>
-                </article>
-                <article>
-                    <h3>E-book de rețete</h3>
-                    <p>Gusturi&Culturi oferă un nou e-book de rețete cuprinzând:</p>
-                    <ol>
-                        <li><i lang="en">Street food</i> internațional</li>
-                        <li>Un set de 4 rețete de deserturi vegane</li>
-                        <li>Preparate tradiționale reinventate</li>
-                        <li><i>Băuturi</i> de sezon</li>
-                        <li>Gratis: un ghid de condimente esențiale</li>
-                        <li>Gratis: o planificare săptămânală a meselor</li>
-                        <li>Gratis: acces la un webinar despre tehnici de bază în bucătărie</li>
-                    </ol>
-                </article>
-                <article>
-                    <h3 class="titlu bcd">Colecția sezonală</h3>
-                    <p>Descoperiți noua noastră colecție de rețete de primăvară, cu ingrediente proaspete și preparate ușoare. Ideale pentru mesele în aer liber și picnicuri.</p>
-                    <ol>
-                        <li>Salate creative cu verdețuri de sezon.</li>
-                        <li>Tartine și aperitive rapide pentru oaspeți.</li>
-                        <li>Deserturi ușoare cu fructe proaspete.</li>
-                        <li>Băuturi răcoritoare și mocktail-uri.</li>
-                    </ol>
-                </article>
-                <article>
-                    <h3>Parteneriate culinare</h3>
-                    <p>Am dezvoltat noi parteneriate cu producători locali pentru a vă recomanda cele mai bune ingrediente pentru rețetele noastre. Descoperiți harta interactivă a producătorilor pe pagina noastră dedicată.</p>
-                    <ol>
-                        <li>Producători de lactate artizanale.</li>
-                        <li>Fermieri cu legume și fructe ecologice.</li>
-                        <li>Apicultori și producători de miere locală.</li>
-                        <li>Măcelării tradiționale cu produse certificate.</li>
-                    </ol>
-                </article>
-            </section>
-            <section id="categorii">
-                <h2>Categorii de rețete</h2>
+                <p>Suntem o echipă pasionată de bucătăria tradițională din întreaga lume. Misiunea noastră este să aducem cele mai autentice rețete direct în bucătăria ta!</p>
+            </article>
 
-                <p>Vă oferim o multitudine de rețete pentru toate gusturile și ocaziile.</p>
-                <section>
-                    <h3>Bucătărie tradițională românească</h3>
-                    <p>Redescoperă rețetele autentice ale bucătăriei românești!</p>
-                    <p>Avem rețete de:</p>
-                    <ul>
-                        <li>sarmale</li>
-                        <li>ciorbă de burtă</li>
-                        <li>mămăligă</li>
-                        <li>cozonac</li>
-                        <li>plăcinte</li>
-                        <li>țuică fiartă</li>
-                    </ul>
-                </section>
-                <section>
-                    <h3>Bucătărie internațională</h3>
-                    <p>Explorați gusturi din toate colțurile lumii cu rețetele noastre internaționale!</p>
-                    <p>Bucătării disponibile:</p>
-                    <ul>
-                        <li>italiană</li>
-                        <li>japoneză</li>
-                        <li>mexicană</li>
-                        <li>indiană</li>
-                        <li>thailandeză</li>
-                        <li>franțuzească</li>
-                        <li>grecească</li>
-                        <li>libaneză</li>
-                    </ul>
-                </section>
+            <article id="prezentare">
+                <h3>Descoperă lumea prin bucate</h3>
+                <p>Suntem pasionații care aduc <b>tradițiile culinare</b> ale lumii direct la tine. <em>O călătorie gustativă</em> prin <strong>rețete autentice</strong>!</p>
                 
-                <section>
-                    <h3>Diete speciale</h3>
-                    <p>Rețete adaptate pentru diverse nevoi și preferințe alimentare:</p>
-                    <ul>
-                        <li>vegetariene</li>
-                        <li>vegane</li>
-                        <li>fără gluten</li>
-                        <li>low-carb</li>
-                        <li>keto</li>
-                    </ul>
-                </section>
+                <figure>
+                    <picture>
+                        <source media="(max-width: 480px)" srcset="./resurse/imagini/platou-mic.jpg">
+                        <source media="(max-width: 1024px)" srcset="./resurse/imagini/platou-mediu.jpg">
+                        <img src="./resurse/imagini/Poza-platouri.jpg" alt="Platou internațional de bucate" usemap="#platou-map">
+                    </picture>
+                    <figcaption>Rețete internaționale - <q>Gustul fără frontiere</q></figcaption>
+                </figure>
+                <map name="platou-map">
+                    <area shape="rect" coords="34,44,270,350" href="retete/italia.html" alt="Rețete italienești" target="_blank">
+                    <area shape="circle" coords="450,150,75" href="retete/franta.html" alt="Rețete franțuzești" target="_blank">
+                </map>
+            </article>
+            
+            <section id="categorii">
+                <h2>Categorii Culinare</h2>
+                <div id="banner"></div>
+                <div id="watermark"></div>
+                <div class="categorii-container">
+                    <% const categorii = [
+                        {
+                            titlu: "Salate",
+                            descriere: "Descoperă colecția noastră de salate proaspete și sănătoase din toate colțurile lumii. De la salata grecească până la tabouleh libanez, avem opțiuni pentru toate gusturile.",
+                            link: "./resurse/pdf/categorie/salate.pdf",
+                            textLink: "Explorează rețete de salate"
+                        },
+                        {
+                            titlu: "Dulciuri",
+                            descriere: "Satisface-ți pofta de dulce cu deserturi tradiționale din diverse culturi. Baklava turcească, tiramisu italian sau pavlova australiană - toate te așteaptă să le încerci.",
+                            link: "./resurse/pdf/categorie/dulciuri.pdf",
+                            textLink: "Descoperă dulciurile lumii"
+                        },
+                        {
+                            titlu: "Supe și Ciorbe",
+                            descriere: "De la borschtul rusesc la supa pho vietnameză, colecția noastră de supe și ciorbe te va încălzi și hrăni cu tradiții culinare diverse și autentice.",
+                            link: "./resurse/pdf/categorie/supe-ciorbe.pdf",
+                            textLink: "Savurează lichide calde"
+                        },
+                        {
+                            titlu: "Feluri Principale",
+                            descriere: "Rețete consistente pentru masa principală din bucătării de pe toate continentele. Descoperă secretele gătitului tradițional și pregătește preparate care impresionează.",
+                            link: "./resurse/pdf/categorie/feluri-principale.pdf",
+                            textLink: "Vezi feluri principale"
+                        }
+                    ]; %>
+                    
+                    <% categorii.forEach(categorie => { %>
+                        <article class="categorie">
+                            <h3><%= categorie.titlu %></h3>
+                            <p><%= categorie.descriere %></p>
+                            <a href="<%= categorie.link %>"><%= categorie.textLink %></a>
+                        </article>
+                    <% }); %>
+                </div>
             </section>
-            <section id="program">
-                <h2>Program ateliere live</h2>
-                <table id="tab-program">
+
+            <section id="ingrediente">
+                <h2>Ingrediente Esențiale</h2>
+                <p>Descoperă cum să folosești aceste ingrediente de bază în preparate din întreaga lume:</p>
+                
+                <div class="ingrediente-grid">
+                    <% const ingrediente = [
+                        {
+                            nume: "Cartofi",
+                            descriere: "Versatili și hrănitori, cartofii sunt baza multor bucătării tradiționale. De la tortilla spaniolă la vareniki ucrainene, acest tubercul a cucerit lumea prin adaptabilitate.",
+                            beneficii: "Bogați în vitamina C, potasiu și fibre, cartofii oferă energie de lungă durată și susțin sănătatea sistemului digestiv."
+                        },
+                        {
+                            nume: "Brânză",
+                            descriere: "Cu mii de varietăți în întreaga lume, brânza este un produs fermentat care reflectă tradițiile locale. De la feta grecească la paneer indian, fiecare cultură are propria interpretare.",
+                            tipuri: "Mozzarella (Italia), Brie (Franța), Cheddar (Anglia), Telemea (România), Manchego (Spania), Halloumi (Cipru)"
+                        },
+                        {
+                            nume: "Orez",
+                            descriere: "Hrană de bază pentru mai mult de jumătate din populația globului, orezul este versatil și nutritiv. Descoperă cum diferite culturi transformă acest ingredient simplu în festinuri memorabile.",
+                            varietati: "Jasmine (Thailanda), Basmati (India), Arborio (Italia), Bomba (Spania), Camargue (Franța)"
+                        },
+                        {
+                            nume: "Roșii",
+                            descriere: "Originare din America de Sud, roșiile au cucerit bucătăriile lumii. De la pasta de tomate italiană la salsa mexicană, acest fruct versatil aduce culoare și savoare preparatelor.",
+                            utilizari: "Gazpacho (Spania), Shakshuka (Orientul Mijlociu), Ketchup (America), Ratatouille (Franța)"
+                        }
+                    ]; %>
+                    
+                    <% ingrediente.forEach(ingredient => { %>
+                        <article class="ingredient">
+                            <h3><%= ingredient.nume %></h3>
+                            <p><%= ingredient.descriere %></p>
+                            <details>
+                                <% if (ingredient.beneficii) { %>
+                                    <summary>Beneficii nutriționale</summary>
+                                    <p><%= ingredient.beneficii %></p>
+                                <% } else if (ingredient.tipuri) { %>
+                                    <summary>Tipuri populare</summary>
+                                    <p><%= ingredient.tipuri %></p>
+                                <% } else if (ingredient.varietati) { %>
+                                    <summary>Varietăți globale</summary>
+                                    <p><%= ingredient.varietati %></p>
+                                <% } else if (ingredient.utilizari) { %>
+                                    <summary>Utilizări tradiționale</summary>
+                                    <p><%= ingredient.utilizari %></p>
+                                <% } %>
+                            </details>
+                        </article>
+                    <% }); %>
+                </div>
+            </section>
+
+            <section id="sarbatori">
+                <h2>Sărbători Culinare</h2>
+                <p>Fiecare sărbătoare în jurul lumii are propriile tradiții gastronomice. Explorează preparate festive autentice:</p>
+                
+                <div class="sarbatori-container">
+                    <% const sarbatori = [
+                        {
+                            nume: "Crăciun",
+                            descriere: "Sărbătoarea iernii aduce pe mese preparate îmbelșugate și dulciuri specifice. De la cozonacul românesc la pudingul englezesc, descoperiți cum diverse culturi celebrează prin mâncare.",
+                            preparate: ["Cozonac (România)", "Bûche de Noël (Franța)", "Panettone (Italia)"],
+                            link: "./resurse/pdf/sarbatori/craciun.pdf",
+                            textLink: "Vezi rețete de Crăciun"
+                        },
+                        {
+                            nume: "Paște",
+                            descriere: "Sărbătoarea renașterii și a primăverii este marcată prin preparate speciale în toate tradițiile creștine. De la pască la mielul pascal, aceste rețete păstrează tradiții vechi de secole.",
+                            preparate: ["Pască (România)", "Hot Cross Buns (Anglia)", "Tsoureki (Grecia)"],
+                            link: "./resurse/pdf/sarbatori/paste.pdf",
+                            textLink: "Descoperă bucătăria pascală"
+                        },
+                        {
+                            nume: "Valentine's Day",
+                            descriere: "Ziua îndrăgostiților este celebrată prin preparate sofisticate și delicatese dulci. Descoperă rețete romantice care exprimă dragostea prin gusturi rafinate.",
+                            preparate: ["Mousse de ciocolată", "Fraise au champagne", "Fondant de ciocolată"],
+                            link: "./resurse/pdf/sarbatori/valentines.pdf",
+                            textLink: "Inspirație culinară romantică"
+                        },
+                        {
+                            nume: "Anul Nou",
+                            descriere: "Începutul unui nou an este marcat prin preparate simbolice în fiecare cultură. De la lintea italiană la strugurii spanioli, fiecare ingredient are propria semnificație pentru prosperitate.",
+                            preparate: ["Sarmale (Europa de Est)", "Toshikoshi Soba (Japonia)", "Hoppin' John (SUA)"],
+                            link: "./resurse/pdf/sarbatori/anul-nou.pdf",
+                            textLink: "Tradiții culinare de Anul Nou"
+                        }
+                    ]; %>
+                    
+                    <% sarbatori.forEach(sarbatoare => { %>
+                        <article class="sarbatoare">
+                            <h3><%= sarbatoare.nume %></h3>
+                            <p><%= sarbatoare.descriere %></p>
+                            <ul>
+                                <% sarbatoare.preparate.forEach(preparat => { %>
+                                    <li><%= preparat %></li>
+                                <% }); %>
+                            </ul>
+                            <a href="<%= sarbatoare.link %>"><%= sarbatoare.textLink %></a>
+                        </article>
+                    <% }); %>
+                </div>
+            </section>
+
+            <section id="international">
+                <h2>Bucătării Internaționale</h2>
+                <p>Călătorește prin lume descoperind tradițiile culinare autentice ale diferitelor popoare și regiuni:</p>
+                
+                <div class="bucatarii-grid">
+                    <% const bucatarii = [
+                        {
+                            nume: "Bucătăria Românească",
+                            descriere: "Bogată în arome și tradiții, bucătăria românească reflectă influențele istorice și bogăția naturală a țării. De la sarmale la mămăligă, preparatele tradiționale românești încântă prin autenticitate și gust.",
+                            preparate: "Preparate emblematice: ciorbă de burtă, mici, cozonac, fasole cu ciolan, plăcintă cu brânză.",
+                            link: "./resurse/pdf/international/romania.pdf",
+                            textLink: "Explorează bucătăria românească"
+                        },
+                        {
+                            nume: "Bucătăria Rusească",
+                            descriere: "Adaptată climatului rece, bucătăria rusă este consistentă și reconfortantă. Influențată de geografie și istorie, aceasta oferă preparate consistente, perfect adaptate iernilor lungi.",
+                            preparate: "Preparate emblematice: borscht, pelmeni, blini, piroshki, olivier salad.",
+                            link: "./resurse/pdf/international/rusia.pdf",
+                            textLink: "Descoperă tradiții rusești"
+                        },
+                        {
+                            nume: "Bucătăria Italiană",
+                            descriere: "Recunoscută global pentru simplitate și calitatea ingredientelor, bucătăria italiană celebrează prospețimea și tradițiile regionale. Fiecare regiune italiană își aduce contribuția la această moștenire gastronomică.",
+                            preparate: "Preparate emblematice: pizza napoletană, risotto, pasta carbonara, tiramisu, osso buco.",
+                            link: "./resurse/pdf/international/italia.pdf",
+                            textLink: "Savurează Italia autentică"
+                        },
+                        {
+                            nume: "Bucătăria Japoneză",
+                            descriere: "Rafinată și echilibrată, bucătăria japoneză pune accent pe sezonalitate și prezentare estetică. Cu o filosofie culinară distinctă, aceasta se concentrează pe respectul față de ingrediente.",
+                            preparate: "Preparate emblematice: sushi, ramen, tempura, miso soup, yakitori.",
+                            link: "./resurse/pdf/international/japonia.pdf",
+                            textLink: "Descoperă arta culinară japoneză"
+                        },
+                        {
+                            nume: "Bucătăria Mexicană",
+                            descriere: "Vibrantă și plină de contraste, bucătăria mexicană îmbină tradiții precolumbiene cu influențe spaniole. Condimentele, culorile și texturile diverse definesc această bucătărie energică.",
+                            preparate: "Preparate emblematice: tacos, guacamole, enchiladas, mole poblano, pozole.",
+                            link: "./resurse/pdf/international/mexic.pdf",
+                            textLink: "Explorează aromele Mexicului"
+                        },
+                        {
+                            nume: "Bucătăria Indiană",
+                            descriere: "Complexă și diversificată, bucătăria indiană este o călătorie prin condimente și tehnici vechi de mii de ani. Fiecare regiune a Indiei contribuie cu propriile specialități la această moștenire culinară vastă.",
+                            preparate: "Preparate emblematice: curry, biryani, samosa, butter chicken, masala dosa.",
+                            link: "./resurse/pdf/international/india.pdf",
+                            textLink: "Descoperă mirodenii indiene"
+                        }
+                    ]; %>
+                    
+                    <% bucatarii.forEach(bucatarie => { %>
+                        <article class="bucatarie">
+                            <h3><%= bucatarie.nume %></h3>
+                            <p><%= bucatarie.descriere %></p>
+                            <p><%= bucatarie.preparate %></p>
+                            <a href="<%= bucatarie.link %>"><%= bucatarie.textLink %></a>
+                        </article>
+                    <% }); %>
+                </div>
+            </section>
+
+
+            <section id="statistici">
+                <h3>Statistici Culinare</h3>
+                <p>Am pregătit câteva informații fascinante despre gastronomie:</p>
+                <ol>
+                    <li><dfn>Pizza</dfn> - originară din <i lang="it">Italia</i></li>
+                    <li><cite>Cartea Recordurilor Culinare</cite> conține peste 1000 de rețete unice</li>
+                   <li>
+                        <dl>
+                            <dt>Pateuri cu Umplutură de Cartofi</dt>
+                            <dd>Preparat ucrainean pe bază de aluat, cartofi și diverse condimente.</dd>
+                            <dt>Okroshka</dt>
+                            <dd>Supă rece tradițională rusească pe bază de chefir și legume.</dd>
+                        </dl>
+                    </li>
+                </ol>
+            </section>
+            <aside>
+                <h3>Știați că?</h3>
+                <p>Cel mai mare croissant din lume a cântărit 200 kg!</p>
+            </aside>
+            
+        </section>
+        
+        <section id="retete">
+            <h2>Rețete Speciale</h2>
+            
+            <details>
+                <summary>Care este cea mai populară rețetă?</summary>
+                <p>Pizza <abbr title="Napoletană">Nap.</abbr> este un favorit global!</p>
+                <p>Inițial foloseam <s>oregano</s>, dar acum recomandăm <ins>busuioc</ins> pentru un gust mai autentic.</p>
+            </details>
+            
+            <details>
+                <summary>Cum pregătim rețetele?</summary>
+                <p>Cu <strong>ingrediente proaspete</strong> și <em>multă pasiune</em>.</p>
+            </details>
+            
+            <blockquote>
+                <p>„Mâncarea este limbajul iubirii pe care îl vorbim cu toții."</p>
+            </blockquote>
+
+            <h3>Cele mai populare rețete tradiționale</h3>
+            <div class="table-container">
+                <table class="recipes-table">
+                    <caption>Clasamentul rețetelor tradiționale după numărul de preparări</caption>
                     <thead>
                         <tr>
-                            <th>Cod</th>
-                            <th>Perioadă</th>
-                            <th>Zi</th>
-                            <th>Atelier dimineață</th>
-                            <th>Pauza</th>
-                            <th>Atelier seară</th>
+                            <th>Denumire rețetă</th>
+                            <th>Țara de origine</th>
+                            <th>Timp de preparare</th>
+                            <th>Dificultate</th>
+                            <th>Popularitate <i class="fa-solid fa-star"></i></th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                            <td rowspan="5">Zile<br/>Lucrătoare</td>
-                            <td>Luni</td>
-                            <td>10-12</td>
-                            <td>12-17</td>
-                            <td>17-19</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Marți</td>
-                            <td>9-11</td>
-                            <td>11-17</td>
-                            <td>17-20</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Miercuri</td>
-                            <td>10-12</td>
-                            <td>12-17</td>
-                            <td>17-19</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Joi</td>
-                            <td>9-11</td>
-                            <td>11-17</td>
-                            <td>17-20</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Vineri</td>
-                            <td>9-11</td>
-                            <td>11-16</td>
-                            <td>16-19</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td rowspan="2">Weekend</td>
-                            <td>Sâmbătă</td>
-                            <td>10-13</td>
-                            <td>13-15</td>
-                            <td>15-18</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td>Duminică</td>
-                            <td>10-14</td>
-                            <td>-</td>
-                            <td>închis</td>
-                        </tr>
+                        <% const retete = [
+                            {
+                                denumire: "Sarmale cu mămăligă",
+                                tara: "România",
+                                timp: "180 min",
+                                dificultate: "Medie",
+                                popularitate: "98%",
+                                colspan: false,
+                                rowspan: false
+                            },
+                            {
+                                denumire: "Pizza Napoletana",
+                                tara: "Italia",
+                                timp: "90 min",
+                                dificultate: "Medie",
+                                popularitate: "96%",
+                                colspan: false,
+                                rowspan: false
+                            },
+                            {
+                                denumire: "Paella",
+                                tara: "Spania",
+                                timp: "60 min",
+                                dificultate: "Ridicată",
+                                popularitate: "92%",
+                                colspan: false,
+                                rowspan: false
+                            },
+                            {
+                                denumire: "Boeuf Bourguignon",
+                                tara: "Franța",
+                                timp: "240 min",
+                                dificultate: "Ridicată",
+                                popularitate: "89%",
+                                colspan: 1,
+                                rowspan: false
+                            },
+                            {
+                                denumire: "Cozonac tradițional",
+                                tara: "România",
+                                timp: "120 min",
+                                dificultate: "Medie",
+                                popularitate: "85%",
+                                colspan: false,
+                                rowspan: 2
+                            },
+                            {
+                                denumire: "Ciorbă de burtă",
+                                tara: "România",
+                                timp: "180 min",
+                                dificultate: "Scăzută",
+                                popularitate: "82%",
+                                colspan: false,
+                                rowspan: false
+                            }
+                        ]; %>
+                        
+                        <% retete.forEach((reteta, index) => { %>
+                            <tr>
+                                <% if (reteta.colspan) { %>
+                                    <td colspan="<%= reteta.colspan %>"><%= reteta.denumire %></td>
+                                <% } else { %>
+                                    <td><%= reteta.denumire %></td>
+                                <% } %>
+                                
+                                <% if (reteta.denumire === "Cozonac tradițional") { %>
+                                    <td rowspan="2"><%= reteta.tara %></td>
+                                <% } else if (reteta.denumire !== "Ciorbă de burtă") { %>
+                                    <td><%= reteta.tara %></td>
+                                <% } %>
+
+                                <td><%= reteta.timp %></td>
+                                <td><%= reteta.dificultate %></td>
+                                <td><%= reteta.popularitate %></td>
+                            </tr>
+                        <% }); %>
                     </tbody>
-                </table> 
-            </section>
-            <figure id="fig1" class="fg-img">
-                <img src="/resurse/imagini/pasta.png" alt="pasta">
-                <figcaption>Paste Carbonara</figcaption>
-            </figure>
-            <figure id="fig2" class="fg-img">
-                <img src="/resurse/imagini/salad.png" alt="salad">
-                <figcaption>Salată mediteraneană</figcaption>
-            </figure>
-            <figure id="fig3" class="fg-img">
-                <img src="/resurse/imagini/soup.png" alt="soup">
-                <figcaption>Supă cremă de legume</figcaption>
-            </figure>
-            <section id="anunturi">
-                <h2>Anunțuri</h2>
-                <p><time datetime="2025-04-10">10 aprilie 2025</time> <strong>Lansare serie nouă de videouri!</strong></p>
-                <p><time datetime="2025-03-15">15 martie 2025</time> Am adăugat o nouă colecție de rețete asiatice</p>
-                <p><time datetime="2025-02-20">20 februarie 2025</time> Webinar gratuit despre tehnici de fermentare</p>
-                <p><time datetime="2025-01-15">15 ianuarie 2025</time> Colaborare specială cu Chef Andreea Popescu</p>
-                <p><time datetime="2024-12-20">20 decembrie 2024</time> Rețete festive pentru sărbătorile de iarnă</p>
-                <p><time datetime="2024-12-01">1 decembrie 2024</time> Ghid complet pentru preparate tradiționale românești</p>
-                <p><time datetime="2024-11-15">15 noiembrie 2024</time> Studiile au arătat că gătitul acasă este una din cele mai sănătoase obiceiuri. 
-                    Vă invităm să vă alăturați comunității noastre de pasionați de gătit! </p>
-            </section>
-            <section id="index-intrebari">
-                <h2>Întrebări frecvente</h2>
-                <details><summary>Cât timp durează în medie prepararea rețetelor?</summary>
-                    <p>Fiecare rețetă are indicat timpul de preparare. Avem categorii pentru rețete rapide (sub 30 minute), medii (30-60 minute) și elaborate (peste o oră).</p>
-                </details>
-                <details><summary>Pot adapta rețetele pentru dietele speciale?</summary>
-                    <p>Da! Majoritatea rețetelor au sugestii de substituire a ingredientelor pentru diverse diete și preferințe alimentare.</p>
-                </details>
-                <details><summary>Cât de dificile sunt rețetele pentru începători?</summary>
-                    <p>Avem o categorie specială pentru începători, cu rețete simple și explicații detaliate. De asemenea, videoclipurile noastre demonstrative sunt foarte utile!</p>
-                </details>
-                <details><summary>Oferiti consultanță personalizată pentru planificarea meselor?</summary>
-                    <p>Da, avem abonamente premium care includ consultanță personalizată cu nutriționiști și bucătari profesioniști!</p>
-                </details>
-            </section>
-        </div>
-        <section id="galerie-statica">
-            <h2>Galerie</h2>
-            <div id="grid-galerie">
-                <% 
-                    vect_luni=["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie"]
-                    d=new Date()
-                    luna_curenta=vect_luni[d.getMonth()]
-                    for (let imag of locals.imagini) {  %>
-                        <% if (imag.luni && imag.luni.includes(luna_curenta)) { %>
-                            <picture>
-                                <source srcset="<%- imag.fisier_mediu  %>" media="screen and (max-width:1000px)" />
-                                <img src="<%- imag.fisier  %>" alt="preparate culinare">
-                            </picture>
-                        <% } %>
-                <% } %>
+                    <tfoot>
+                        <tr>
+                            <td colspan="4">Total rețete populare</td>
+                            <td>6</td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
+
+            <p class="icon-text">
+                <i class="fa-solid fa-utensils"></i> Toate rețetele noastre sunt autentice și testate de bucătari profesioniști 
+                <i class="fa-solid fa-bell fa-shake"></i> Fiți atenți la timpul de preparare!
+            </p>
         </section>
-        <section id="videoteca">
-            <h2>Videoteca</h2>
-            <p>Pentru a vă ajuta să stăpâniți tehnicile de gătit esențiale, vă oferim o colecție de tutoriale video.
-                Urmăriți-le pentru a învăța de la bucătari cu experiență și a vă îmbunătăți abilitățile în bucătărie.</p>
+
+        <section id="video">
+            <h2>Tutorial Rețete</h2>
+        
             <div class="container-iframe">
                 <div class="taburi-iframe">
-                <a href="https://www.youtube.com/embed/1IszT_guI08" target="ifr-video">Tehnici de bază</a>
-                <a href="https://www.youtube.com/embed/ZJy1ajvMU1k" target="ifr-video">Deserturi</a>
-                <a href="https://www.youtube.com/embed/eGKwDvCm5mw" target="ifr-video">Preparate tradiționale</a><br/>
+                    <% const tutoriale = [
+                        {
+                            titlu: "Rețetă Pateuri",
+                            link: "https://www.youtube.com/embed/hrG40alLaRA"
+                        },
+                        {
+                            titlu: "Rețetă Supă Okroshka",
+                            link: "https://www.youtube.com/embed/S3DE92LKKkk"
+                        }
+                    ]; %>
+                    
+                    <% tutoriale.forEach(tutorial => { %>
+                        <a href="<%= tutorial.link %>" target="videoFrame"><%= tutorial.titlu %></a>
+                    <% }); %>
                 </div>
-            
-                <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/1IszT_guI08" 
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+                <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/hrG40alLaRA" allowfullscreen></iframe>
+            </div>
+        
+            <p>
+                <embed src="./resurse/pdf/carte-retete.pdf" type="application/pdf" width="600" height="400">
+                <a href="./resurse/pdf/carte-retete.pdf" download>Descarcă Carte Rețete</a>
+            </p>
+        </section>
+        
+
+        <section id="formule">
+            <h2>Formule Culinare</h2>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                    <mi>Q</mi>
+                    <mo>=</mo>
+                    <mi>m</mi>
+                    <mo>×</mo>
+                    <mi>c</mi>
+                    <mo>×</mo>
+                    <mi>Δ</mi>
+                    <mi>T</mi>
+                </mrow>
+            </math>
+            <p>Formula căldurii specifice în prepararea mâncării</p>
+            <div class="legend">
+                <% const simboluri = [
+                    {
+                        simbol: "Q",
+                        descriere: "Energia termică (J)",
+                        stil: "color: var(--color-primary); font-weight: bold;"
+                    },
+                    {
+                        simbol: "m",
+                        descriere: "Masa alimentului (kg)",
+                        stil: "color: var(--color-secondary); font-style: italic;"
+                    },
+                    {
+                        simbol: "c",
+                        descriere: "Căldură specifică (J/kg·°C)",
+                        stil: "color: var(--color-accent); font-style: italic;"
+                    },
+                    {
+                        simbol: "Δ",
+                        descriere: "Diferența de",
+                        stil: "color: var(--color-accent); font-weight: bold;"
+                    },
+                    {
+                        simbol: "T",
+                        descriere: "Temperatură (°C)",
+                        stil: "color: var(--color-secondary); font-style: italic;"
+                    }
+                ]; %>
+                
+                <% simboluri.forEach(item => { %>
+                    <div class="legend-item">
+                        <span class="legend-symbol" style="<%= item.stil %>"><%= item.simbol %></span>
+                        <span><%= item.descriere %></span>
+                    </div>
+                <% }); %>
             </div>
         </section>
     </main>
-    <%- include("../fragmente/footer.ejs") %>
 
-    </body>
+  
+</body>
 </html>

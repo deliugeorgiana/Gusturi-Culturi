@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="Resurse/Css/nav700.css">
     <link rel="stylesheet" type="text/css" href="Resurse/Scss/nav700.scss">
     <link rel="stylesheet" type="text/css" href="Resurse/Css/printare.css">
+    <link rel="stylesheet" type="text/css" href="Resurse/Css/video-despre-noi.css">
 
 
     <!-- Google Fonts -->
@@ -40,7 +41,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <!--JavaScript-->
-    <script src="script.js"></script>
+    <script src="index.js"></script>
+
+    <track label="English" kind="subtitles" srclang="en" src="./resurse/video/tracks/captions_en.vtt">
+    <track label="Romanian" kind="subtitles" srclang="ro" src="./resurse/video/tracks/captions_ro.vtt">
+    <track label="Russian" kind="subtitles" srclang="ru" src="./resurse/video/tracks/captions_ru.vtt">
+  
 </head>
 <body>
     <header>
@@ -84,6 +90,21 @@
         <section id="acasa">
             <h2>Bun venit la Gusturi&Culturi</h2>
             
+            <article id="despre">
+                <h2>Despre Noi</h2>
+                <div class="video-container">
+                        <video controls preload="auto" poster="./resurse/video/poster.jpg">
+                        <source src="./resurse/video/video.mp4" type="video/mp4">
+                        <source src="./resurse/video/video.webm" type="video/webm">
+                        <track label="Română" kind="subtitles" srclang="ro" src="./resurse/video/tracks/captions_ro.vtt" default>
+                        <track label="English" kind="subtitles" srclang="en" src="./Resurse/Video/Tracks/captions_en.vtt">
+                        <track label="Russian" kind="subtitles" srclang="ru" src="./resurse/video/tracks/captions_ru.vtt">
+                        Your browser does not support the video tag.
+                        </video>
+                </div>
+                <p>Suntem o echipă pasionată de bucătăria tradițională din întreaga lume. Misiunea noastră este să aducem cele mai autentice rețete direct în bucătăria ta!</p>
+            </article>
+
             <article id="prezentare">
                 <h3>Descoperă lumea prin bucate</h3>
                 <p>Suntem pasionații care aduc <b>tradițiile culinare</b> ale lumii direct la tine. <em>O călătorie gustativă</em> prin <strong>rețete autentice</strong>!</p>

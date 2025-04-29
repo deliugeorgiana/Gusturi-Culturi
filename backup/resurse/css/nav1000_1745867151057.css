@@ -1,0 +1,65 @@
+/* Media query pentru ecrane sub 1000px */
+@media screen and (max-width: 1000px) {
+    .meniu-lista {
+        gap: 0.3rem;
+    }
+    
+    .meniu-element {
+        margin: 0 0.2rem;
+    }
+    
+    .meniu-element a {
+        padding: 0.5rem 0.7rem;
+        font-size: 0.9rem;
+    }
+    
+    .submeniu {
+        width: 180px;
+    }
+    
+    .submeniu li a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Ajustam spatiile pentru a economisi spatiu */
+    .home-link {
+        gap: 0.3rem;
+    }
+    
+    /* Reducem putin spatiul in submeniu */
+    .submeniu {
+        padding: 0.3rem 0;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .meniu-lista {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+    }
+    
+    .meniu-element {
+        margin: 0;
+    }
+    
+    .meniu-element a {
+        padding: 0.5rem 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Reducem spatiul pentru text si marim iconul pentru acasa */
+    .home-text {
+        display: none;
+    }
+    
+    .home-link i {
+        font-size: 1.2rem;
+    }
+    
+    .home-link {
+        padding: 0.5rem;
+        justify-content: center;
+    }
+}
