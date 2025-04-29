@@ -1,41 +1,66 @@
 {
-	"cale_galerie":"resurse/imagini/galerie",
+	"cale_galerie": "/resurse/imagini/galerie",
 	"imagini": [
-		{
-			"fisier":"briose-frisca.png",
-			"descriere":"Brioșe",
-			"luni":["martie","februarie","noiembrie","aprilie", "decembrie"]
-		},
-		{
-			"fisier":"clatite.png",
-			"descriere":"Clătite cu dulceață",
-			"luni":["ianuarie","februarie","iunie"]
-			
-		},
-		{
-			"fisier":"gogosi.png",
-			"descriere":"Gogoși glazurate",
-			"luni":["ianuarie","noiembrie","iunie","martie","aprilie"]
-		},
-		{
-			"fisier":"tort-scortisoara.png",
-			"descriere":"Tort cu scorțisoară",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
-		},
-		{
-			"fisier":"prajitura-ciocolata.png",
-			"descriere":"Prăjitură cu ciocolată",
-			
-			"luni":["noiembrie","aprilie", "decembrie"]
-		},
-		{
-			"fisier":"tarta-afine.png",
-			"descriere":"Tartă cu afine"
-		},
-		{
-			"fisier":"tort-trandafiri.png",
-			"descriere":"Tort special"
+	  {
+		"fisier_imagine": "mancare1.jpg",
+		"nume_poza": "Paste cu brânză",
+		"continut_alternativ": "Paste cu brânză și ierburi aromate",
+		"descriere_poza": "Paste delicioase cu un amestec de brânzeturi și ierburi aromate proaspete",
+		"intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+	  },
+	  {
+		"fisier_imagine": "mancare2.jpg",
+		"nume_poza": "Salată mediteraneană",
+		"continut_alternativ": "Salată mediteraneană cu roșii și măsline",
+		"descriere_poza": "Salată proaspătă cu roșii, castraveți, ardei, măsline și brânză feta",
+		"intervale_zile": [["marti", "joi"], ["duminica", "duminica"]]
+	  },
+	  {
+		"fisier_imagine": "mancare3.jpg",
+		"nume_poza": "Supă cremă de legume",
+		"continut_alternativ": "Supă cremă de legume de sezon",
+		"descriere_poza": "Supă cremă de legume de sezon, bogată în vitamine și minerale",
+		"intervale_zile": [["luni", "miercuri"], ["vineri", "vineri"]]
+	  },
+	  {
+		"fisier_imagine": "mancare4.jpg",
+		"nume_poza": "Friptură de vită",
+		"continut_alternativ": "Friptură de vită cu cartofi",
+		"descriere_poza": "Friptură suculentă de vită cu cartofi aurii și sos de rozmarin",
+		"intervale_zile": [["joi", "vineri"], ["sambata", "duminica"]]
+	  },
+	  {
+		"fisier_imagine": "mancare5.jpg",
+		"nume_poza": "Risotto cu ciuperci",
+		"continut_alternativ": "Risotto cremos cu ciuperci sălbatice",
+		"descriere_poza": "Risotto cremos cu ciuperci sălbatice și parmezan, o delicatesă italiană",
+		"intervale_zile": [["luni", "luni"], ["miercuri", "vineri"]]
+	  },
+	  {
+		"fisier_imagine": "mancare6.jpg",
+		"nume_poza": "Desert cu fructe",
+		"continut_alternativ": "Desert cu fructe de pădure și frișcă",
+		"descriere_poza": "Desert parfumat cu fructe de pădure proaspete și frișcă",
+		"intervale_zile": [["sambata", "duminica"], ["joi", "joi"]]
+	  },
+	  {
+		"fisier_imagine": "mancare7.jpg",
+		"nume_poza": "Pizza tradițională",
+		"continut_alternativ": "Pizza napolitană tradițională",
+		"descriere_poza": "Pizza napolitană tradițională cu blat pufos și ingrediente proaspete",
+		"intervale_zile": [["marti", "joi"], ["vineri", "duminica"]],
+		"atribuire": {
+		  "autor": "Marco Verch",
+		  "link": "https://foto.wuestenigel.com/traditional-italian-pizza/",
+		  "licenta": "CC BY 2.0"
 		}
+	  },
+	  {
+		"fisier_imagine": "mancare8.jpg",
+		"nume_poza": "Burger gourmet",
+		"continut_alternativ": "Burger gourmet cu carne de vită",
+		"descriere_poza": "Burger gourmet cu carne de vită, brânză cheddar și legume proaspete",
+		"intervale_zile": [["luni", "marti"], ["vineri", "duminica"]]
+	  }
 	]
-}
+  }

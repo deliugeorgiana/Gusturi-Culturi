@@ -1,0 +1,140 @@
+/* galerie.css */
+#galerie-statica {
+    width: 100%;
+    margin: 2rem 0;
+    padding: 0 1rem;
+}
+
+.galerie-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#galerie-statica h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+    color: var(--color-primary, #d35400);
+    font-size: 2rem;
+}
+
+#galerie-statica p {
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.galerie-container {
+    display: grid;
+    width: 100%;
+    gap: 1.5rem;
+    counter-reset: galerie-counter;
+    margin: 0 auto;
+    max-width: 1400px;
+}
+
+/* Large screen (desktop) - zigzag layout with 3 columns */
+@media (min-width: 993px) {
+    .galerie-container {
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-areas:
+            "item1 . item2"
+            "item3 item4 ."
+            ". item5 item6"
+            "item7 . item8";
+    }
+    
+    .item-1 { grid-area: item1; }
+    .item-2 { grid-area: item2; }
+    .item-3 { grid-area: item3; }
+    .item-4 { grid-area: item4; }
+    .item-5 { grid-area: item5; }
+    .item-6 { grid-area: item6; }
+    .item-7 { grid-area: item7; }
+    .item-8 { grid-area: item8; }
+}
+
+/* Medium screen (tablet) - 2 columns */
+@media (min-width: 577px) and (max-width: 992px) {
+    .galerie-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Small screen (mobile) - 1 column */
+@media (max-width: 576px) {
+    .galerie-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+.galerie-item {
+    margin: 0;
+    padding: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: white;
+    position: relative;
+}
+
+.galerie-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.galerie-item picture {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.galerie-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: sepia(100%);
+    transition: filter 800ms ease;
+}
+
+.galerie-item:hover img {
+    filter: sepia(0%);
+}
+
+.galerie-item figcaption {
+    padding: 1rem;
+    background-color: #f8f8f8;
+    color: #333;
+    font-size: 0.95rem;
+    transition: color 800ms ease, text-shadow 800ms ease, background-color 800ms ease;
+    border-top: 1px solid #eaeaea;
+    line-height: 1.4;
+}
+
+.galerie-item figcaption::before {
+    counter-increment: galerie-counter;
+    content: counter(galerie-counter, lower-roman) ". ";
+    font-weight: bold;
+    color: #d35400;
+}
+
+.galerie-item:hover figcaption {
+    color: #d35400;
+    text-shadow: 0 0 5px rgba(211, 84, 0, 0.3);
+    background-color: #fef9f6;
+}
+
+.atribuire {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    font-style: italic;
+}
+
+.atribuire a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+.atribuire a:hover {
+    text-decoration: underline;
+}

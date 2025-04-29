@@ -1,4 +1,4 @@
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 1000px) {
   .container {
     padding-left: var(--padding-medium);
     padding-right: var(--padding-medium);

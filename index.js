@@ -1,6 +1,8 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const sharp= require("sharp");
+const router= express.Router();
 
 const app = express();
 
@@ -8,12 +10,93 @@ console.log("Folderul proiectului: ", __dirname);
 console.log("Calea fisierului index.js: ", __filename);
 console.log("Folderul curent de lucru: ", process.cwd());
 
+
 // Change this to ejs instead of js
 app.set("view engine", "ejs");
 
 const obGlobal = {
     obErori: null
 };
+
+function getDayOfWeekRo(date) {
+    const days = ['duminica', 'luni', 'marti', 'miercuri', 'joi', 'vineri', 'sambata'];
+    return days[date.getDay()];
+}
+
+function isDayInIntervals(dayOfWeek, intervals) {
+    for (const interval of intervals) {
+        const days = ['luni', 'marti', 'miercuri', 'joi', 'vineri', 'sambata', 'duminica'];
+        const startIdx = days.indexOf(interval[0]);
+        const endIdx = days.indexOf(interval[1]);
+        
+        if (startIdx === -1 || endIdx === -1) continue;
+        
+        // Check if the day is in the interval (inclusive)
+        const dayIdx = days.indexOf(dayOfWeek);
+        if (startIdx <= endIdx) {
+            // Normal interval like ["luni", "miercuri"]
+            if (dayIdx >= startIdx && dayIdx <= endIdx) return true;
+        } else {
+            // Interval that wraps around like ["sambata", "luni"]
+            if (dayIdx >= startIdx || dayIdx <= endIdx) return true;
+        }
+    }
+    return false;
+}
+
+function truncateToEvenNumber(images) {
+    if (images.length % 2 === 0) return images;
+    return images.slice(0, images.length - 1);
+}
+
+async function createResizedImages(imageInfo, galerieFolder) {
+    const sourceImage = path.join(galerieFolder, imageInfo.fisier_imagine);
+    const imageName = path.parse(imageInfo.fisier_imagine).name;
+    const imageExtension = path.parse(imageInfo.fisier_imagine).ext;
+    
+    // Create medium and small versions of the image
+    const mediumImagePath = path.join(galerieFolder, "medium", `${imageName}${imageExtension}`);
+    const smallImagePath = path.join(galerieFolder, "small", `${imageName}${imageExtension}`);
+    
+    // Create directories if they don't exist
+    try {
+        if (!fs.existsSync(path.join(galerieFolder, "medium"))) {
+            fs.mkdirSync(path.join(galerieFolder, "medium"), { recursive: true });
+        }
+        
+        if (!fs.existsSync(path.join(galerieFolder, "small"))) {
+            fs.mkdirSync(path.join(galerieFolder, "small"), { recursive: true });
+        }
+    } catch (err) {
+        console.error("Could not create directories for resized images:", err);
+    }
+    
+     // Create medium version (300px wide)
+     if (!fs.existsSync(mediumImagePath)) {
+        try {
+            await sharp(sourceImage)
+                .resize(300) // Resize to 300px width
+                .toFile(mediumImagePath);
+        } catch (err) {
+            console.error(`Error creating medium image for ${imageInfo.fisier_imagine}:`, err);
+        }
+    }
+
+    if (!fs.existsSync(smallImagePath)) {
+        try {
+            await sharp(sourceImage)
+                .resize(150) // Resize to 150px width
+                .toFile(smallImagePath);
+        } catch (err) {
+            console.error(`Error creating small image for ${imageInfo.fisier_imagine}:`, err);
+        }
+    }
+    return {
+        original: imageInfo.fisier_imagine,
+        medium: `medium/${imageName}${imageExtension}`,
+        small: `small/${imageName}${imageExtension}`
+    };
+}
 
 function initErori() {
     let continut = fs.readFileSync(path.join(__dirname, "resurse/json/erori.json")).toString("utf-8");
@@ -130,6 +213,7 @@ vectFoldere.forEach(folder => {
         console.log("Folderul există deja.");
     }
 });
+
 
 app.listen(8080);
 console.log("Serverul a pornit");
