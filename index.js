@@ -134,3 +134,4 @@ vectFoldere.forEach(folder => {
 app.listen(8080);
 console.log("Serverul a pornit");
 console.log("Accesati http://localhost:8080/");
+
