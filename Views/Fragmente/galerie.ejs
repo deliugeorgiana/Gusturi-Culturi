@@ -1,0 +1,44 @@
+<div class="galerie-container">
+    <h2>Galerie Culinară</h2>
+    
+    <div class="galerie-grid">
+        <% let imgIndex = 0; %>
+        <% let rowType = 0; /* 0 = pattern [X][ ][X], 1 = pattern [ ][X][ ] */ %>
+        
+        <% while (imgIndex < images.length) { %>
+            <div class="galerie-row">
+                <% if (rowType === 0) { %>
+                    <!-- Rand tip 0: [X][ ][X] -->
+                    <% if (imgIndex < images.length) { %>
+                        <div class="galerie-item"><%- include('galerie-item', {img: images[imgIndex], path: path, galeriePath: galeriePath}) %></div>
+                        <% imgIndex++; %>
+                    <% } else { %>
+                        <div class="galerie-empty"></div>
+                    <% } %>
+                    
+                    <div class="galerie-empty"></div>
+                    
+                    <% if (imgIndex < images.length) { %>
+                        <div class="galerie-item"><%- include('galerie-item', {img: images[imgIndex], path: path, galeriePath: galeriePath}) %></div>
+                        <% imgIndex++; %>
+                    <% } else { %>
+                        <div class="galerie-empty"></div>
+                    <% } %>
+                <% } else { %>
+                    <!-- Rand tip 1: [ ][X][ ] -->
+                    <div class="galerie-empty"></div>
+                    
+                    <% if (imgIndex < images.length) { %>
+                        <div class="galerie-item"><%- include('galerie-item', {img: images[imgIndex], path: path, galeriePath: galeriePath}) %></div>
+                        <% imgIndex++; %>
+                    <% } else { %>
+                        <div class="galerie-empty"></div>
+                    <% } %>
+                    
+                    <div class="galerie-empty"></div>
+                <% } %>
+            </div>
+            <% rowType = 1 - rowType; /* Alternare între cele două tipuri de randuri */ %>
+        <% } %>
+    </div>
+</div>

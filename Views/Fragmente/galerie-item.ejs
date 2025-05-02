@@ -1,0 +1,20 @@
+<figure class="galerie-item">
+    <picture>
+        <source media="(max-width: 480px)" srcset="<%= path.join(galeriePath, img.resized.small) %>">
+        <source media="(max-width: 1024px)" srcset="<%= path.join(galeriePath, img.resized.medium) %>">
+        <img 
+            src="<%= path.join(galeriePath, img.resized.original) %>" 
+            alt="<%= img.continut_alternativ || img.nume_poza %>"
+            title="<%= img.descriere_poza %>"
+        >
+    </picture>
+    <figcaption>
+        <%= img.nume_poza %>
+        <% if(img.atribuire) { %>
+            <div class="atribuire">
+                Credit: <a href="<%= img.atribuire.url %>" target="_blank"><%= img.atribuire.autor %></a> 
+                (<%= img.atribuire.licenta %>)
+            </div>
+        <% } %>
+    </figcaption>
+</figure>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/resurse/css/galerie.css">
+    <title>Gusturi & Culturi - Galerie Culinară</title>
+</head>
+<body>
+    <%- include("../fragmente/header") %>
+    
+    <main>
+        <section>
+            <h1>Galerie Culinară</h1>
+            <p>Explorează colecția noastră de preparate tradiționale din diverse bucătării ale lumii.</p>
+            <p>Imaginile afișate depind de ziua săptămânii - reveniți în alte zile pentru a descoperi mai multe delicii!</p>
+            
+            <!-- Include gallery fragment -->
+            <%- include("../fragmente/galerie", {images: images, galeriePath: galeriePath, path: path}) %>
+        </section>
+    </main>
+    
+    <%- include("../fragmente/footer") %>
+</body>
+</html>
