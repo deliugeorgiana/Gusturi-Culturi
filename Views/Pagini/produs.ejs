@@ -1,0 +1,74 @@
+<% 
+  function formatareDenumireCategorie(categorie) {
+    return categorie.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  }
+  
+  function formatareData(data) {
+    const zileSaptamana = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+    const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+    
+    const d = new Date(data);
+    const zi = d.getDate();
+    const luna = luni[d.getMonth()];
+    const an = d.getFullYear();
+    const ziSaptamana = zileSaptamana[d.getDay()];
+    
+    return `${zi}-${luna}-${an} (${ziSaptamana})`;
+  }
+%>
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/resurse/css/produs.css">
+</head>
+<body>
+    <%- include("../fragmente/header") %>
+    <main>
+        <article class="produs-detaliat">
+            <h1><%= produs.nume %></h1>
+            
+            <div class="produs-container">
+                <div class="produs-imagine-container">
+                    <img src="/<%= produs.imagine %>" alt="<%= produs.nume %>">
+                    <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.categorie) %></p>
+                    <p class="produs-pret">Preț: <%= produs.pret %> lei</p>
+                </div>
+                
+                <div class="produs-info">
+                    <h2>Detalii produs</h2>
+                    <dl>
+                        <dt>Categorie:</dt>
+                        <dd><%= formatareDenumireCategorie(produs.categorie) %></dd>
+                        
+                        <dt>Subcategorie:</dt>
+                        <dd><%= formatareDenumireCategorie(produs.subcategorie) %></dd>
+                        
+                        <dt>Tip bucătărie:</dt>
+                        <dd><%= produs.tip_bucatarie %></dd>
+                        
+                        <dt>Ingrediente:</dt>
+                        <dd><%= produs.ingrediente %></dd>
+                        
+                        <dt>Timp de preparare:</dt>
+                        <dd><%= produs.timp_preparare %> minute</dd>
+                        
+                        <dt>Data adăugării în meniu:</dt>
+                        <dd><time datetime="<%= produs.data_adaugare %>"><%= formatareData(produs.data_adaugare) %></time></dd>
+                        
+                        <dt>Preparat vegetarian:</dt>
+                        <dd><%= produs.vegetarian ? 'Da' : 'Nu' %></dd>
+                    </dl>
+                    
+                    <h2>Descriere</h2>
+                    <p class="produs-descriere"><%= produs.descriere %></p>
+                    
+                    <a href="/produse" class="buton-inapoi">Înapoi la produse</a>
+                </div>
+            </div>
+        </article>
+    </main>
+    <%- include("../fragmente/footer") %>
+</body>
+</html>

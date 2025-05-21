@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <title>Comparare Produse</title>
+    <style>
+        footer{
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <%- include("../fragmente/header") %>
+    <main class="container mt-4">
+        <h2 class="text-center mb-4">Comparare Produse</h2>
+        <div class="table-responsive">
+            <table class="table table-striped table-hover align-middle text table-dark"> 
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">Caracteristica</th>
+                        <th scope="col"><%= produse[0].nume %></th>
+                        <th scope="col"><%= produse[1].nume %></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="table-primary"><th scope="row">Pret</th><td><%= produse[0].pret %></td><td><%= produse[1].pret %></td></tr>
+                    <tr class="table-secondary"><th scope="row">Descriere</th><td><%= produse[0].descriere %></td><td><%= produse[1].descriere %></td></tr>
+                    <tr class="table-primary"><th scope="row">Categorie</th><td><%= produse[0].categorie %></td><td><%= produse[1].categorie %></td></tr>
+                    <tr class="table-secondary"><th scope="row">Subcategorie</th><td><%= produse[0].subcategorie %></td><td><%= produse[1].subcategorie %></td></tr>
+                    <tr class="table-primary"><th scope="row">Putere[W]</th><td><%= produse[0].putere_watt %></td><td><%= produse[1].putere_watt %></td></tr>
+                    <tr class="table-secondary"><th scope="row">Culoare</th><td><%= produse[0].culoare %></td><td><%= produse[1].culoare %></td></tr>
+                    <tr class="table-primary"><th scope="row">Specificatii</th><td><%= produse[0].specificatii %></td><td><%= produse[1].specificatii %></td></tr>
+                    <tr class="table-secondary"><th scope="row">Livrare easybox</th><td><%= produse[0].livrare_easybox  ? "Da" : "Nu" %></td><td><%= produse[1].livrare_easybox  ? "Da" : "Nu" %></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+    <%- include("../fragmente/footer") %>
+</body>
+</html>

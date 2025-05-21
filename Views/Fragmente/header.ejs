@@ -1,36 +1,52 @@
 <header>
-    <h1>Gusturi & Culturi</h1>
-    <nav class="meniu principal">
-        <input type="checkbox" id="hamburgerToggle" class="hamburger-toggle" hidden>
-        <label for="hamburgerToggle" id="hamburgerLabel">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <ul class="meniu-lista">
-            <li class="meniu-element">
-                <a href="#acasa" class="home-link">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="home-text">Acasă</span>
-                </a>
-                <ul class="submeniu">
-                    <li><a href="#despre">Despre Noi</a></li>
-                    <li><a href="#prezentare">Prezentare</a></li>
-                </ul>
-            </li>
-            <li class="meniu-element">
-                <a href="#retete">Rețete</a>
-                <ul class="submeniu">
-                    <li><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
-                    <li><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
-                    <li><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
-                </ul>
-            </li>
-            <li class="meniu-element"><a href="#categorii">Categorii</a></li>
-            <li class="meniu-element"><a href="#ingrediente">Ingrediente</a></li>
-            <li class="meniu-element"><a href="#sarbatori">Sărbători</a></li>
-            <li class="meniu-element"><a href="#international">Internațional</a></li>
-            <li class="meniu-element"><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+    <h1>
+        <a href="/">Gusturi & Culturi</a>
+    </h1>
+    <div id="hamburger">
+        <span id="hamburger-fa" class="fa-solid fa-bars"></span>
+        <nav style="margin-top: 20px;">
+            <ul>
+                <li class="buton-meniu home">
+                    <span id="buton-acasa" class="fa-solid fa-house fa-sm"></span>
+                    <a id="anchor-acasa" href="/">Acasă</a>
+                    <ul>
+                        <li class="buton-submeniu"><a href="#despre">Despre Noi</a></li>
+                        <li class="buton-submeniu"><a href="#prezentare">Prezentare</a></li>
+                    </ul>
+                </li>
+                <li class="buton-meniu">
+                    <a href="#retete">Rețete</a>
+                    <ul>
+                        <li class="buton-submeniu"><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
+                        <li class="buton-submeniu"><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
+                        <li class="buton-submeniu"><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
+                    </ul>
+                </li>
+                <li class="buton-meniu">
+                    <a href="/produse">Produse</a>
+                    <ul>
+                        <li class="buton-submeniu"><a href="/produse">Toate</a></li>
+                        <% if (locals.categorii) { %>
+                            <% categorii.forEach(categ => { %>
+                                <li class="buton-submeniu"><a href="/produse?categorie=<%= categ %>"><%= categ.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) %></a></li>
+                            <% }) %>
+                        <% } %>
+                    </ul>
+                </li>
+                <li class="buton-meniu"><a href="#categorii">Categorii</a></li>
+                <li class="buton-meniu"><a href="#ingrediente">Ingrediente</a></li>
+                <li class="buton-meniu"><a href="#sarbatori">Sărbători</a></li>
+                <li class="buton-meniu"><a href="#international">Internațional</a></li>
+                <li class="buton-meniu"><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div id="light-dark-theme" style="position: absolute; right: 20px; top: 20px;">
+        <i class="bi bi-brightness-high fs-3" style="margin-right: 15px;"></i>
+        <div class="form-check form-switch" style="display:inline-block;">
+            <input style="background-color: var(--culoare-accent, #ff9999);" class="form-check-input fs-5" type="checkbox" id="flexSwitchCheckDefault">
+            <label class="form-check-label fs-3" for="flexSwitchCheckDefault"><i class="bi bi-moon-stars"></i></label>
+        </div>
+    </div>
 </header>

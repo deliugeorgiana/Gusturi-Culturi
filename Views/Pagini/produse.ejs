@@ -1,0 +1,162 @@
+<% 
+  function formatareDenumireCategorie(categorie) {
+    return categorie.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
+  }
+
+  function formatareLuna(data) {
+    const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+    const d = new Date(data);
+    return luni[d.getMonth()];
+  }
+  
+  function formatareData(data) {
+    const zileSaptamana = ["Duminică", "Luni", "Marți", "Miercuri", "Joi", "Vineri", "Sâmbătă"];
+    const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"];
+    
+    const d = new Date(data);
+    const zi = d.getDate();
+    const luna = luni[d.getMonth()];
+    const an = d.getFullYear();
+    const ziSaptamana = zileSaptamana[d.getDay()];
+    
+    return `${zi}-${luna}-${an} (${ziSaptamana})`;
+  }
+%>
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/resurse/css/produse.css">
+    <script src="/resurse/js/produse.js" defer></script>
+</head>
+<body>
+    <%- include("../fragmente/header") %>
+    <main>
+        <h1>Produse <%= categorie_selectata !== "toate" ? formatareDenumireCategorie(categorie_selectata) : "" %></h1>
+        
+        <section id="filtre">
+            <h2>Filtrare și sortare</h2>
+            
+            <!-- Input text pentru căutare după nume -->
+            <div class="filtru">
+                <label for="inp-nume">Caută după nume:</label>
+                <input type="text" id="inp-nume" placeholder="Numele produsului">
+            </div>
+            
+            <!-- Input range pentru preț -->
+            <div class="filtru">
+                <label for="inp-pret">Preț între:</label>
+                <div class="range-container">
+                    <span id="minim-pret">15</span>
+                    <input type="range" id="inp-pret" min="15" max="50" value="50">
+                    <span id="maxim-pret">50</span>
+                    <span id="val-pret">(50)</span>
+                </div>
+            </div>
+            
+            <!-- Datalist pentru subcategorie -->
+            <div class="filtru">
+                <label for="inp-subcategorie">Subcategorie:</label>
+                <input type="text" id="inp-subcategorie" list="lista-subcategorii" placeholder="Alege o subcategorie">
+                <datalist id="lista-subcategorii">
+                    <% let subcategoriiUnice = new Set(); %>
+                    <% produse.forEach(prod => subcategoriiUnice.add(prod.subcategorie)); %>
+                    <% [...subcategoriiUnice].sort().forEach(subcat => { %>
+                        <option value="<%= subcat %>"><%= formatareDenumireCategorie(subcat) %></option>
+                    <% }); %>
+                </datalist>
+            </div>
+            
+            <!-- Radio buttons pentru tip bucătărie -->
+            <div class="filtru">
+                <fieldset>
+                    <legend>Tip bucătărie:</legend>
+                    <div class="radio-group">
+                        <label><input type="radio" name="rad-bucatarie" value="toate" checked>Toate</label>
+                        <% let tipuriBucatarieUnice = new Set(); %>
+                        <% produse.forEach(prod => tipuriBucatarieUnice.add(prod.tip_bucatarie)); %>
+                        <% [...tipuriBucatarieUnice].sort().forEach(tip => { %>
+                            <label><input type="radio" name="rad-bucatarie" value="<%= tip %>"><%= tip %></label>
+                        <% }); %>
+                    </div>
+                </fieldset>
+            </div>
+            
+            <!-- Checkbox pentru discount -->
+            <div class="filtru">
+                <label>
+                    <input type="checkbox" id="inp-discount">
+                    Afișează doar cu discount pe baza timpului de preparare sub 30 min
+                </label>
+            </div>
+            
+            <!-- Textarea pentru căutare complexă în descriere -->
+            <div class="filtru">
+                <label for="inp-descriere">Caută în descriere:</label>
+                <textarea id="inp-descriere" rows="2" placeholder="Cuvinte cheie separate prin spațiu"></textarea>
+            </div>
+            
+            <!-- Select simplu pentru vegetarian -->
+            <div class="filtru">
+                <label for="inp-vegetarian">Tip preparat:</label>
+                <select id="inp-vegetarian">
+                    <option value="oricare">Oricare</option>
+                    <option value="true">Vegetarian</option>
+                    <option value="false">Non-vegetarian</option>
+                </select>
+            </div>
+            
+            <!-- Select multiplu pentru lunile adăugării -->
+            <div class="filtru">
+                <label for="inp-luni">Luna adăugării:</label>
+                <select id="inp-luni" multiple size="6">
+                    <% const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]; %>
+                    <% luni.forEach((luna, index) => { %>
+                        <option value="<%= index %>" selected><%= luna %></option>
+                    <% }); %>
+                </select>
+            </div>
+            
+            <!-- Butoane -->
+            <div class="butoane">
+                <button id="btn-filtrare">Filtrează</button>
+                <button id="btn-sortare-crescator">Sortare crescătoare</button>
+                <button id="btn-sortare-descrescator">Sortare descrescătoare</button>
+                <button id="btn-calcul">Calculeaza media prețurilor</button>
+                <button id="btn-resetare">Resetare filtre</button>
+            </div>
+        </section>
+        
+        <section id="produse-container">
+            <% produse.forEach(produs => { %>
+                <article class="produs <%= produs.categorie %>" id="produs_<%= produs.id %>">
+                    <h3><%= produs.nume %></h3>
+                    <div class="produs-content">
+                        <div class="produs-imagine">
+                            <img src="<%= produs.imagine %>" alt="<%= produs.nume %>">
+                            <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.categorie) %></p>
+                            <p class="produs-pret">Preț: <%= produs.pret %> lei</p>
+                        </div>
+                        <div class="produs-detalii">
+                            <details>
+                                <summary>Specificații</summary>
+                                <ul>
+                                    <li><strong>Tip bucătărie:</strong> <em><%= produs.tip_bucatarie %></em></li>
+                                    <li><strong>Ingrediente:</strong> <em><%= produs.ingrediente %></em></li>
+                                    <li><strong>Timp preparare:</strong> <em><%= produs.timp_preparare %> minute</em></li>
+                                    <li><strong>Data adăugării:</strong> <em><time datetime="<%= produs.data_adaugare %>"><%= formatareData(produs.data_adaugare) %></time></em></li>
+                                    <li><strong>Vegetarian:</strong> <em><%= produs.vegetarian ? 'Da' : 'Nu' %></em></li>
+                                </ul>
+                            </details>
+                            <p class="produs-descriere"><%= produs.descriere %></p>
+                            <a href="/produs/<%= produs.id %>" class="vezi-produs">Vezi detalii</a>
+                        </div>
+                    </div>
+                </article>
+            <% }); %>
+        </section>
+    </main>
+    <%- include("../fragmente/footer") %>
+</body>
+</html>
