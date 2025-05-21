@@ -6,10 +6,29 @@ const router= express.Router();
 const sass= require("sass");
 const pg=require("pg");
 
+
+
 const Client=pg.Client;
+client=new Client({
+    database:"gusturiculturi",
+    user:"postgres",
+    password:"tehniciweb",
+    host:"localhost",
+    port:5050
+})
 
-const app = express();
 
+client.connect()
+client.query("select * from produse", function (err, rezultat) {
+    console.log(err)
+    console.log("Rezultat query:", rezultat)
+})
+client.query("select * from unnest(enum_range(null::categorie_mare))", function (err, rezultat) {
+    console.log(err)
+    console.log(rezultat)
+})
+
+app=express();
 
 v = [10, 27, 23, 44, 15]
 
