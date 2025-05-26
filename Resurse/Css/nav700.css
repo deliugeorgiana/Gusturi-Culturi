@@ -98,18 +98,16 @@
         height: 60px;
         background-color: black;
         display: block;
-        clip-path: polygon(
-            0% 0%,
-            85% 0%,
-            100% 50%,
-            85% 100%,
-            0% 100%
-        );
+       
         margin: 0;
         padding: 0;
         transform: translateX(-1.25%);
         margin-top: -5px;
-        position: relative !important; /* Required for absolute positioning of submenu */
+        position: relative !important;
+    }
+
+    .meniu-element:hover > .submeniu {
+        display: none !important;
     }
   
     /* Stilizare pentru linkurile din meniu */
@@ -148,20 +146,23 @@
 
 
     .submeniu {
-        display: none;
-        position: fixed !important; /* Use fixed instead of absolute */
-        top: auto !important; /* Let JS calculate this */
+        position: fixed !important;
+        display: none !important;
+        width: 80% !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 80% !important;
         background-color: #333 !important;
-        z-index: 99999 !important; /* Very high z-index */
-        border-radius: 0 0 8px 8px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+        z-index: 99999 !important;
+        border-radius: 0 0 8px 8px !important;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.5) !important;
+        clip-path: none !important;
     }
-
     /* Show submenu on hover*/
     .meniu-element:hover > .submeniu {
+        display: block !important;
+    }
+
+    .meniu-element.active > .submeniu {
         display: block !important;
     }
 
@@ -228,41 +229,14 @@
     .meniu-element a {
         font-size: 18px;
     }
-}
-
-/* FINAL SUBMENU FIX - ADD AT END OF FILE */
-@media screen and (max-width: 700px) {
-    /* Remove conflicting hover rule */
+    
+    .meniu-element.active > .submeniu {
+        display: block !important;
+    }
+    
+    /* Turn off hover behavior */
     .meniu-element:hover > .submeniu {
         display: none !important;
     }
-    
-    /* CRITICAL: Show only with JS active class */
-    .meniu-element.active .submeniu {
-        display: block !important;
-        z-index: 99999 !important;
-        position: fixed !important;
-        top: auto !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        width: 80% !important;
-        margin-top: 5px !important;
-    }
-    
-    /* Override any cascade issues */
-    .meniu-element.active {
-        background-color: #444 !important;
-        z-index: 10000 !important;
-    }
-    
-    /* Force submenu styling */
-    .submeniu li a::after {
-        bottom: 2px !important;
-        display: block !important;
-    }
-    
-    .submeniu li a::before {
-        bottom: 6px !important;
-        display: block !important;
-    }
 }
+
