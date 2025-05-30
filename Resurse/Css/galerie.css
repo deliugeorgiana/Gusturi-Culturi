@@ -8,95 +8,68 @@
   padding: 0 15px;
 }
 
-/* Poziționarea pentru modelul zigzag */
+/* Celule cu imagini */
 .grid-item {
   position: relative;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  aspect-ratio: 1;
 }
 
-.pozitie-0 {
-  grid-column: 1;
+/* Celule goale */
+.fara-imagine {
+  background-color: white;
+  border: 3px solid black;
+  box-shadow: none;
 }
 
-.pozitie-1 {
-  grid-column: 3;
+/* Celule cu imagine */
+.cu-imagine {
+  background-color: black;
 }
 
-.pozitie-2 {
-  grid-column: 2;
-}
-
-.pozitie-3 {
-  grid-column: 2;
-}
-
-.grid-galerie figure {
-  margin: 0;
-  overflow: hidden;
-  border-radius: 10px;
-  background-color: #fff;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.grid-galerie figure img {
+.grid-item img {
   width: 100%;
-  height: auto;
-  display: block;
-  filter: sepia(100%); /* Inițial în stil sepia */
+  height: 100%;
+  object-fit: cover;
   transition: filter 0.8s ease;
+  filter: sepia(1);
 }
 
-.grid-galerie figure:hover img {
-  filter: sepia(0%); /* La hover, imagine normală */
+.grid-item:hover img {
+  filter: sepia(0);
 }
 
-.grid-galerie figcaption {
-  padding: 15px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #333;
-  transition: all 0.8s ease;
+.grid-item figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px;
   text-align: center;
+  transition: color 0.8s ease, text-shadow 0.8s ease;
 }
 
-.grid-galerie figure:hover figcaption {
-  color: #c7514d; /* Schimbă culoarea textului */
-  text-shadow: 0 0 8px rgba(199, 81, 77, 0.3); /* Adaugă umbră text */
-}
-
-.index-roman {
-  font-style: italic;
-  font-weight: 600;
-}
-
-.atribuire {
-  display: block;
-  font-size: 0.7rem;
-  font-style: italic;
-  color: #666;
-  margin-top: 5px;
-}
-
-.no-images {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 20px;
-  font-style: italic;
-  color: #666;
+.grid-item:hover figcaption {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
 /* Responsive design */
 @media screen and (max-width: 1200px) {
   .grid-galerie {
-      grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   
-  .grid-item, .pozitie-0, .pozitie-1, .pozitie-2, .pozitie-3 {
-      grid-column: auto !important;
+  .fara-imagine {
+    display: none; /* Ascunde celulele goale pe ecrane medii */
   }
 }
 
 @media screen and (max-width: 768px) {
   .grid-galerie {
-      grid-template-columns: 1fr;
+    grid-template-columns: 1fr;
   }
 }

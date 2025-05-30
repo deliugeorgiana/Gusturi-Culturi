@@ -1,38 +1,44 @@
 <section id="galerie-statica">
     <h2>Galerie de preparate</h2>
     <div class="grid-galerie">
-        <% 
-        // Verifică dacă avem imagini
-        if (locals.imaginiGalerie && Array.isArray(locals.imaginiGalerie) && locals.imaginiGalerie.length > 0) {
-            // Asigură-te că numărul imaginilor este par pentru a păstra modelul zigzag
-            let numarImagini = locals.imaginiGalerie.length;
-            if (numarImagini % 2 == 1) {
-                numarImagini--;
-            }
+        <% if (locals.imaginiGalerie && Array.isArray(locals.imaginiGalerie) && locals.imaginiGalerie.length > 0) { %>
+            <% let numarImagini = locals.imaginiGalerie.length; %>
+            <% if (numarImagini % 2 == 1) { %>
+                <% numarImagini--; %>
+            <% } %>
             
-            for (let i = 0; i < numarImagini; i++) {
-                let img = locals.imaginiGalerie[i];
-                let pozitieClasa = "";
-                
-                // Stabilește poziția pentru modelul zigzag
-                if (i % 4 < 2) {
-                    pozitieClasa = "pozitie-" + (i % 2);
-                } else {
-                    pozitieClasa = "pozitie-" + ((i % 2) + 2);
-                }
-                
-                // Apelează fragmentul pentru fiecare element individual
-        %>
-                <%- include("./galerie-item", {
-                    img: img, 
-                    index: i+1, 
-                    cale_galerie: locals.cale_galerie,
-                    pozitieClasa: pozitieClasa
-                }) %>
-        <% 
-            } 
-        } else { 
-        %>
+            <% 
+            // Definim pattern-ul: true = celulă cu imagine, false = celulă goală
+            const pattern = [
+                true, true, false,    // Rândul 1: imagine, imagine, gol
+                true, false, true,    // Rândul 2: imagine, gol, imagine
+                false, true, true,    // Rândul 3: gol, imagine, imagine
+                true, false, true,    // Rândul 4: imagine, gol, imagine
+                true, true, false,    // Rândul 5: imagine, imagine, gol
+                true, false, true,    // Rândul 6: imagine, gol, imagine
+                false, true, true     // Rândul 7: gol, imagine, imagine
+            ];
+            
+            let indexImagine = 0; // index pentru imaginile reale
+            
+            for (let i = 0; i < pattern.length && indexImagine < numarImagini; i++) {
+                if (pattern[i]) {
+                    // Celule cu imagini
+                    let img = locals.imaginiGalerie[indexImagine++];
+            %>
+                    <%- include("./galerie-item", {
+                        img: img, 
+                        index: indexImagine,
+                        cale_galerie: locals.cale_galerie || "resurse/imagini/galerie",
+                        pozitieClasa: "cu-imagine"
+                    }) %>
+            <% } else { %>
+                    <!-- Celule goale -->
+                    <div class="grid-item fara-imagine"></div>
+            <% }
+            } %>
+            
+        <% } else { %>
             <p class="no-images">Nu există imagini disponibile pentru ziua curentă.</p>
         <% } %>
     </div>

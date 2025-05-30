@@ -235,7 +235,47 @@
             </section>
         </div>
 
-        <%- include("../fragmente/galerie.ejs") %>
+        <%- include("../fragmente/galerie.ejs", {
+            imaginiGalerie: [
+                {
+                    fisier_imagine: "imagine1.jpg",
+                    nume_poza: "Sarmale tradiționale",
+                    continut_alternativ: "Farfurie cu sarmale și mămăligă",
+                    descriere_poza: "Mâncare tradițională românească"
+                },
+                {
+                    fisier_imagine: "imagine2.jpg",
+                    nume_poza: "Pizza Napoletana",
+                    continut_alternativ: "Pizza tradițională napoletană",
+                    descriere_poza: "Pizza autentică în stil napoletan"
+                },
+                {
+                    fisier_imagine: "imagine3.jpg",
+                    nume_poza: "Paella Spaniolă",
+                    continut_alternativ: "Tigaie cu paella tradițională",
+                    descriere_poza: "Paella cu fructe de mare și șofran"
+                },
+                {
+                    fisier_imagine: "imagine4.jpg",
+                    nume_poza: "Cozonac festiv",
+                    continut_alternativ: "Cozonac tradițional cu nucă",
+                    descriere_poza: "Cozonac românesc cu umplutură"
+                },
+                {
+                    fisier_imagine: "imagine5.jpg",
+                    nume_poza: "Sushi Assortat",
+                    continut_alternativ: "Platou cu diverse tipuri de sushi",
+                    descriere_poza: "Selecție de sushi cu somon, ton și avocado"
+                },
+                {
+                    fisier_imagine: "imagine6.jpg",
+                    nume_poza: "Mousse de ciocolată",
+                    continut_alternativ: "Pahar cu mousse de ciocolată",
+                    descriere_poza: "Desert delicat din ciocolată neagră și frișcă"
+                }
+            ],
+            cale_galerie: "resurse/imagini/galerie"
+        }) %>
         
 
         <section id="retete">

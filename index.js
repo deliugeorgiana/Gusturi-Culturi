@@ -488,10 +488,15 @@ app.get("/galerie", async (req, res) => {
 
 // Funcție pentru procesarea imaginilor și filtrarea după zi
 async function proceseazaImagini(dateGalerie) {
-    // Pregătește directoarele pentru imagini redimensionate
+      
+    const zileSaptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
+    const dataAzi = new Date();
+    const ziCurenta = zileSaptamana[dataAzi.getDay()];
+
     const caleGalerie = path.join(__dirname, dateGalerie.cale_galerie);
-    const caleMediu = path.join(caleGalerie, "mediu");
-    const caleMic = path.join(caleGalerie, "mic");
+
+    const caleMediu = path.join(caleGalerie, "medium");
+    const caleMic = path.join(caleGalerie, "small");    
     
     if (!fs.existsSync(caleMediu)) {
         fs.mkdirSync(caleMediu, { recursive: true });
@@ -525,16 +530,16 @@ async function proceseazaImagini(dateGalerie) {
         }
     }
     
-    // Filtrează imaginile după ziua săptămânii
-    const zileSaptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
-    const dataAzi = new Date();
-    const ziCurenta = zileSaptamana[dataAzi.getDay()];
+ 
     
     console.log(`Ziua curentă: ${ziCurenta}`);
     
-    // Filtrează imaginile care se potrivesc cu ziua curentă
+
     const imaginiPotrivite = dateGalerie.imagini.filter(img => {
-        if (!img.intervale_zile) return false;
+    if (!img.intervale_zile) return false;
+    
+   
+    console.log(`Verificare imagine ${img.fisier_imagine}:`, img.intervale_zile);
         
         return img.intervale_zile.some(interval => {
             const ziStart = interval[0];
@@ -553,8 +558,16 @@ async function proceseazaImagini(dateGalerie) {
             }
         });
     });
-    
-    // Truncheză la cel mai mic număr par pentru a păstra modelul zigzag
+// La sfârșitul funcției, chiar înainte de return:
+console.log(`Ziua curentă este: ${ziCurenta}`);
+console.log(`Număr de imagini potrivite: ${imaginiPotrivite.length}`);
+
+
+    if (imaginiPotrivite.length === 0) {
+        console.log("Nu s-au găsit imagini pentru ziua curentă! Afișăm toate imaginile.");
+        return dateGalerie.imagini;
+    }
+
     const numarImagini = Math.floor(imaginiPotrivite.length / 2) * 2;
     return imaginiPotrivite.slice(0, numarImagini);
 }
