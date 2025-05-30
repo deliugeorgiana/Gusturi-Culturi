@@ -14,11 +14,27 @@ client=new Client({
     user:"postgres",
     password:"tehniciweb",
     host:"localhost",
-    port:5050
+    port:5432
 })
 
 
 client.connect()
+    .then(() => {
+        console.log("Connected to PostgreSQL");
+        return client.query("select * from produse");
+    })
+    .then(rezultat => {
+        console.log("Rezultat query:", rezultat.rows);
+        return client.query("select * from unnest(enum_range(null::categorie_mare))");
+    })
+    .then(rezultat => {
+        console.log(rezultat.rows);
+    })
+    .catch(err => {
+        console.error("Database error:", err);
+        // Consider exiting if DB connection is critical
+        // process.exit(1);
+    });
 client.query("select * from produse", function (err, rezultat) {
     console.log(err)
     console.log("Rezultat query:", rezultat)
@@ -52,7 +68,21 @@ obGlobal={
     folderBackup: path.join(__dirname,"backup")
 }
 
+// Adaugă funcția toRoman care convertește numere în cifre romane
+function toRoman(num) {
+    const romanNumerals = {
+        1: 'i', 2: 'ii', 3: 'iii', 4: 'iv', 5: 'v', 
+        6: 'vi', 7: 'vii', 8: 'viii', 9: 'ix', 10: 'x',
+        11: 'xi', 12: 'xii', 13: 'xiii', 14: 'xiv', 15: 'xv'
+    };
+    return romanNumerals[num] || num;
+}
 
+// Adaugă funcția la locals pentru a fi disponibilă în toate șabloanele
+app.use((req, res, next) => {
+    res.locals.toRoman = toRoman;
+    next();
+});
 
 function compileazaScss(caleScss, caleCss){
     console.log("cale:", caleCss);
@@ -333,20 +363,27 @@ app.use("/resurse", express.static(path.join(__dirname, "resurse"), {
     fallthrough: true
 }));
 
-app.get("/favicon.ico", function(req, res) {
-    res.sendFile(path.join(__dirname, "resurse/ico/favicon/favicon.ico"));
-});
 
+
+
+const faviconDir = path.join(__dirname, "resurse/ico/favicon");
+if (!fs.existsSync(faviconDir)) {
+    fs.mkdirSync(faviconDir, { recursive: true });
+    console.log("Folderul pentru favicon a fost creat");
+}
 
 const faviconPath = path.join(faviconDir, "favicon.ico");
 if (!fs.existsSync(faviconPath)) {
-    // Copiază un favicon din resurse sau generează unul simplu
     fs.copyFileSync(
         path.join(__dirname, "resurse/imagini/favicon/favicon-96x96.png"), 
         faviconPath
     );
     console.log("Favicon generat cu succes");
 }
+
+app.get("/favicon.ico", function(req, res) {
+    res.sendFile(faviconPath);
+});
 
 app.get("/index/a", function(req, res) {
     res.render("pagini/index");
@@ -402,29 +439,126 @@ vectFoldere.forEach(folder => {
 
 
 
-app.get(["/", "/index", "/home"], (req, res) => {
-    const caleGalerie = path.join(__dirname, "resurse", "imagini", "galerie");
-    let galleryImages = [];
-
+// Procesare imagini și servire date galerie
+app.get(["/", "/index", "/home"], async (req, res) => {
     try {
-        galleryImages = fs.readdirSync(caleGalerie);
+        // Încarcă datele din JSON
+        const dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse", "json", "galerie.json")));
+        
+        // Procesează imaginile și pregătește datele pentru afișare
+        const imaginiProcesate = await proceseazaImagini(dateGalerie);
+        
+        res.render("pagini/index", {
+            ip: req.ip,
+            cale_galerie: dateGalerie.cale_galerie,
+            imaginiGalerie: imaginiProcesate,
+            path: req.url
+        });
     } catch (err) {
-        console.error("Eroare la citirea imaginilor din galerie:", err);
+        console.error("Eroare la încărcarea galeriei:", err);
+        res.render("pagini/index", {
+            ip: req.ip,
+            path: req.url,
+            error: "Eroare la încărcarea galeriei de imagini."
+        });
     }
-
-    res.render("pagini/index", {
-        ip: req.ip,
-        galleryImages: galleryImages,
-        galeriePath: "/resurse/imagini/galerie",
-        path: req.url
-    });
 });
 
-const faviconDir = path.join(__dirname, "resurse/ico/favicon");
-if (!fs.existsSync(faviconDir)) {
-    fs.mkdirSync(faviconDir, { recursive: true });
-    console.log("Folderul pentru favicon a fost creat");
+// Adaugă rută pentru pagina dedicată galeriei
+app.get("/galerie", async (req, res) => {
+    try {
+        const dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse", "json", "galerie.json")));
+        const imaginiProcesate = await proceseazaImagini(dateGalerie);
+        
+        res.render("pagini/galerie", {
+            ip: req.ip,
+            cale_galerie: dateGalerie.cale_galerie,
+            imaginiGalerie: imaginiProcesate,
+            path: req.url
+        });
+    } catch (err) {
+        console.error("Eroare la încărcarea galeriei:", err);
+        res.render("pagini/galerie", {
+            ip: req.ip,
+            path: req.url,
+            error: "Eroare la încărcarea galeriei de imagini."
+        });
+    }
+});
+
+// Funcție pentru procesarea imaginilor și filtrarea după zi
+async function proceseazaImagini(dateGalerie) {
+    // Pregătește directoarele pentru imagini redimensionate
+    const caleGalerie = path.join(__dirname, dateGalerie.cale_galerie);
+    const caleMediu = path.join(caleGalerie, "mediu");
+    const caleMic = path.join(caleGalerie, "mic");
+    
+    if (!fs.existsSync(caleMediu)) {
+        fs.mkdirSync(caleMediu, { recursive: true });
+    }
+    if (!fs.existsSync(caleMic)) {
+        fs.mkdirSync(caleMic, { recursive: true });
+    }
+    
+    // Generează imagini redimensionate
+    for (const img of dateGalerie.imagini) {
+        const caleFisier = path.join(caleGalerie, img.fisier_imagine);
+        const caleMediuImg = path.join(caleMediu, img.fisier_imagine);
+        const caleMicImg = path.join(caleMic, img.fisier_imagine);
+        
+        if (fs.existsSync(caleFisier)) {
+            // Creează versiunea de dimensiune medie dacă nu există
+            if (!fs.existsSync(caleMediuImg)) {
+                await sharp(caleFisier)
+                    .resize(300) // lățime 300px pentru ecran mediu
+                    .toFile(caleMediuImg);
+                console.log(`Imagine medie generată: ${img.fisier_imagine}`);
+            }
+            
+            // Creează versiunea de dimensiune mică dacă nu există
+            if (!fs.existsSync(caleMicImg)) {
+                await sharp(caleFisier)
+                    .resize(150) // lățime 150px pentru ecran mic
+                    .toFile(caleMicImg);
+                console.log(`Imagine mică generată: ${img.fisier_imagine}`);
+            }
+        }
+    }
+    
+    // Filtrează imaginile după ziua săptămânii
+    const zileSaptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
+    const dataAzi = new Date();
+    const ziCurenta = zileSaptamana[dataAzi.getDay()];
+    
+    console.log(`Ziua curentă: ${ziCurenta}`);
+    
+    // Filtrează imaginile care se potrivesc cu ziua curentă
+    const imaginiPotrivite = dateGalerie.imagini.filter(img => {
+        if (!img.intervale_zile) return false;
+        
+        return img.intervale_zile.some(interval => {
+            const ziStart = interval[0];
+            const ziSfarsit = interval[1];
+            
+            const indexZiStart = zileSaptamana.indexOf(ziStart);
+            const indexZiSfarsit = zileSaptamana.indexOf(ziSfarsit);
+            const indexZiCurenta = zileSaptamana.indexOf(ziCurenta);
+            
+            // Verifică dacă ziua curentă este în interval
+            if (indexZiStart <= indexZiSfarsit) {
+                return indexZiCurenta >= indexZiStart && indexZiCurenta <= indexZiSfarsit;
+            } else {
+                // Interval care trece peste sfârșitul săptămânii (ex: vineri-luni)
+                return indexZiCurenta >= indexZiStart || indexZiCurenta <= indexZiSfarsit;
+            }
+        });
+    });
+    
+    // Truncheză la cel mai mic număr par pentru a păstra modelul zigzag
+    const numarImagini = Math.floor(imaginiPotrivite.length / 2) * 2;
+    return imaginiPotrivite.slice(0, numarImagini);
 }
+
 
 
 app.listen(8080);

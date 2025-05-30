@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ro">
+    <head>
+        <meta name="description" content="Gusturi & Culturi oferă preparate tradiționale din diverse culturi, cu posibilitatea comenzilor online și livrare prin curier.">
+        <meta name="keywords" content="gusturi, culturi, gastronomie, bucătărie internațională, mâncare tradițională, preparate">
+        <title>Gusturi & Culturi</title>
+        
+        <%- include("../fragmente/head.ejs") %>
+    </head>
+    <body>
+
+    <%- include("../fragmente/header.ejs") %>
+
+    <main>
+        <div id="grid-pagina">
+            <section id="welcome">
+                <h2>Bine ați venit</h2>
+                <button type="button" class="btn btn-primary btn-lg">Explorează</button>
+                <p class="intro">Vă mulțumim că ne vizitați site-ul. Porniți într-o călătorie culinară alături de noi!</p>
+                <p><b>Ip: </b><%- locals.ip %></p>
+                <div class="intro-oferte"><div>Aperitive</div><div>Feluri principale</div><div>Deserturi</div><div>Băuturi</div><div>Specialități</div></div>
+                <p class="anunt intro">Experimentați gusturi din toate colțurile lumii, atât la restaurantul nostru cât și acasă, prin serviciul nostru de livrare.</p>
+                <div id="dv-prezentare-1">
+                    <div id="dv-prezentare">
+                    <picture>
+                        <source srcset="/resurse/imagini/galerie/imagine1.jpg" media="(max-width:700px)"/>
+                        <source srcset="/resurse/imagini/galerie/imagine2.jpg" media="(max-width:1200px)"/>
+                        <img src="/resurse/imagini/galerie/imagine3.jpg" alt="Mâncare tradițională"/>
+                    </picture>
+                </div>
+            </div>
+            <hr class="separator"/>
+            
+            <div id="container-video">
+                <img class="farfurie" src="/resurse/imagini/farfurie-flori-albastre.png" alt="farfurie">
+                <div id="centrare-video">
+                    <div id="clip-video">
+                        <div id="stil-video">
+                            <video width="320" height="240" playsinline autoplay loop muted>
+                                <source src="/resurse/video/Chocolate.mp4" type="video/mp4">
+                                <source src="/resurse/video/Chocolate.ogv" type="video/ogv">
+                                <track default src="/resurse/video/tracks/captions_ro.vtt" kind="captions" srclang="ro" label="romana">
+                                <track src="/resurse/video/tracks/captions_en.vtt" kind="captions" srclang="en" label="engleza">
+                            </video>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+            
+            <section id="promotii">
+                <h2>Promoții</h2>
+                <article>
+                    <h3 class="titlu">Ofertă de weekend</h3>
+                    <p><b>Gusturi & Culturi</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate preparatele comandate în intervalul 18-22.</p>
+                    <p>Oferta este valabilă doar în zilele de vineri și sâmbătă la restaurantul nostru.</p>
+                    <p>Pentru comenzi de peste 200 lei primiți și un card de fidelitate!</p>
+                </article>
+                
+                <article>
+                    <h3>Pachet degustare</h3>
+                    <p>Gusturi & Culturi oferă pachete de degustare cuprinzând:</p>
+                    <ol>
+                        <li>Un aperitiv tradițional</li>
+                        <li>Un fel principal la alegere</li>
+                        <li>Un desert specific</li>
+                        <li>O băutură tradițională</li>
+                        <li>Gratis: o broșură cu informații despre cultura preparatelor</li>
+                    </ol>
+                </article>
+                
+                <article>
+                    <h3 class="titlu bcd">Seară tematică</h3>
+                    <p>În fiecare joi organizăm seri tematice dedicate unei culturi specifice, cu muzică live și preparate autentice.</p>
+                    <ol>
+                        <li>Prima joi: Bucătăria mediteraneană</li>
+                        <li>A doua joi: Bucătăria asiatică</li>
+                        <li>A treia joi: Bucătăria latino-americană</li>
+                        <li>A patra joi: Bucătăria arabă</li>
+                    </ol>
+                </article>
+            </section>
+            
+            <section id="produse">
+                <h2>Bucătăriile noastre</h2>
+
+                <p>Vă oferim o multitudine de preparate autentice din diferite culturi ale lumii.</p>
+                
+                <section>
+                    <h3>Bucătăria mediteraneană</h3>
+                    <p>Savurați gusturile Greciei, Italiei și Spaniei!</p>
+                    <ul>
+                        <li>Paella valenciană</li>
+                        <li>Moussaka grecească</li>
+                        <li>Risotto cu fructe de mare</li>
+                        <li>Bruschetta cu roșii</li>
+                        <li>Tiramisu</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Bucătăria asiatică</h3>
+                    <p>Experiențe culinare din Japonia, China și Thailanda!</p>
+                    <ul>
+                        <li>Sushi și sashimi</li>
+                        <li>Ramen</li>
+                        <li>Curry thailandez</li>
+                        <li>Pui Kung Pao</li>
+                        <li>Orez prăjit cu legume</li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h3>Bucătăria românească</h3>
+                    <p>Preparate tradiționale de la noi:</p>
+                    <ul>
+                        <li>Sarmale cu mămăligă</li>
+                        <li>Ciorbă de burtă</li>
+                        <li>Mici cu muștar</li>
+                        <li>Pomana porcului</li>
+                        <li>Cozonac și papanași</li>
+                    </ul>
+                </section>
+            </section>
+            
+            <section id="orar">
+                <h2>Orar</h2>
+                <table id="tab-orar">
+                    <thead>
+                        <tr>
+                            <th>Cod</th>
+                            <th>Perioadă</th>
+                            <th>Zi</th>
+                            <th>Interval prânz</th>
+                            <th>Pauză</th>
+                            <th>Interval seară</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td rowspan="5">Zile<br/>Lucrătoare</td>
+                            <td>Luni</td>
+                            <td>12-16</td>
+                            <td>16-18</td>
+                            <td>18-23</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Marți</td>
+                            <td>12-16</td>
+                            <td>16-18</td>
+                            <td>18-23</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Miercuri</td>
+                            <td>12-16</td>
+                            <td>16-18</td>
+                            <td>18-23</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Joi</td>
+                            <td>12-16</td>
+                            <td>16-18</td>
+                            <td>18-00</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Vineri</td>
+                            <td>12-16</td>
+                            <td>16-17</td>
+                            <td>17-01</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td rowspan="2">Weekend</td>
+                            <td>Sâmbătă</td>
+                            <td>13-17</td>
+                            <td>17-19</td>
+                            <td>19-01</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Duminică</td>
+                            <td>13-18</td>
+                            <td>-</td>
+                            <td>18-22</td>
+                        </tr>
+                    </tbody>
+                </table> 
+            </section>
+            
+            <figure id="fig1" class="fg-img">
+                <img src="/resurse/imagini/galerie/imagine4.jpg" alt="preparat tradițional">
+                <figcaption>Specialitatea casei</figcaption>
+            </figure>
+            <figure id="fig2" class="fg-img">
+                <img src="/resurse/imagini/galerie/imagine5.jpg" alt="preparat tradițional">
+                <figcaption>Desert specific</figcaption>
+            </figure>
+            <figure id="fig3" class="fg-img">
+                <img src="/resurse/imagini/galerie/imagine6.jpg" alt="preparat tradițional">
+                <figcaption>Aperitiv tradițional</figcaption>
+            </figure>
+            
+            <section id="anunturi">
+                <h2>Anunțuri</h2>
+                <p><time datetime="2025-05-01">1 Mai 2025</time> <strong>Am deschis o nouă locație în centrul orașului!</strong></p>
+                <p><time datetime="2025-04-15">15 Aprilie 2025</time> Am adăugat preparate noi din bucătăria indiană</p>
+                <p><time datetime="2025-03-20">20 Martie 2025</time> Începem seria de evenimente culturale lunare</p>
+                <p><time datetime="2025-02-14">14 Februarie 2025</time> Meniu special pentru Valentine's Day</p>
+                <p><time datetime="2025-01-01">1 Ianuarie 2025</time> Un an nou plin de arome internaționale!</p>
+            </section>
+            
+            <section id="index-intrebari">
+                <h2>Întrebări frecvente</h2>
+                <details>
+                    <summary>Preparatele sunt autentice?</summary>
+                    <p>Da! Bucătarii noștri sunt specializați în bucătăriile tradiționale și folosim ingrediente autentice.</p>
+                </details>
+                <details>
+                    <summary>Oferiți variante vegetariene/vegane?</summary>
+                    <p>Desigur! Avem opțiuni pentru toate preferințele alimentare.</p>
+                </details>
+                <details>
+                    <summary>Care este aria de livrare?</summary>
+                    <p>Livrăm în tot orașul și până la 15 km în afara acestuia.</p>
+                </details>
+                <details>
+                    <summary>Organizați evenimente private?</summary>
+                    <p>Da, putem organiza evenimente private cu meniuri personalizate. Contactați-ne pentru mai multe detalii!</p>
+                </details>
+            </section>
+        </div>
+
+        <%- include("../fragmente/galerie.ejs") %>
+        
+
+        <section id="retete">
+            <h2>Prezentări video</h2>
+            <p>Vă prezentăm câteva preparate tradiționale și modul lor de preparare. Încercați-le acasă sau veniți să le savurați la noi!</p>
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                    <a href="https://www.youtube.com/embed/qtlhdIfojmc" target="ifr-video">Bucătăria mediteraneană</a>
+                    <a href="https://www.youtube.com/embed/dsJtgmAhFF4" target="ifr-video">Bucătăria asiatică</a>
+                    <a href="https://www.youtube.com/embed/Wtxbt-CpA2s" target="ifr-video">Bucătăria românească</a>
+                </div>
+                <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/qtlhdIfojmc" 
+                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </section>
+    </main>
+    
+    <%- include("../fragmente/footer.ejs") %>
+    </body>
+</html>

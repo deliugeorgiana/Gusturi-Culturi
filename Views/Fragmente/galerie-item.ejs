@@ -1,20 +1,24 @@
-<figure class="galerie-item">
+<figure class="grid-item <%= pozitieClasa %>">
     <picture>
-        <source media="(max-width: 480px)" srcset="<%= path.join(galeriePath, img.resized.small) %>">
-        <source media="(max-width: 1024px)" srcset="<%= path.join(galeriePath, img.resized.medium) %>">
+        <source srcset="/<%=cale_galerie%>/mic/<%=img.fisier_imagine%>" media="(max-width: 768px)">
+        <source srcset="/<%=cale_galerie%>/mediu/<%=img.fisier_imagine%>" media="(max-width: 1200px)">
         <img 
-            src="<%= path.join(galeriePath, img.resized.original) %>" 
-            alt="<%= img.continut_alternativ || img.nume_poza %>"
-            title="<%= img.descriere_poza %>"
+            src="/<%=cale_galerie%>/<%=img.fisier_imagine%>" 
+            alt="<%=img.continut_alternativ || img.nume_poza%>"
+            title="<%=img.descriere_poza%>"
         >
     </picture>
     <figcaption>
-        <%= img.nume_poza %>
-        <% if(img.atribuire) { %>
-            <div class="atribuire">
-                Credit: <a href="<%= img.atribuire.url %>" target="_blank"><%= img.atribuire.autor %></a> 
-                (<%= img.atribuire.licenta %>)
-            </div>
+        <span class="index-roman"><%=toRoman(index)%>.</span> <%=img.nume_poza%>
+        <% if (img.atribuire) { %>
+            <span class="atribuire">© <%=img.atribuire.autor%>
+                <% if (img.atribuire.url) { %>
+                    - <a href="<%=img.atribuire.url%>" target="_blank"><%=img.atribuire.url%></a>
+                <% } %>
+                <% if (img.atribuire.licenta) { %>
+                    - <%=img.atribuire.licenta%>
+                <% } %>
+            </span>
         <% } %>
     </figcaption>
 </figure>
