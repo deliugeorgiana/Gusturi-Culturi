@@ -49,6 +49,21 @@
     --font-size-h3: 1.4rem;
 }
 
+[data-theme="dark"] {
+    --color-primary: #5D1D16;
+    --color-secondary: #871609;
+    --color-accent: #DC6659;
+    --color-light: #9c6761;
+    --color-lightest: #FF9C91;
+    
+    --color-text: #f5f5f5;
+    --color-text-light: #ccc;
+    --color-text-inverse: #333;
+    --color-background: #222222;
+    --color-border: #444;
+    --color-shadow: rgba(0, 0, 0, 0.3);
+  }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,

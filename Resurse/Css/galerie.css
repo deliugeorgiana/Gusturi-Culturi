@@ -11,21 +11,21 @@
 /* Celule cu imagini */
 .grid-item {
   position: relative;
-  border: 3px solid white;
+  border: 3px solid var(--color-text-inverse);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   aspect-ratio: 1;
 }
 
 /* Celule goale */
 .fara-imagine {
-  background-color: white;
-  border: 3px solid black;
+  background-color: var(--color-text-inverse);
+  border: 3px solid var(--color-text);
   box-shadow: none;
 }
 
 /* Celule cu imagine */
 .cu-imagine {
-  background-color: black;
+  background-color: var(--color-text);
 }
 
 .grid-item img {
@@ -46,14 +46,14 @@
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.7);
-  color: white;
+  color: var(--color-text-inverse);
   padding: 10px;
   text-align: center;
   transition: color 0.8s ease, text-shadow 0.8s ease;
 }
 
 .grid-item:hover figcaption {
-  color: #fff;
+  color: var(--color-text-inverse);
   text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
 }
 
@@ -64,7 +64,7 @@
   }
   
   .fara-imagine {
-    display: none; /* Ascunde celulele goale pe ecrane medii */
+    display: none; 
   }
 }
 
@@ -72,4 +72,52 @@
   .grid-galerie {
     grid-template-columns: 1fr;
   }
+}
+
+/* Stiluri pentru tabelul transpus */
+.tabel-transpus .total-row td {
+  text-align: left;
+  font-weight: bold;
+  border-top: 2px solid var(--color-accent, #c7514d);
+  background-color: var(--color-primary, #201a1a);
+  padding: 10px 15px;
+  color: var(--color-text-inverse);
+}
+
+@media screen and (max-width: 992px) {
+  .tabel-transpus .total-row td {
+    text-align: center;
+  }
+  
+  .tabel-transpus .total-row td::before {
+    content: none;
+  }
+}
+
+/* Stiluri pentru tabele responsive */
+.tabel-responsive,
+.tabel-transpus {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+
+.tabel-responsive th, 
+.tabel-responsive td,
+.tabel-transpus th,
+.tabel-transpus td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-light, #ddd);
+}
+
+.tabel-responsive th,
+.tabel-transpus th {
+  background-color: var(--color-accent, #c7514d);
+  color: var(--color-text-inverse, white);
+}
+
+.tabel-responsive tr:nth-child(even),
+.tabel-transpus tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
 }
