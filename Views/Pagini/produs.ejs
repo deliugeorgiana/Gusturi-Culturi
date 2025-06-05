@@ -1,5 +1,6 @@
 <% 
   function formatareDenumireCategorie(categorie) {
+    if (!categorie) return "Necategorizat"; // Adăugat verificare pentru undefined
     return categorie.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
   }
   
@@ -43,16 +44,16 @@
                         <dd><%= formatareDenumireCategorie(produs.categorie) %></dd>
                         
                         <dt>Subcategorie:</dt>
-                        <dd><%= formatareDenumireCategorie(produs.subcategorie) %></dd>
+                        <dd><%= produs.subcategorie ? formatareDenumireCategorie(produs.subcategorie) : "Nespecificat" %></dd>
                         
                         <dt>Tip bucătărie:</dt>
-                        <dd><%= produs.tip_bucatarie %></dd>
+                        <dd><%= produs.tip_bucatarie || "Nespecificat" %></dd>
                         
                         <dt>Ingrediente:</dt>
-                        <dd><%= produs.ingrediente %></dd>
+                        <dd><%= Array.isArray(produs.ingrediente) ? produs.ingrediente.join(', ') : (produs.ingrediente || "Nespecificate") %></dd>
                         
                         <dt>Timp de preparare:</dt>
-                        <dd><%= produs.timp_preparare %> minute</dd>
+                        <dd><%= produs.timp_preparare ? `${produs.timp_preparare} minute` : "Nespecificat" %></dd>
                         
                         <dt>Data adăugării în meniu:</dt>
                         <dd><time datetime="<%= produs.data_adaugare %>"><%= formatareData(produs.data_adaugare) %></time></dd>

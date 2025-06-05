@@ -1,5 +1,6 @@
 <% 
   function formatareDenumireCategorie(categorie) {
+    if (!categorie) return "Necategorizat"; // Rezolvarea problemei pentru valori undefined
     return categorie.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase());
   }
 
@@ -61,7 +62,10 @@
                 <input type="text" id="inp-subcategorie" list="lista-subcategorii" placeholder="Alege o subcategorie">
                 <datalist id="lista-subcategorii">
                     <% let subcategoriiUnice = new Set(); %>
-                    <% produse.forEach(prod => subcategoriiUnice.add(prod.subcategorie)); %>
+                    <% produse.forEach(prod => { 
+                         if (prod.subcategorie) subcategoriiUnice.add(prod.subcategorie); 
+                       }); 
+                    %>
                     <% [...subcategoriiUnice].sort().forEach(subcat => { %>
                         <option value="<%= subcat %>"><%= formatareDenumireCategorie(subcat) %></option>
                     <% }); %>
@@ -75,7 +79,10 @@
                     <div class="radio-group">
                         <label><input type="radio" name="rad-bucatarie" value="toate" checked>Toate</label>
                         <% let tipuriBucatarieUnice = new Set(); %>
-                        <% produse.forEach(prod => tipuriBucatarieUnice.add(prod.tip_bucatarie)); %>
+                        <% produse.forEach(prod => { 
+                             if (prod.tip_bucatarie) tipuriBucatarieUnice.add(prod.tip_bucatarie);
+                           });
+                        %>
                         <% [...tipuriBucatarieUnice].sort().forEach(tip => { %>
                             <label><input type="radio" name="rad-bucatarie" value="<%= tip %>"><%= tip %></label>
                         <% }); %>
@@ -142,9 +149,9 @@
                             <details>
                                 <summary>Specificații</summary>
                                 <ul>
-                                    <li><strong>Tip bucătărie:</strong> <em><%= produs.tip_bucatarie %></em></li>
-                                    <li><strong>Ingrediente:</strong> <em><%= produs.ingrediente %></em></li>
-                                    <li><strong>Timp preparare:</strong> <em><%= produs.timp_preparare %> minute</em></li>
+                                    <li><strong>Tip bucătărie:</strong> <em><%= produs.tip_bucatarie || "Nespecificat" %></em></li>
+                                    <li><strong>Ingrediente:</strong> <em><%= produs.ingrediente || "Nespecificate" %></em></li>
+                                    <li><strong>Timp preparare:</strong> <em><%= produs.timp_preparare || "Nespecificat" %> <%= produs.timp_preparare ? 'minute' : '' %></em></li>
                                     <li><strong>Data adăugării:</strong> <em><time datetime="<%= produs.data_adaugare %>"><%= formatareData(produs.data_adaugare) %></time></em></li>
                                     <li><strong>Vegetarian:</strong> <em><%= produs.vegetarian ? 'Da' : 'Nu' %></em></li>
                                 </ul>
