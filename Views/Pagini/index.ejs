@@ -16,7 +16,6 @@
         <div id="grid-pagina">
             <section id="welcome">
                 <h2>Bine ați venit</h2>
-                <button type="button" class="btn btn-primary btn-lg">Explorează</button>
                 <p class="intro">Vă mulțumim că ne vizitați site-ul. Porniți într-o călătorie culinară alături de noi!</p>
                 <p><b>Ip: </b><%- locals.ip %></p>
                 <div class="intro-oferte"><div>Aperitive</div><div>Feluri principale</div><div>Deserturi</div><div>Băuturi</div><div>Specialități</div></div>
@@ -84,7 +83,19 @@
             
             <section id="produse">
                 <h2>Bucătăriile noastre</h2>
+                    <div class="btn-group" role="group">
+                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-toate" value="toate" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="rad-toate">Toate</label>
 
+                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-mediteraneana" value="mediteraneana" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="rad-mediteraneana">Mediteraneană</label>
+                        
+                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-asiatica" value="asiatica" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="rad-asiatica">Asiatică</label>
+                        
+                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-romaneasca" value="romaneasca" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="rad-romaneasca">Românească</label>
+                    </div>
                 <p>Vă oferim o multitudine de preparate autentice din diferite culturi ale lumii.</p>
                 
                 <section>
