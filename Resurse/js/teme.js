@@ -1,27 +1,33 @@
-window.addEventListener("DOMContentLoaded", function () {
-    const themeToggle = document.getElementById("flexSwitchCheckDefault");
-    const body = document.body;
-
-    body.classList.add("light-theme");
+document.addEventListener("DOMContentLoaded", function() {
+    // Găsim butonul pentru schimbarea temei
+    const themeToggle = document.getElementById("theme-toggle");
     
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme) {
-        body.classList.remove("light-theme", "dark-theme");
-        body.classList.add(savedTheme);
+    if (!themeToggle) {
+        console.error("Elementul cu id 'theme-toggle' nu a fost găsit!");
+        return;
     }
-    if(savedTheme === "dark-theme") {
+    
+    // Verificăm localStorage pentru preferința salvată
+    const currentTheme = localStorage.getItem("theme");
+    
+    // Dacă există o preferință salvată, o aplicăm
+    if (currentTheme === "dark") {
+        document.body.classList.add("dark-theme");
         themeToggle.checked = true;
     }
-    themeToggle.onchange = function () {
-        if (themeToggle.checked) {
-            body.classList.remove("light-theme");
-            body.classList.add("dark-theme");
-            localStorage.setItem("theme", "dark-theme");
-
+    
+    // Adăugăm event listener pentru schimbarea temei
+    themeToggle.addEventListener("change", function() {
+        if (this.checked) {
+            // Activăm tema întunecată
+            document.body.classList.add("dark-theme");
+            localStorage.setItem("theme", "dark");
+            console.log("Tema întunecată activată");
         } else {
-            body.classList.remove("dark-theme");
-            body.classList.add("light-theme");
-            localStorage.setItem("theme", "light-theme");
+            // Dezactivăm tema întunecată
+            document.body.classList.remove("dark-theme");
+            localStorage.setItem("theme", "light");
+            console.log("Tema luminoasă activată");
         }
-    }
-})
+    });
+});

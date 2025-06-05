@@ -36,30 +36,34 @@
     <main>
         <h1>Produse <%= categorie_selectata !== "toate" ? formatareDenumireCategorie(categorie_selectata) : "" %></h1>
         
-        <section id="filtre">
-            <h2>Filtrare și sortare</h2>
-            
-            <!-- Input text pentru căutare după nume -->
-            <div class="filtru">
-                <label for="inp-nume">Caută după nume:</label>
-                <input type="text" id="inp-nume" placeholder="Numele produsului">
+        <section id="filtre" class="container mb-4">
+    <h2>Filtrare și sortare</h2>
+    
+    <div class="row g-3">
+        <!-- Input text pentru căutare după nume -->
+        <div class="col-md-6 col-lg-4">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="inp-nume" placeholder="Numele produsului">
+                <label for="inp-nume"><i class="bi bi-search"></i> Caută după nume</label>
             </div>
-            
-            <!-- Input range pentru preț -->
-            <div class="filtru">
-                <label for="inp-pret">Preț între:</label>
-                <div class="range-container">
-                    <span id="minim-pret">15</span>
-                    <input type="range" id="inp-pret" min="15" max="50" value="50">
-                    <span id="maxim-pret">50</span>
-                    <span id="val-pret">(50)</span>
-                </div>
+        </div>
+        
+        <!-- Input range pentru preț -->
+        <div class="col-md-6 col-lg-4">
+            <label for="inp-pret" class="form-label"><i class="bi bi-cash"></i> Preț între:</label>
+            <div class="range-container">
+                <span id="minim-pret" class="badge bg-secondary">15</span>
+                <input type="range" class="form-range" id="inp-pret" min="15" max="50" value="50">
+                <span id="maxim-pret" class="badge bg-secondary">50</span>
+                <span id="val-pret" class="badge bg-primary">(50)</span>
             </div>
-            
-            <!-- Datalist pentru subcategorie -->
-            <div class="filtru">
-                <label for="inp-subcategorie">Subcategorie:</label>
-                <input type="text" id="inp-subcategorie" list="lista-subcategorii" placeholder="Alege o subcategorie">
+        </div>
+        
+        <!-- Datalist pentru subcategorie -->
+        <div class="col-md-6 col-lg-4">
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="inp-subcategorie" list="lista-subcategorii" placeholder="Alege o subcategorie">
+                <label for="inp-subcategorie"><i class="bi bi-tags"></i> Subcategorie</label>
                 <datalist id="lista-subcategorii">
                     <% let subcategoriiUnice = new Set(); %>
                     <% produse.forEach(prod => { 
@@ -71,69 +75,88 @@
                     <% }); %>
                 </datalist>
             </div>
-            
-            <!-- Radio buttons pentru tip bucătărie -->
-            <div class="filtru">
-                <fieldset>
-                    <legend>Tip bucătărie:</legend>
-                    <div class="radio-group">
-                        <label><input type="radio" name="rad-bucatarie" value="toate" checked>Toate</label>
-                        <% let tipuriBucatarieUnice = new Set(); %>
-                        <% produse.forEach(prod => { 
-                             if (prod.tip_bucatarie) tipuriBucatarieUnice.add(prod.tip_bucatarie);
-                           });
-                        %>
-                        <% [...tipuriBucatarieUnice].sort().forEach(tip => { %>
-                            <label><input type="radio" name="rad-bucatarie" value="<%= tip %>"><%= tip %></label>
-                        <% }); %>
-                    </div>
-                </fieldset>
+        </div>
+        
+        <!-- Radio buttons pentru tip bucătărie ca toggle buttons -->
+        <div class="col-md-6 col-lg-8">
+            <label class="form-label"><i class="bi bi-globe"></i> Tip bucătărie:</label>
+            <div class="btn-group" role="group">
+                <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-toate" value="toate" autocomplete="off" checked>
+                <label class="btn btn-outline-primary" for="rad-toate">Toate</label>
+                
+                <% let tipuriBucatarieUnice = new Set(); %>
+                <% produse.forEach(prod => { 
+                     if (prod.tip_bucatarie) tipuriBucatarieUnice.add(prod.tip_bucatarie);
+                   });
+                %>
+                <% [...tipuriBucatarieUnice].sort().forEach((tip, index) => { %>
+                    <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-<%= index %>" value="<%= tip %>" autocomplete="off">
+                    <label class="btn btn-outline-primary" for="rad-<%= index %>"><%= tip %></label>
+                <% }); %>
             </div>
-            
-            <!-- Checkbox pentru discount -->
-            <div class="filtru">
-                <label>
-                    <input type="checkbox" id="inp-discount">
-                    Afișează doar cu discount pe baza timpului de preparare sub 30 min
+        </div>
+        
+        <!-- Checkbox pentru discount ca toggle -->
+        <div class="col-md-6 col-lg-4">
+            <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="inp-discount">
+                <label class="form-check-label" for="inp-discount">
+                    <i class="bi bi-tag"></i> Doar cu discount (timp < 30 min)
                 </label>
             </div>
-            
-            <!-- Textarea pentru căutare complexă în descriere -->
-            <div class="filtru">
-                <label for="inp-descriere">Caută în descriere:</label>
-                <textarea id="inp-descriere" rows="2" placeholder="Cuvinte cheie separate prin spațiu"></textarea>
+        </div>
+        
+        <!-- Textarea pentru căutare complexă cu floating label -->
+        <div class="col-md-6 col-lg-8">
+            <div class="form-floating mb-3">
+                <textarea class="form-control" id="inp-descriere" rows="2" placeholder="Cuvinte cheie separate prin spațiu"></textarea>
+                <label for="inp-descriere"><i class="bi bi-card-text"></i> Caută în descriere</label>
             </div>
-            
-            <!-- Select simplu pentru vegetarian -->
-            <div class="filtru">
-                <label for="inp-vegetarian">Tip preparat:</label>
-                <select id="inp-vegetarian">
+        </div>
+        
+        <!-- Select simplu pentru vegetarian -->
+        <div class="col-md-6 col-lg-4">
+            <div class="form-floating">
+                <select class="form-select" id="inp-vegetarian">
                     <option value="oricare">Oricare</option>
                     <option value="true">Vegetarian</option>
                     <option value="false">Non-vegetarian</option>
                 </select>
+                <label for="inp-vegetarian"><i class="bi bi-egg-fried"></i> Tip preparat</label>
             </div>
-            
-            <!-- Select multiplu pentru lunile adăugării -->
-            <div class="filtru">
-                <label for="inp-luni">Luna adăugării:</label>
-                <select id="inp-luni" multiple size="6">
-                    <% const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]; %>
-                    <% luni.forEach((luna, index) => { %>
-                        <option value="<%= index %>" selected><%= luna %></option>
-                    <% }); %>
-                </select>
-            </div>
-            
-            <!-- Butoane -->
-            <div class="butoane">
-                <button id="btn-filtrare">Filtrează</button>
-                <button id="btn-sortare-crescator">Sortare crescătoare</button>
-                <button id="btn-sortare-descrescator">Sortare descrescătoare</button>
-                <button id="btn-calcul">Calculeaza media prețurilor</button>
-                <button id="btn-resetare">Resetare filtre</button>
-            </div>
-        </section>
+        </div>
+        
+        <!-- Select multiplu pentru lunile adăugării -->
+        <div class="col-md-6 col-lg-4">
+            <label for="inp-luni" class="form-label"><i class="bi bi-calendar-month"></i> Luna adăugării:</label>
+            <select class="form-select" id="inp-luni" multiple size="4">
+                <% const luni = ["Ianuarie", "Februarie", "Martie", "Aprilie", "Mai", "Iunie", "Iulie", "August", "Septembrie", "Octombrie", "Noiembrie", "Decembrie"]; %>
+                <% luni.forEach((luna, index) => { %>
+                    <option value="<%= index %>" selected><%= luna %></option>
+                <% }); %>
+            </select>
+        </div>
+        
+        <!-- Butoane -->
+        <div class="col-12 mt-3 d-flex flex-wrap gap-2">
+            <button id="btn-filtrare" class="btn btn-primary">
+                <i class="bi bi-funnel"></i> <span class="d-none d-sm-inline">Filtrează</span>
+            </button>
+            <button id="btn-sortare-crescator" class="btn btn-secondary">
+                <i class="bi bi-sort-up"></i> <span class="d-none d-sm-inline">Sortare crescătoare</span>
+            </button>
+            <button id="btn-sortare-descrescator" class="btn btn-secondary">
+                <i class="bi bi-sort-down"></i> <span class="d-none d-sm-inline">Sortare descrescătoare</span>
+            </button>
+            <button id="btn-calcul" class="btn btn-info text-white">
+                <i class="bi bi-calculator"></i> <span class="d-none d-sm-inline">Calculează media</span>
+            </button>
+            <button id="btn-resetare" class="btn btn-outline-danger">
+                <i class="bi bi-x-circle"></i> <span class="d-none d-sm-inline">Resetare</span>
+            </button>
+        </div>
+    </div>
+</section>
         
         <section id="produse-container">
             <% produse.forEach(produs => { %>

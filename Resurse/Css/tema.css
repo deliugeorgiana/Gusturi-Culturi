@@ -1,0 +1,148 @@
+/* filepath: c:\Users\deliu\Desktop\Gusturi&Culturi\resurse\css\tema.css */
+:root {
+    --culoare-accent: #ff9999;
+    --culoare-text: #a63737;
+    --culoare-bg: #e6a2a2;
+    --culoare-card: #ec7a7a;
+    --culoare-border: #d5abab;
+    --culoare-footer: #7a2828;
+    --culoare-footer-text: #ffffff;
+}
+
+body.dark-theme {
+    --culoare-text: #f5f5f5;
+    --culoare-bg: #121212;
+    --culoare-card: #2d2d2d;
+    --culoare-border: #444444;
+    --culoare-accent: #ff6b6b;
+    --culoare-footer: #000000;
+    --culoare-footer-text: #cccccc;
+}
+
+/* Stiluri pentru elementele principale */
+body {
+    background-color: var(--culoare-bg);
+    color: var(--culoare-text);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--culoare-bg);
+    color: var(--culoare-text);
+    border-bottom: 1px solid var(--culoare-border);
+}
+
+footer {
+    background-color: var(--culoare-footer);
+    color: var(--culoare-footer-text);
+}
+
+/* Stiluri pentru secțiuni și articole */
+section, article {
+    background-color: var(--culoare-card);
+    border: 1px solid var(--culoare-border);
+}
+
+/* Stiluri pentru link-uri */
+a {
+    color: var(--culoare-accent);
+}
+
+a:hover {
+    color: var(--culoare-text);
+}
+
+/* Stiluri pentru butoane */
+button, .btn {
+    background-color: var(--culoare-accent);
+    color: rgb(240, 173, 173);
+    border: 1px solid var(--culoare-border);
+}
+
+button:hover, .btn:hover {
+    background-color: var(--culoare-text);
+}
+
+/* Stilizare pentru tabel */
+table {
+    border-color: var(--culoare-border);
+}
+
+th {
+    background-color: var(--culoare-accent);
+    color: rgb(240, 166, 166);
+}
+
+tr:nth-child(even) {
+    background-color: var(--culoare-card);
+}
+
+/* Adaugă acest cod în tema.css */
+.theme-toggle-container {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+.theme-toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+}
+
+.theme-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 5px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 22px;
+    width: 22px;
+    left: 4px;
+    bottom: 4px;
+    background-color: rgb(219, 181, 181);
+    transition: .4s;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.sun-icon, .moon-icon {
+    color: rgb(236, 181, 181);
+    z-index: 1;
+}
+
+.sun-icon {
+    margin-left: 5px;
+}
+
+.moon-icon {
+    margin-right: 5px;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}

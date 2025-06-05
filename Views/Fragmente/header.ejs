@@ -3,10 +3,13 @@
         <a href="/">Gusturi & Culturi</a>
     </h1>
     <div class="theme-toggle-container">
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Schimbă tema">
-            <i class="fa-solid fa-sun light-icon"></i>
-            <i class="fa-solid fa-moon dark-icon"></i>
-        </button>
+        <label class="theme-toggle" for="theme-toggle">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider">
+                <i class="bi bi-sun-fill sun-icon"></i>
+                <i class="bi bi-moon-fill moon-icon"></i>
+            </span>
+        </label>
     </div>
     <nav class="meniu-principal">
         <input type="checkbox" id="hamburgerToggle" style="display:none;">
