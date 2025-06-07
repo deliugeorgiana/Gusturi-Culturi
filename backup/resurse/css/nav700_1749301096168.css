@@ -18,7 +18,7 @@
     display: block;
     height: 3px;
     width: 100%;
-    background-color: black;
+    background-color: rgb(243, 241, 241);
     border-radius: 3px;
     transition: 0.3s ease-in-out;
   }
@@ -30,7 +30,7 @@
   }
   header {
     width: 100%;
-    position: fixed;
+    position:relative;
     text-align: center;
   }
   header h1 {
@@ -59,7 +59,7 @@
   }
   #hamburgerToggle:checked ~ nav ul.meniu li ul {
     position: static;
-    display: none;
+  
     transition: none;
   }
   #hamburgerToggle:checked ~ nav ul.meniu li:hover ul {

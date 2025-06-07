@@ -21,15 +21,15 @@
     <!-- CSS legaturi -->
   
 
-    <link rel="stylesheet" type="text/css" href="resurse/Css/general.css"> 
-    <link rel="stylesheet" type="text/css" href="resurse/Css/pagina-principala.css">
-    <link rel="stylesheet" type="text/css" href="resurse/Css/tabel.css">
-    <link rel="stylesheet" type="text/css" href="resurse/Css/nav.css">
-    <link rel="stylesheet" type="text/css" href="resurse/Css/nav1000.css">
-    <link rel="stylesheet" type="text/css" href="resurse/css/nav700.css">
-    <link rel="stylesheet" type="text/css" href="resurse/Css/printare.css">
-    <link rel="stylesheet" type="text/css" href="resurse/Css/video-despre-noi.css">
-    <link rel="stylesheet" type="text/css" href="resurse/Css/style.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/css/general.css"> 
+    <link rel="stylesheet" type="text/css" href="./resurse/Css/pagina-principala.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/Css/tabel.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/Css/nav.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/Css/nav1000.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/css/nav700.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/Css/printare.css">
+    <link rel="stylesheet" type="text/css" href="./resurse/Css/video-despre-noi.css">
+   
 
 
     <!-- Google Fonts -->
@@ -50,42 +50,47 @@
   
 </head>
 <body>
+   
     <header>
-        <h1>Gusturi & Culturi</h1>
-        <nav class="meniu-principal">
-            <input type="checkbox" id="hamburgerToggle" style="display:none;">
-            <label for="hamburgerToggle" id="hamburgerLabel">
-                <span ></span>
-                <span ></span>
-                <span ></span>
-            </label>
-            <ul class="meniu-lista">
-                <li class="meniu-element">
-                    <a href="#acasa" class="home-link">
-                        <i class="fa-solid fa-house"></i>
-                        <span class="home-text">Acasă</span>
-                    </a>
-                    <ul class="submeniu">
-                        <li><a href="#despre">Despre Noi</a></li>
-                        <li><a href="#prezentare">Prezentare</a></li>
-                    </ul>
-                </li>
-                <li class="meniu-element">
-                    <a href="#retete">Rețete</a>
-                    <ul class="submeniu">
-                        <li><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
-                        <li><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
-                        <li><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
-                    </ul>
-                </li>
-                <li class="meniu-element"><a href="#categorii">Categorii</a></li>
-                <li class="meniu-element"><a href="#ingrediente">Ingrediente</a></li>
-                <li class="meniu-element"><a href="#sarbatori">Sărbători</a></li>
-                <li class="meniu-element"><a href="#international">Internațional</a></li>
-                <li class="meniu-element"><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h1><a href="#">Gusturi & Culturi</a></h1>
+    <input type="checkbox" id="hamburgerToggle" hidden>
+    <label for="hamburgerToggle" id="hamburgerLabel">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <nav>
+        <ul class="meniu">
+            <li id="butonHome">
+                <a href="#acasa" class="iconHome">
+                    <i class="fa-solid fa-house"></i> 
+                    <span class="textHome">Acasă</span>
+                </a>
+            </li>
+            <li class="butonMeniu">
+                <a href="#despre">Despre noi</a>
+                <ul class="subcategorie">
+                    <li class="butonSubmeniu"><a href="#despre">Despre</a></li>
+                    <li class="butonSubmeniu"><a href="#prezentare">Prezentare</a></li>
+                </ul>
+            </li>
+            <li class="butonMeniu">
+                <a href="#retete">Rețete</a>
+                <ul class="subcategorie">
+                    <li class="butonSubmeniu"><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
+                    <li class="butonSubmeniu"><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
+                    <li class="butonSubmeniu"><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
+                </ul>
+            </li>
+            <li class="butonMeniu"><a href="#categorii">Categorii</a></li>
+            <li class="butonMeniu"><a href="#ingrediente">Ingrediente</a></li>
+            <li class="butonMeniu"><a href="#sarbatori">Sărbători</a></li>
+            <li class="butonMeniu"><a href="#international">Internațional</a></li>
+            <li class="butonMeniu"><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
 
     <main>
         <section id="acasa">
@@ -418,7 +423,7 @@
             <div class="container-iframe">
                 <div class="taburi-iframe">
                     <a href="https://www.youtube.com/embed/hrG40alLaRA" target="videoFrame">Rețetă Pateuri</a>
-                    <a href="https://www.youtube.com/embed/S3DE92LKKkk" target="videoFrame">Rețetă Supă Okroshka</a>
+                    <a href="https://www.youtube.com/embed/S3DE92LKKkk" target="videoFrame">Rețetă Supă</a>
                 </div>
         
                 <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/hrG40alLaRA" allowfullscreen></iframe>

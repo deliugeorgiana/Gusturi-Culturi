@@ -1,69 +1,63 @@
-/* CSS Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    /* Paleta culori */
+body {
+    /* Variabile noi */
     --color-primary: #871609;      /* fundal header, footer */
     --color-secondary: #DC6659;    /* coloane, elemente math, gradient */
     --color-accent: #5D1D16;       /* linkuri, umbre */
     --color-light: #FF9C91;        /* fundal tab-uri iframe */
-    --color-lightest: #9c6761;     /* border, dundal linkuri tabel */
-    --visited-link-color: #9c27b0; /* culoare linkuri vizitate */
+    --color-lightest: #9c6761;     /* border, fundal linkuri tabel */
+    --visited-link-color: #9c27b0;
     
-    /* Culori derivate */
+    /* Culori derivate din noul design */
     --color-text: #333;
     --color-text-light: #666;
     --color-text-inverse: rgb(197, 104, 104);
     --color-background: #f7c9c5;
     --color-border: var(--color-lightest);
-    --color-shadow: rgba(93, 29, 22, 0.15);  
+    --color-shadow: rgba(93, 29, 22, 0.15);
     
+    /* Mapare la variabilele existente */
+    --background-header: var(--color-primary);
+    --background-main: var(--color-background);
+    --background-footer: var(--color-primary);
+    --text-header: var(--color-light);
+    --text-main: var(--color-accent);
+    --text-footer: var(--color-light);
+    --culoare-border: var(--color-border);
+    --link-vizitat: var(--visited-link-color);
+    --background-link: rgba(220, 102, 89, 0.3); /* --color-secondary cu transparență */
+    
+    /* Păstrăm spațierile existente */
+    --spatiere-pagina: 30px;
+    --spatiere-text: 15px;
+    
+    /* Variabile noi pentru layout și spacing */
     --page-padding-large: 5%;
     --page-padding-medium: 3%;
     --page-padding-small: 1.5%;
-    
     --grid-gap-large: 30px;
     --grid-gap-medium: 20px;
     --grid-gap-small: 15px;
-    
     --zone-padding: 1.5rem;
-    
-    --media-max-width: 90%;
-    --media-min-width: 250px;
-    --media-max-width-medium: 95%;
-    --media-min-width-medium: 200px;
-    --media-max-width-small: 100%;
-    --media-min-width-small: 150px;
-    
     --box-border-radius: 10px;
     --box-shadow: 0 4px 12px var(--color-shadow);
-    --box-border: 1px solid var(--color-border);
-  
-    --font-size-base: 1rem;
-    --font-size-h1: 2.5rem;
-    --font-size-h2: 1.8rem;
-    --font-size-h3: 1.4rem;
 }
 
-[data-theme="dark"] {
-    --color-primary: #5D1D16;
-    --color-secondary: #871609;
-    --color-accent: #DC6659;
-    --color-light: #9c6761;
-    --color-lightest: #FF9C91;
-    
-    --color-text: #f5f5f5;
-    --color-text-light: #ccc;
-    --color-text-inverse: #333;
-    --color-background: #222222;
-    --color-border: #444;
-    --color-shadow: rgba(0, 0, 0, 0.3);
-  }
+body.dark {
 
+    --text-header: #fcf9f1;
+    --text-main: var(--color-light);
+    --text-footer: var(--color-light);
+    --background-header: #162b5d;
+    --background-main: #3a241a;
+    --background-footer: #534831;
+    --culoare-border: var(--color-lightest);
+    --link-vizitat: var(--visited-link-color);
+    --background-link: rgba(220, 102, 89, 0.2);
+    --color-text: #f0f0f0;
+    --color-text-light: #d0d0d0; 
+    --color-text-inverse: #f7c9c5;
+    --color-background: #3a241a;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -77,328 +71,288 @@ article, aside, canvas, details, embed,
 figure, figcaption, footer, header, hgroup, 
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
-    vertical-align: baseline;
-    font: inherit;
-    font-size: 100%;
-    border: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
-
-html {
-    font-size: 14px;
-    transition: font-size 0.3s ease;
-    scroll-behavior: smooth;
-    width: 100%;
-    height: 100%;
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
 }
-
 body {
-    font-family: 'Montserrat', sans-serif;
-    line-height: 1.6;
-    color: var(--color-text);
-    background-color: var(--color-background);
-    padding-left: var(--page-padding-large);
-    padding-right: var(--page-padding-large);
-    width: 100%;
-    min-height: 100%;
+	line-height: 1;
 }
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
-}
-
-h2 {
-    font-size: var(--font-size-h2);
-    margin-bottom: 1rem;
-    color: var(--color-primary);
-    border-bottom: 2px solid var(--color-border);
-    padding-bottom: 0.5rem;
-}
-
-h3 {
-    font-size: var(--font-size-h3);
-    margin-bottom: 0.8rem;
-    color: var(--color-accent);
-}
-
-a {
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-a:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
-}
-
-/* Liste */
 ol, ul {
-    list-style: none;
-    margin-left: 1.5rem;
-    margin-bottom: 1rem;
+	list-style: none;
 }
-
 blockquote, q {
-    quotes: none;
-    border-left: 4px solid var(--color-light);
-    padding-left: 1rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    color: var(--color-text-light);
+	quotes: none;
 }
-
 blockquote:before, blockquote:after,
 q:before, q:after {
-    content: '';
-    content: none;
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
 }
 
-/* Elem text */
-strong, b {
-    font-weight: bold;
+html{
+    font-size: 18px;
+    transition: font-size 0.3s ease-in;
 }
 
-em, i {
-    font-style: italic;
+body{
+    --spatiere-pagina: 30px;
+    --spatiere-text: 15px;
 }
 
-header {
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
-    padding: var(--zone-padding);
-    text-align: center;
-    box-shadow: var(--box-shadow);
-    border-radius: 0 0 var(--box-border-radius) var(--box-border-radius);
-    margin-bottom: 1.5rem;
-    position: relative;
+
+h1, h2, h3, h4, h5, h6{
+    font-family: 'Bebas Neue', sans-serif;
+    margin-top: var(--spatiere-text);
 }
 
-header h1 {
-    font-size: var(--font-size-h1);
-    margin-bottom: 1rem;
+a, p, li, figcaption, summary{
+    font-family: 'Roboto Slab', sans-serif;
 }
 
-/*Et 4 */
-/* Styling for visited links */
-a:visited {
-    color: var(--visited-link-color);
-  }
+a:visited{
+    color: var(--link-vizitat);
+}
 
-/* Styling for external links */
-a[href^="http"]::before {
+a[href^="http"]::before{
     content: "⮳";
-    font-size: 1.5em;
-    margin-right: 0.2em;
-    vertical-align: middle;
-    color: var(--external-link-color);
-    transition: color 0.3s ease;
-  }
+    font-size: 1.5rem;
+}
 
-  a[href^="http"]:hover::before {
-    color: var(--link-hover-color);
-  }
+a[href^="http"]:hover::before{
+    color: black;
+}
 
-  /* Content link hover effect (links within main) */
-main a {
-    background-image: radial-gradient(
-      circle,
-      var(--radial-gradient-color) 0%,
-      var(--radial-gradient-color) 40%,
-      transparent 80%,
-      transparent 100%
-    );
+main a{
+    background-image: radial-gradient(circle, var(--background-link) 0%,
+                    var(--background-link) 40%, transparent 80%, transparent 100%);
     background-position: center;
-    background-size: 0;
+    background-size: 0 0;
     background-repeat: no-repeat;
-    transition: background-size 0.3s ease;
-  }
-  
-  /* Hover effect for content links */
-  main a:hover {
-    background-size: 100%;
-  }
-  
-  /* Active state for all links */
-  a:active {
-    border: 2px solid var(--active-border-color);
-    border-radius: 3px;
-    padding: 0.1em 0.3em;
-    margin: -0.1em -0.3em; 
-  }
-
-main {
-    padding: 1rem;
-    max-width: 1400px;
-    margin: 0 auto;
+    transition: background-size 750ms ease-in;
 }
 
-section {
-    margin-bottom: 2rem;
+main a:hover{
+    background-size: 100% 100%;
 }
 
-article {
-    background-color: rgb(209, 158, 158);
-    padding: var(--zone-padding);
-    border-radius: var(--box-border-radius);
-    box-shadow: var(--box-shadow);
-    margin-bottom: 1.5rem;
-    border: var(--box-border);
+a:active{
+    border: 1px solid var(--culoare-border);
 }
 
-figure {
-    margin: 1.5rem 0;
-    text-align: center;
-}
-
-figcaption {
-    font-style: italic;
-    margin-top: 0.5rem;
-    color: var(--color-text-light);
-}
-
-/* elemente media */
-img, video, iframe {
-    max-width: var(--media-max-width);
-    min-width: var(--media-min-width);
-    height: auto;
-    border-radius: var(--box-border-radius);
-    display: block;
-    margin: 0 auto;
-}
-
-iframe {
-    border: none;
-    margin: 1rem auto;
-}
-
-/* Footer */
-footer {
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
-    padding: var(--zone-padding);
-    text-align: center;
-    border-radius: var(--box-border-radius) var(--box-border-radius) 0 0;
-    box-shadow: var(--box-shadow);
-    margin-top: 2rem;
-}
-
-footer h2 {
-    font-size: var(--font-size-h2);
-    margin-bottom: 1rem;
-    color: var(--color-text-inverse);
-    border-bottom: 2px solid var(--color-lightest);
-}
-
-footer a {
-    color: var(--color-lightest);
-}
-
-footer a:hover {
-    color: var(--color-light);
-}
-
-address {
-    margin-bottom: 1.5rem;
-    font-style: normal;
-}
-
-small {
-    display: block;
-    margin-top: 2rem;
-    font-size: 0.9rem;
-}
-
-.grid-container {
-    display: grid;
-    gap: var(--grid-gap-large);
-    margin-bottom: 20px;
-}
-
-/* Elemente de detalii și rezumat */
-details {
-    margin-bottom: 1rem;
-    padding: var(--zone-padding);
-    background-color: rgba(255, 195, 188, 0.3);
-    border-radius: var(--box-border-radius);
-    border: var(--box-border);
-}
-
-summary {
-    font-weight: bold;
-    cursor: pointer;
-    padding: 0.5rem 0;
-}
-
-/* Liste definiții */
-dl {
-    margin: 1rem 0;
-}
-
-dt {
-    font-weight: bold;
-    margin-top: 0.8rem;
-}
-
-dd {
-    margin-left: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Sidebar */
-aside {
-    background-color: rgba(255, 195, 188, 0.3);
-    padding: var(--zone-padding);
-    border-radius: var(--box-border-radius);
-    border-left: 4px solid var(--color-primary);
-    margin: 1rem 0;
-    box-shadow: var(--box-shadow);
-}
-
-/* Formule */
-#formule {
-    text-align: center;
-    margin: 2rem 0;
-}
-
-#formule math {
-    display: block;
-    margin: 1.5rem auto;
+h1{
     font-size: 2rem;
 }
 
-/* Animații */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+header h1{
+    margin: 0;
 }
 
-.animate-fade {
-    animation: fadeIn 1s ease-out;
+h2{
+    font-size: 1.6rem;
 }
 
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
+h3{
+    font-size: 1.3rem;
 }
 
-.animate-pulse {
-    animation: pulse 3s infinite ease-in-out;
+header{
+    background-color: var(--background-header);
+    padding: var(--spatiere-pagina);
+}
+  
+main{
+    background-color: var(--background-main);
+    padding: var(--spatiere-pagina);
+    color: var(--text-main);
+}
+  
+footer{
+    background-color: var(--background-footer);
+    padding: var(--spatiere-pagina);
+    color: var(--text-footer);
 }
 
-/* Stilizare iconuri */
-.icon-text {
-    margin: 2rem 0;
-    font-size: 1.1rem;
+#grid-pagina{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas: "zona1 zona1 zona1 zona1"
+                         "zona2 zona2 zona3 zona3"
+                         "zona2 zona2 zona4 zona4"
+                         "zona5 zona6 zona6 zona7"
+                         "zona8 zona8 zona8 zona8";
+    gap: 0.75rem;
+}
+
+#grid-pagina > * {
+    border: 1px solid var(--culoare-border);
+    border-radius: 0.75rem;
+    box-shadow: 0.3rem 0.3rem var(--culoare-border);
+    padding: var(--spatiere-text);
+}
+
+/*descriere*/
+#sectiune1{
+    grid-area: zona1;
+    margin-top: .5rem;
+}
+
+#sectiune1 img{
+    width: 90%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*tabel*/
+#tabel{
+    grid-area: zona2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*pdf*/
+#sectiune5{
+    grid-area: zona3;
+}
+
+#sectiune5 > embed{
+    display: flex;
+    max-width: 95%;
+    width: 95%;
+    height: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 0.5rem;
+}
+
+#sectiune7{
+    grid-area: zona4;
+}
+
+#sectiune2{
+    grid-area: zona5;
+}
+
+#sectiune6{
+    grid-area: zona6;
+}
+
+#sectiune3{
+    grid-area: zona7;
+}
+
+
+#sectiune4{
+    grid-area: zona8;
+    margin-bottom: 0.5rem;
+}
+
+#imagineArtisti{
+    max-width: 100%;
+}
+
+
+
+
+
+#iframe_tabs{
+    display: flex;
+    justify-content: flex-end;
+}
+
+#iframe_tabs > a{
+    display: block;
+    padding: 5px;
+    border: 1px solid var(--culoare-border);
+    border-radius: 0 0 10px 10px;
+    background-color: var(--background-header);
+    position: relative;
+    margin-right: 2.5px;
+    margin-top: -5px;
+    text-decoration: none;
+}
+
+#iframe_tabs > a::before{
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 104%;
+    transform: translateX(-50%);
+    height: 2.5px;
+    top: -3px;
+    border: 1px solid var(--culoare-border);
+    background-color: var(--culoare-border);
+    border-radius: 0 0 10px 10px;
+}
+
+#iframe_tabs > a:hover{
+    background-color: white;
+    color: var(--culoare-border);
+    transition: background-color 750ms ease-in;
+}
+
+
+table {
+    border-collapse: collapse;
+    border: 5px double #333;
+    width: 100%;
+    font-family: 'Roboto Slab', serif;
+}
+
+table caption {
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    caption-side: bottom;
+}
+
+table th, table td {
+    border: 1px solid var(--culoare-border);
+    padding: 10px;
     text-align: center;
 }
 
-.icon-text i {
-    margin: 0 0.5rem;
-    color: var(--color-primary);
+table th:nth-child(odd), 
+table td:nth-child(odd) {
+    color: var(--text-footer);
 }
 
-/* Link top */
+table th:nth-child(even), 
+table td:nth-child(even) {
+    color: var(--text-main);
+}
+
+table th:nth-child(4) {
+    color: var(--text-footer);
+}
+
+
+table tr:hover td {
+    background-color: #f0f0f0;
+    color: #000;
+    border-width: 5px;
+    transition: color 750ms ease-in;
+}
+
+.album img{
+    display: flex;
+    max-width: 300px;
+    margin-top: 20px;
+}
+
 #link-top {
     position: fixed;
     bottom: 20px;
@@ -454,130 +408,368 @@ aside {
     right: 20px;
 }
 
-/* Ecran Mare (desktop) */
-@media screen and (min-width: 992px) {
-    html {
+#clipPrezentare{
+    display: block;
+    max-width: 80%;
+    min-width: 250px;
+    margin: 1rem auto 1rem auto;
+}
+
+#clipPrezentare::cue {
+    background-color: transparent;
+    color: white;
+    text-shadow: 1px 1px black;
+}
+
+#div-duotone{
+    position: relative;
+    width: 650px;
+    height: 340px;
+    margin: 2rem auto 1rem;
+    background-image: url("/resurse/imagini/tylerTheCreatorCars.jpg");
+    background-size: cover;
+    background-position: center;
+    transition: filter 0.3s ease-in;
+}
+
+#div-duotone::before, #div-duotone::after{
+    content: " ";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#div-duotone::before{
+    background-color: var(--background-footer);
+    mix-blend-mode: lighten;
+    opacity: 0.4;
+}
+
+#div-duotone::after{
+    background-color: var(--background-header);
+    mix-blend-mode: darken;
+    opacity: 0.4;
+}
+
+#div-duotone:hover{
+    filter: grayscale(100%);
+}
+
+#text-coloane{
+    column-count: 3;
+    column-gap: 1rem;
+    column-rule: 3px solid var(--culoare-border);
+}
+
+#exemplu-selection{
+    margin-top: 1rem;
+    font-size: 1.25rem;
+}
+
+#exemplu-selection p::selection{
+    color: red;
+    background: yellow;
+}
+
+#text-animat{
+    position: relative;
+    width: 30%;
+    height: 3rem;
+    margin-top: 1rem;
+    overflow: hidden;
+}
+
+#text-animat p{
+    position: absolute;
+    white-space: nowrap;
+    animation: animatieText 5s linear infinite;
+}
+
+hr{
+    display: block;
+    position: relative;
+    width: 100%;
+    border: none;
+    height: 1rem;
+    text-align: center;
+    background: linear-gradient(to bottom, transparent, var(--text-main) 45%, var(--text-main) 55%, transparent);
+    overflow: visible;
+}
+
+hr::after{
+    content: " ";
+    position: absolute;
+    height: 1.25rem;
+    width: 1.25rem;
+    border: 5px solid var(--background-footer);
+    border-radius: 1.25rem;
+    background-color: var(--text-main);
+    filter: blur(0.5px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#text{
+    position: relative;
+}
+
+#reflexie{
+    position: absolute;
+    transform-origin: 0 0;
+    transform: rotateX(180deg) skew(-45deg) scaleY(0.5) translate(10px, -35px);
+    mask-image: repeating-radial-gradient(ellipse at 50% 100%,transparent 0 8px, black 8px 16px);
+}
+
+#text, #reflexie{
+	font-size:2rem;
+	font-weight: bold;
+}
+
+#text:hover #reflexie, #reflexie:hover{
+    animation: animatieReflexie 0.5s linear infinite;
+}
+
+#oferta-timer.ultimele-secunde {
+    background-color: #ff0000;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    width: 25%;
+}
+
+/* Stilizare avansată pentru titluri de secțiune */
+section > h2 {
+    font-family: 'Playfair Display', 'Bebas Neue', sans-serif;
+    color: var(--color-primary);
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    position: relative;
+    font-weight: bold;
+    text-align: center;
+}
+
+section > h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(to right, transparent, var(--color-primary), var(--color-secondary), var(--color-primary), transparent);
+}
+
+/* Efect la hover pentru titluri secțiuni */
+section > h2:hover {
+    text-shadow: 2px 2px 4px rgba(137, 22, 9, 0.2);
+    transition: text-shadow 0.3s ease;
+}
+
+/* Titluri pentru paginile speciale */
+#retete > h2, #international > h2 {
+    /* Variație specială pentru aceste secțiuni */
+    color: var(--color-secondary);
+}
+
+#retete > h2::before, #international > h2::before, 
+#retete > h2::after, #international > h2::after {
+    content: "✦";
+    position: absolute;
+    font-size: 1.5rem;
+    color: var(--color-secondary);
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    height: auto;
+    width: auto;
+}
+
+#retete > h2::before, #international > h2::before {
+    left: 5%;
+}
+
+#retete > h2::after, #international > h2::after {
+    right: 5%;
+    left: auto;
+}
+
+/* Stilizare pentru prima secțiune (welcome) */
+#acasa > h2 {
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+#acasa > h2::after {
+    height: 4px;
+    background: linear-gradient(to right, var(--color-primary), var(--color-secondary));
+    opacity: 0.8;
+}
+
+/* Stilizare pentru titluri de secțiuni în footer */
+footer > h2 {
+    color: var(--color-light);
+    text-align: center;
+    padding-bottom: 1rem;
+    position: relative;
+}
+
+footer > h2::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--color-light), transparent);
+}
+
+/* Mini-chenare pentru subtitluri importante */
+article > h2, 
+article > h3, 
+.titlu-evidențiat {
+    position: relative;
+    font-size: 1.5rem;
+    color: var(--color-accent);
+    padding: 0.5rem 1rem;
+    margin: 1.5rem 0 1rem;
+    display: inline-block;
+    z-index: 1;
+}
+
+/* Efect de chenar pentru subtitluri */
+article > h2::before, 
+article > h3::before,
+.titlu-evidențiat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,156,145,0.2) 100%);
+    border-left: 3px solid var(--color-secondary);
+    border-radius: 0 6px 6px 0;
+    z-index: -1;
+    box-shadow: 2px 2px 5px rgba(93, 29, 22, 0.1);
+}
+
+/* Efect la hover pentru subtitluri */
+article > h2:hover::before, 
+article > h3:hover::before,
+.titlu-evidențiat:hover::before {
+    background: linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(220,102,89,0.3) 100%);
+    transition: all 0.3s ease;
+}
+
+/* Stilizare specială pentru "Despre Noi" */
+#despre > h2 {
+    font-weight: bold;
+    color: var(--color-primary);
+}
+
+#despre > h2::before {
+    border-left-width: 4px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(135, 22, 9, 0.1) 100%);
+}
+
+/* Stilizare specială pentru titluri despre rețete */
+[id*="retete"] h3, 
+[id*="culinare"] h3 {
+    color: var(--color-secondary);
+}
+
+[id*="retete"] h3::before,
+[id*="culinare"] h3::before {
+    border-left-color: var(--color-primary);
+}
+
+/* Stilizare pentru titluri descriptive */
+.descriere-titlu, 
+h3:contains("Descoperă") {
+    font-style: italic;
+}
+
+.descriere-titlu::before, 
+h3:contains("Descoperă")::before {
+    border-left-style: dashed;
+}
+
+@keyframes animatieReflexie{
+    0%{
+        mask-position: 0 0;
+    }
+    100%{
+        mask-position: 0 10px;
+    }
+}
+
+@keyframes animatieText{
+    0%{
+        transform: translateX(100%);
+    }
+    100%{
+        transform: translateX(-100%);
+    }
+}
+
+@media screen and (max-width:800px){
+    html{
+        font-size: 12.5px;
+    }
+    body{
+        --spatiere-pagina: 10px;
+        --spatiere-text: 10px;
+    }
+    #grid-pagina > *{
+        margin-top: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+    #grid-pagina{
+        display: block !important;
+    }
+    *{
+        animation: none;
+        transition: none;
+    }
+    #tabel{
+        display: block;
+        overflow-x: auto;
+    }
+    #text-coloane{
+        column-count: 1;
+    }
+}
+
+@media screen and (max-width:1200px){
+    html{
         font-size: 16px;
     }
-
-    .grid-container {
-        grid-template-areas:
-            "zone1 zone1 zone1 zone1"
-            "zone3 zone2 zone2 zone4"
-            "zone8 zone8 zone8 zone8" 
-            "zone7 zone7 zone5 zone6"
-            "zone8 zone8 zone8 zone8";
+    body{
+        --spatiere-pagina: 20px;
+        --spatiere-text: 12.5px;
+    }
+    #grid-pagina{
+        display: grid;
         grid-template-columns: 1fr 2fr 1fr;
+        grid-template-areas:  
+                "zone1 zone1 zone1 zone1"
+                "zone3 zone2 zone2 zone4"
+                "zone8 zone8 zone8 zone8" 
+                "zone7 zone7 zone5 zone6"
+                "zone8 zone8 zone8 zone8";
         grid-template-rows: auto auto auto auto auto;
     }
-
-    .categorii-container, .sarbatori-container {
-        grid-template-columns: repeat(4, 1fr);
+    #tabel{
+        display: block;
     }
-
-    .ingrediente-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .bucatarii-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-/* Ecran mediu (tableta) */
-@media screen and (min-width: 768px) and (max-width: 991px) {
-    html {
-        font-size: 15px;
-    }
-
-    .grid-container {
-        grid-template-areas:
-            "zone1 zone1 zone1"
-            "zone2 zone2 zone2"
-            "zone3 zone4 zone5"
-            "zone6 zone7 zone8";
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: auto auto auto auto;
-        gap: var(--grid-gap-medium);
-    }
-
-    .categorii-container, .sarbatori-container, .ingrediente-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .bucatarii-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
-    body {
-        padding-left: var(--page-padding-medium);
-        padding-right: var(--page-padding-medium);
-    }
-    
-    img, video, iframe {
-        max-width: var(--media-max-width-medium);
-        min-width: var(--media-min-width-medium);
-    }
-}
-
-
-/* Ecran mic (telefon) */
-@media screen and (max-width: 767px) {
-    html {
-        font-size: 14px;
-    }
-
-    .grid-container {
-        grid-template-areas:
-            "zone1"
-            "zone2"
-            "zone3"
-            "zone4"
-            "zone5"
-            "zone6"
-            "zone7"
-            "zone8";
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(8, auto);
-        gap: var(--grid-gap-small);
-    }
-
-    .animate-fade, .animate-pulse {
-        animation: none;
-    }
-
-    .z-pattern {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(4, auto);
-    }
-
-    .z-pattern > div {
-        grid-column: 1;
-        text-align: center;
-    }
-
-    .z-pattern > div:nth-child(1) { grid-row: 1; }
-    .z-pattern > div:nth-child(2) { grid-row: 2; }
-    .z-pattern > div:nth-child(3) { grid-row: 3; }
-    .z-pattern > div:nth-child(4) { grid-row: 4; }
-
-    .categorii-container, .sarbatori-container, .ingrediente-grid, .bucatarii-grid {
-        grid-template-columns: 1fr;
-    }
-
-    iframe {
-        height: 240px;
-        border: 4px solid white;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    
-    body {
-        padding-left: var(--page-padding-small);
-        padding-right: var(--page-padding-small);
-    }
-    
-    img, video, iframe {
-        max-width: var(--media-max-width-small);
-        min-width: var(--media-min-width-small);
+    #text-coloane{
+        column-count: 1;
     }
 }

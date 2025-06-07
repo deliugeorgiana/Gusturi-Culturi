@@ -68,7 +68,7 @@ obGlobal={
     folderBackup: path.join(__dirname,"backup")
 }
 
-// Adaugă funcția toRoman care convertește numere în cifre romane
+
 function toRoman(num) {
     const romanNumerals = {
         1: 'i', 2: 'ii', 3: 'iii', 4: 'iv', 5: 'v', 
@@ -341,8 +341,8 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
         imagineCustom = imagine || err.imagine;
     }
     
-    // Return the render call to ensure the function ends here
     return res.render("pagini/eroare", {
+        identificator: identificator,
         titlu: titluCustom,
         text: textCustom,
         imagine: imagineCustom
