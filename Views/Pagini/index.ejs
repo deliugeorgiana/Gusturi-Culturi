@@ -13,300 +13,390 @@
 
     <main>
         
-        <div id="grid-pagina">
-            <section id="welcome">
-                <h2>Bine ați venit</h2>
-                <p class="intro">Vă mulțumim că ne vizitați site-ul. Porniți într-o călătorie culinară alături de noi!</p>
-                <p><b>Ip: </b><%- locals.ip %></p>
-                <div class="intro-oferte"><div>Aperitive</div><div>Feluri principale</div><div>Deserturi</div><div>Băuturi</div><div>Specialități</div></div>
-                <p class="anunt intro">Experimentați gusturi din toate colțurile lumii, atât la restaurantul nostru cât și acasă, prin serviciul nostru de livrare.</p>
-                <div id="dv-prezentare-1">
-                    <div id="dv-prezentare">
-                    <picture>
-                        <source srcset="/resurse/imagini/galerie/imagine1.jpg" media="(max-width:700px)"/>
-                        <source srcset="/resurse/imagini/galerie/imagine2.jpg" media="(max-width:1200px)"/>
-                        <img src="/resurse/imagini/galerie/imagine3.jpg" alt="Mâncare tradițională"/>
-                    </picture>
+       
+<section id="acasa">
+            <h2>Bun venit la Gusturi&Culturi</h2>
+            
+            <article id="despre">
+                <h2>Despre Noi</h2>
+                <div class="video-container">
+                        <video controls preload="auto" poster="./resurse/video/poster.jpg">
+                        <source src="./resurse/video/video.mp4" type="video/mp4">
+                        <source src="./resurse/video/video.webm" type="video/webm">
+                        <track label="Română" kind="subtitles" srclang="ro" src="./resurse/video/tracks/captions_ro.vtt" default>
+                        <track label="English" kind="subtitles" srclang="en" src="./Resurse/Video/Tracks/captions_en.vtt">
+                        <track label="Russian" kind="subtitles" srclang="ru" src="./resurse/video/tracks/captions_ru.vtt">
+                        Your browser does not support the video tag.
+                        </video>
                 </div>
-            </div>
-            <hr class="separator"/>
-            
-            <div id="container-video">
-                <img class="farfurie" src="/resurse/imagini/farfurie-flori-albastre.png" alt="farfurie">
-                <div id="centrare-video">
-                    <div id="clip-video">
-                        <div id="stil-video">
-                            <video width="320" height="240" playsinline autoplay loop muted>
-                                <source src="/resurse/video/video.mp4" type="video/mp4">
-                                <source src="/resurse/video/video.webm" type="video/webm">
-                                <track default src="/resurse/video/tracks/captions_ro.vtt" kind="captions" srclang="ro" label="romana">
-                                <track src="/resurse/video/tracks/captions_en.vtt" kind="captions" srclang="en" label="engleza">
-                            </video>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </section>
-            
-            <section id="promotii">
-                <h2>Promoții</h2>
-                <article>
-                    <h3 class="titlu">Ofertă de weekend</h3>
-                    <p><b>Gusturi & Culturi</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate preparatele comandate în intervalul 18-22.</p>
-                    <p>Oferta este valabilă doar în zilele de vineri și sâmbătă la restaurantul nostru.</p>
-                    <p>Pentru comenzi de peste 200 lei primiți și un card de fidelitate!</p>
-                </article>
-                
-                <article>
-                    <h3>Pachet degustare</h3>
-                    <p>Gusturi & Culturi oferă pachete de degustare cuprinzând:</p>
-                    <ol>
-                        <li>Un aperitiv tradițional</li>
-                        <li>Un fel principal la alegere</li>
-                        <li>Un desert specific</li>
-                        <li>O băutură tradițională</li>
-                        <li>Gratis: o broșură cu informații despre cultura preparatelor</li>
-                    </ol>
-                </article>
-                
-                <article>
-                    <h3 class="titlu bcd">Seară tematică</h3>
-                    <p>În fiecare joi organizăm seri tematice dedicate unei culturi specifice, cu muzică live și preparate autentice.</p>
-                    <ol>
-                        <li>Prima joi: Bucătăria mediteraneană</li>
-                        <li>A doua joi: Bucătăria asiatică</li>
-                        <li>A treia joi: Bucătăria latino-americană</li>
-                        <li>A patra joi: Bucătăria arabă</li>
-                    </ol>
-                </article>
-            </section>
-            
-            <section id="produse">
-                <h2>Bucătăriile noastre</h2>
-                    <div class="btn-group" role="group">
-                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-toate" value="toate" autocomplete="off" checked>
-                        <label class="btn btn-outline-primary" for="rad-toate">Toate</label>
+                <p>Suntem o echipă pasionată de bucătăria tradițională din întreaga lume. Misiunea noastră este să aducem cele mai autentice rețete direct în bucătăria ta!</p>
+            </article>
 
-                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-mediteraneana" value="mediteraneana" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="rad-mediteraneana">Mediteraneană</label>
-                        
-                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-asiatica" value="asiatica" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="rad-asiatica">Asiatică</label>
-                        
-                        <input type="radio" class="btn-check" name="rad-bucatarie" id="rad-romaneasca" value="romaneasca" autocomplete="off">
-                        <label class="btn btn-outline-primary" for="rad-romaneasca">Românească</label>
-                    </div>
-                <p>Vă oferim o multitudine de preparate autentice din diferite culturi ale lumii.</p>
+            <article id="prezentare">
+                <h3>Descoperă lumea prin bucate</h3>
+                <p>Suntem pasionații care aduc <b>tradițiile culinare</b> ale lumii direct la tine. <em>O călătorie gustativă</em> prin <strong>rețete autentice</strong>!</p>
                 
-                <section>
-                    <h3>Bucătăria mediteraneană</h3>
-                    <p>Savurați gusturile Greciei, Italiei și Spaniei!</p>
-                    <ul>
-                        <li>Paella valenciană</li>
-                        <li>Moussaka grecească</li>
-                        <li>Risotto cu fructe de mare</li>
-                        <li>Bruschetta cu roșii</li>
-                        <li>Tiramisu</li>
-                    </ul>
-                </section>
-                
-                <section>
-                    <h3>Bucătăria asiatică</h3>
-                    <p>Experiențe culinare din Japonia, China și Thailanda!</p>
-                    <ul>
-                        <li>Sushi și sashimi</li>
-                        <li>Ramen</li>
-                        <li>Curry thailandez</li>
-                        <li>Pui Kung Pao</li>
-                        <li>Orez prăjit cu legume</li>
-                    </ul>
-                </section>
-                
-                <section>
-                    <h3>Bucătăria românească</h3>
-                    <p>Preparate tradiționale de la noi:</p>
-                    <ul>
-                        <li>Sarmale cu mămăligă</li>
-                        <li>Ciorbă de burtă</li>
-                        <li>Mici cu muștar</li>
-                        <li>Pomana porcului</li>
-                        <li>Cozonac și papanași</li>
-                    </ul>
-                </section>
-            </section>
+                <figure>
+                    <picture>
+                        <source media="(max-width: 480px)" srcset="./resurse/imagini/platou-mic.jpg">
+                        <source media="(max-width: 1024px)" srcset="./resurse/imagini/platou-mediu.jpg">
+                        <img src="./resurse/imagini/Poza-platouri.jpg" alt="Platou internațional de bucate" usemap="#platou-map">
+                    </picture>
+                    <figcaption>Rețete internaționale - <q>Gustul fără frontiere</q></figcaption>
+                </figure>
+                <map name="platou-map">
+                    <area shape="rect" coords="34,44,270,350" href="retete/italia.html" alt="Rețete italienești" target="_blank">
+                    <area shape="circle" coords="450,150,75" href="retete/franta.html" alt="Rețete franțuzești" target="_blank">
+                </map>
+            </article>
             
-            <section id="comparare-preparate">
-                <h2>Comparație preparate populare</h2>
-                <table class="tabel-transpus">
-                    <thead>
-                        <tr>
-                            <th>Preparat</th>
-                            <th>Ingrediente principale</th>
-                            <th>Origine</th>
-                            <th>Timp preparare</th>
-                            <th>Dificultate</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td data-label="Preparat">Sarmale</td>
-                            <td data-label="Ingrediente">Carne tocată, orez, foi de varză</td>
-                            <td data-label="Origine">România</td>
-                            <td data-label="Timp">180 min</td>
-                            <td data-label="Dificultate">Medie</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Preparat">Pizza Napoletana</td>
-                            <td data-label="Ingrediente">Aluat, roșii San Marzano, mozzarella</td>
-                            <td data-label="Origine">Italia</td>
-                            <td data-label="Timp">90 min</td>
-                            <td data-label="Dificultate">Medie</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Preparat">Paella</td>
-                            <td data-label="Ingrediente">Orez, șofran, fructe de mare</td>
-                            <td data-label="Origine">Spania</td>
-                            <td data-label="Timp">60 min</td>
-                            <td data-label="Dificultate">Ridicată</td>
-                        </tr>
-                        <tr>
-                            <td data-label="Preparat">Sushi</td>
-                            <td data-label="Ingrediente">Orez, pește crud, alge nori</td>
-                            <td data-label="Origine">Japonia</td>
-                            <td data-label="Timp">120 min</td>
-                            <td data-label="Dificultate">Ridicată</td>
-                        </tr>
-                        <tr class="total-row">
-                            <td colspan="5">Număr preparate: 4</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-            
-            <figure id="fig1" class="fg-img">
-                <img src="/resurse/imagini/galerie/imagine4.jpg" alt="preparat tradițional">
-                <figcaption>Specialitatea casei</figcaption>
-            </figure>
-            <figure id="fig2" class="fg-img">
-                <img src="/resurse/imagini/galerie/imagine5.jpg" alt="preparat tradițional">
-                <figcaption>Desert specific</figcaption>
-            </figure>
-            <figure id="fig3" class="fg-img">
-                <img src="/resurse/imagini/galerie/imagine6.jpg" alt="preparat tradițional">
-                <figcaption>Aperitiv tradițional</figcaption>
-            </figure>
-            
-            <section id="anunturi">
-                <h2>Anunțuri</h2>
-                <p><time datetime="2025-05-01">1 Mai 2025</time> <strong>Am deschis o nouă locație în centrul orașului!</strong></p>
-                <p><time datetime="2025-04-15">15 Aprilie 2025</time> Am adăugat preparate noi din bucătăria indiană</p>
-                <p><time datetime="2025-03-20">20 Martie 2025</time> Începem seria de evenimente culturale lunare</p>
-                <p><time datetime="2025-02-14">14 Februarie 2025</time> Meniu special pentru Valentine's Day</p>
-                <p><time datetime="2025-01-01">1 Ianuarie 2025</time> Un an nou plin de arome internaționale!</p>
-            </section>
-            
-            <section id="index-intrebari">
-                <h2>Întrebări frecvente</h2>
-                <details>
-                    <summary>Preparatele sunt autentice?</summary>
-                    <p>Da! Bucătarii noștri sunt specializați în bucătăriile tradiționale și folosim ingrediente autentice.</p>
-                </details>
-                <details>
-                    <summary>Oferiți variante vegetariene/vegane?</summary>
-                    <p>Desigur! Avem opțiuni pentru toate preferințele alimentare.</p>
-                </details>
-                <details>
-                    <summary>Care este aria de livrare?</summary>
-                    <p>Livrăm în tot orașul și până la 15 km în afara acestuia.</p>
-                </details>
-                <details>
-                    <summary>Organizați evenimente private?</summary>
-                    <p>Da, putem organiza evenimente private cu meniuri personalizate. Contactați-ne pentru mai multe detalii!</p>
-                </details>
-            </section>
-            
-            <!-- Secțiunea Categorii -->
             <section id="categorii">
                 <h2>Categorii Culinare</h2>
                 <div id="banner"></div>
                 <div id="watermark"></div>
                 <div class="categorii-container">
                     <article class="categorie">
-                        <h3>Bucătărie Internațională</h3>
-                        <p>Explorați bucătării din întreaga lume, de la deliciile mediteraneene până la aromele picante asiatice.</p>
+                        <h3>Salate</h3>
+                        <p>Descoperă colecția noastră de salate proaspete și sănătoase din toate colțurile lumii. De la salata grecească până la tabouleh libanez, avem opțiuni pentru toate gusturile.</p>
+                        <a href="./resurse/pdf/categorie/salate.pdf">Explorează rețete de salate</a>
                     </article>
+                    
                     <article class="categorie">
-                        <h3>Bucătărie Tradițională</h3>
-                        <p>Descoperiți preparatele autentice românești, gătite după rețete transmise din generație în generație.</p>
+                        <h3>Dulciuri</h3>
+                        <p>Satisface-ți pofta de dulce cu deserturi tradiționale din diverse culturi. Baklava turcească, tiramisu italian sau pavlova australiană - toate te așteaptă să le încerci.</p>
+                        <a href="./resurse/pdf/categorie/dulciuri.pdf">Descoperă dulciurile lumii</a>
                     </article>
+                  
                     <article class="categorie">
-                        <h3>Deserturi</h3>
-                        <p>Savurați dulciuri fine din diverse culturi, preparate cu ingrediente premium și multă pasiune.</p>
+                        <h3>Supe și Ciorbe</h3>
+                        <p>De la borschtul rusesc la supa pho vietnameză, colecția noastră de supe și ciorbe te va încălzi și hrăni cu tradiții culinare diverse și autentice.</p>
+                        <a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Savurează lichide calde</a>
+                    </article>
+                    
+                    <article class="categorie">
+                        <h3>Feluri Principale</h3>
+                        <p>Rețete consistente pentru masa principală din bucătării de pe toate continentele. Descoperă secretele gătitului tradițional și pregătește preparate care impresionează.</p>
+                        <a href="./resurse/pdf/categorie/feluri-principale.pdf">Vezi feluri principale</a>
                     </article>
                 </div>
             </section>
-            
-            <!-- Secțiunea Ingrediente -->
+
             <section id="ingrediente">
                 <h2>Ingrediente Esențiale</h2>
-                <p>Calitatea și prospețimea ingredientelor sunt esențiale pentru preparatele noastre autentice.</p>
+                <p>Descoperă cum să folosești aceste ingrediente de bază în preparate din întreaga lume:</p>
+                
                 <div class="ingrediente-grid">
-                    <article>
-                        <h3>Condimente</h3>
-                        <p>Folosim condimente premium importate direct din țările de origine pentru a asigura autenticitatea gustului.</p>
+                    <article class="ingredient">
+                        <h3>Cartofi</h3>
+                        <p>Versatili și hrănitori, cartofii sunt baza multor bucătării tradiționale. De la tortilla spaniolă la vareniki ucrainene, acest tubercul a cucerit lumea prin adaptabilitate.</p>
+                        <details>
+                            <summary>Beneficii nutriționale</summary>
+                            <p>Bogați în vitamina C, potasiu și fibre, cartofii oferă energie de lungă durată și susțin sănătatea sistemului digestiv.</p>
+                        </details>
                     </article>
-                    <article>
-                        <h3>Ingrediente Locale</h3>
-                        <p>Colaborăm cu fermieri locali pentru a obține cele mai proaspete legume și fructe de sezon.</p>
+                    
+                    <article class="ingredient">
+                        <h3>Brânză</h3>
+                        <p>Cu mii de varietăți în întreaga lume, brânza este un produs fermentat care reflectă tradițiile locale. De la feta grecească la paneer indian, fiecare cultură are propria interpretare.</p>
+                        <details>
+                            <summary>Tipuri populare</summary>
+                            <p>Mozzarella (Italia), Brie (Franța), Cheddar (Anglia), Telemea (România), Manchego (Spania), Halloumi (Cipru)</p>
+                        </details>
                     </article>
-                    <article>
-                        <h3>Carne și Pește</h3>
-                        <p>Selectăm cu atenție furnizori de încredere pentru carne și pește proaspăt de cea mai bună calitate.</p>
+                    
+                    <article class="ingredient">
+                        <h3>Orez</h3>
+                        <p>Hrană de bază pentru mai mult de jumătate din populația globului, orezul este versatil și nutritiv. Descoperă cum diferite culturi transformă acest ingredient simplu în festinuri memorabile.</p>
+                        <details>
+                            <summary>Varietăți globale</summary>
+                            <p>Jasmine (Thailanda), Basmati (India), Arborio (Italia), Bomba (Spania), Camargue (Franța)</p>
+                        </details>
+                    </article>
+                    
+                    <article class="ingredient">
+                        <h3>Roșii</h3>
+                        <p>Originare din America de Sud, roșiile au cucerit bucătăriile lumii. De la pasta de tomate italiană la salsa mexicană, acest fruct versatil aduce culoare și savoare preparatelor.</p>
+                        <details>
+                            <summary>Utilizări tradiționale</summary>
+                            <p>Gazpacho (Spania), Shakshuka (Orientul Mijlociu), Ketchup (America), Ratatouille (Franța)</p>
+                        </details>
                     </article>
                 </div>
             </section>
-            
-            <!-- Secțiunea Sărbători -->
+
             <section id="sarbatori">
                 <h2>Sărbători Culinare</h2>
-                <p>Fiecare sărbătoare are propriile tradiții gastronomice. Explorați preparatele festive autentice!</p>
+                <p>Fiecare sărbătoare în jurul lumii are propriile tradiții gastronomice. Explorează preparate festive autentice:</p>
+                
                 <div class="sarbatori-container">
-                    <article>
+                    <article class="sarbatoare">
                         <h3>Crăciun</h3>
-                        <p>Bucurați-vă de preparate tradiționale de Crăciun din diverse culturi, de la cozonac românesc până la pudding englezesc.</p>
+                        <p>Sărbătoarea iernii aduce pe mese preparate îmbelșugate și dulciuri specifice. De la cozonacul românesc la pudingul englezesc, descoperiți cum diverse culturi celebrează prin mâncare.</p>
+                        <ul>
+                            <li>Cozonac (România)</li>
+                            <li>Bûche de Noël (Franța)</li>
+                            <li>Panettone (Italia)</li>
+                        </ul>
+                        <a href="./resurse/pdf/sarbatori/craciun.pdf">Vezi rețete de Crăciun</a>
                     </article>
-                    <article>
+                    
+                    <article class="sarbatoare">
                         <h3>Paște</h3>
-                        <p>Descoperiți tradițiile culinare pascale din diferite colțuri ale lumii, cu preparate specifice fiecărei culturi.</p>
+                        <p>Sărbătoarea renașterii și a primăverii este marcată prin preparate speciale în toate tradițiile creștine. De la pască la mielul pascal, aceste rețete păstrează tradiții vechi de secole.</p>
+                        <ul>
+                            <li>Pască (România)</li>
+                            <li>Hot Cross Buns (Anglia)</li>
+                            <li>Tsoureki (Grecia)</li>
+                        </ul>
+                        <a href="./resurse/pdf/sarbatori/paste.pdf">Descoperă bucătăria pascală</a>
                     </article>
-                    <article>
-                        <h3>Sărbători Internaționale</h3>
-                        <p>Anul Nou Chinezesc, Thanksgiving, Oktoberfest - sărbătorim diversitatea culturală prin mâncăruri tradiționale.</p>
+                    
+                    <article class="sarbatoare">
+                        <h3>Valentine's Day</h3>
+                        <p>Ziua îndrăgostiților este celebrată prin preparate sofisticate și delicatese dulci. Descoperă rețete romantice care exprimă dragostea prin gusturi rafinate.</p>
+                        <ul>
+                            <li>Mousse de ciocolată</li>
+                            <li>Fraise au champagne</li>
+                            <li>Fondant de ciocolată</li>
+                        </ul>
+                        <a href="./resurse/pdf/sarbatori/valentines.pdf">Inspirație culinară romantică</a>
+                    </article>
+                    
+                    <article class="sarbatoare">
+                        <h3>Anul Nou</h3>
+                        <p>Începutul unui nou an este marcat prin preparate simbolice în fiecare cultură. De la lintea italiană la strugurii spanioli, fiecare ingredient are propria semnificație pentru prosperitate.</p>
+                        <ul>
+                            <li>Sarmale (Europa de Est)</li>
+                            <li>Toshikoshi Soba (Japonia)</li>
+                            <li>Hoppin' John (SUA)</li>
+                        </ul>
+                        <a href="./resurse/pdf/sarbatori/anul-nou.pdf">Tradiții culinare de Anul Nou</a>
                     </article>
                 </div>
             </section>
-            
-            <!-- Secțiunea Internațional -->
+
             <section id="international">
                 <h2>Bucătării Internaționale</h2>
-                <p>Călătoriți prin lume descoperind tradițiile culinare autentice ale diferitelor popoare și regiuni.</p>
+                <p>Călătorește prin lume descoperind tradițiile culinare autentice ale diferitelor popoare și regiuni:</p>
+                
                 <div class="bucatarii-grid">
-                    <article>
-                        <h3>Bucătăria Mediteraneană</h3>
-                        <p>Savurați preparate din Italia, Grecia, Spania și alte țări mediteraneene, bogate în ulei de măsline, legume proaspete și ierburi aromatice.</p>
+                    <article class="bucatarie">
+                        <h3>Bucătăria Românească</h3>
+                        <p>Bogată în arome și tradiții, bucătăria românească reflectă influențele istorice și bogăția naturală a țării. De la sarmale la mămăligă, preparatele tradiționale românești încântă prin autenticitate și gust.</p>
+                        <p>Preparate emblematice: ciorbă de burtă, mici, cozonac, fasole cu ciolan, plăcintă cu brânză.</p>
+                        <a href="./resurse/pdf/international/romania.pdf">Explorează bucătăria românească</a>
                     </article>
-                    <article>
-                        <h3>Bucătăria Asiatică</h3>
-                        <p>Experimentați gusturi intense din China, Japonia, Thailanda și India, cu influențe diverse și tehnici de preparare specifice.</p>
+                    
+                    <article class="bucatarie">
+                        <h3>Bucătăria Rusească</h3>
+                        <p>Adaptată climatului rece, bucătăria rusă este consistentă și reconfortantă. Influențată de geografie și istorie, aceasta oferă preparate consistente, perfect adaptate iernilor lungi.</p>
+                        <p>Preparate emblematice: borscht, pelmeni, blini, piroshki, olivier salad.</p>
+                        <a href="./resurse/pdf/international/rusia.pdf">Descoperă tradiții rusești</a>
                     </article>
-                    <article>
-                        <h3>Bucătăria Americii Latine</h3>
-                        <p>Descoperiți aromele vibrante din Mexic, Peru, Argentina și Brazilia, cu preparate colorate și combinații îndrăznețe de ingrediente.</p>
+                    
+                    <article class="bucatarie">
+                        <h3>Bucătăria Italiană</h3>
+                        <p>Recunoscută global pentru simplitate și calitatea ingredientelor, bucătăria italiană celebrează prospețimea și tradițiile regionale. Fiecare regiune italiană își aduce contribuția la această moștenire gastronomică.</p>
+                        <p>Preparate emblematice: pizza napoletană, risotto, pasta carbonara, tiramisu, osso buco.</p>
+                        <a href="./resurse/pdf/international/italia.pdf">Savurează Italia autentică</a>
+                    </article>
+                    
+                    <article class="bucatarie">
+                        <h3>Bucătăria Japoneză</h3>
+                        <p>Rafinată și echilibrată, bucătăria japoneză pune accent pe sezonalitate și prezentare estetică. Cu o filosofie culinară distinctă, aceasta se concentrează pe respectul față de ingrediente.</p>
+                        <p>Preparate emblematice: sushi, ramen, tempura, miso soup, yakitori.</p>
+                        <a href="./resurse/pdf/international/japonia.pdf">Descoperă arta culinară japoneză</a>
+                    </article>
+                    
+                    <article class="bucatarie">
+                        <h3>Bucătăria Mexicană</h3>
+                        <p>Vibrantă și plină de contraste, bucătăria mexicană îmbină tradiții precolumbiene cu influențe spaniole. Condimentele, culorile și texturile diverse definesc această bucătărie energică.</p>
+                        <p>Preparate emblematice: tacos, guacamole, enchiladas, mole poblano, pozole.</p>
+                        <a href="./resurse/pdf/international/mexic.pdf">Explorează aromele Mexicului</a>
+                    </article>
+                    
+                    <article class="bucatarie">
+                        <h3>Bucătăria Indiană</h3>
+                        <p>Complexă și diversificată, bucătăria indiană este o călătorie prin condimente și tehnici vechi de mii de ani. Fiecare regiune a Indiei contribuie cu propriile specialități la această moștenire culinară vastă.</p>
+                        <p>Preparate emblematice: curry, biryani, samosa, butter chicken, masala dosa.</p>
+                        <a href="./resurse/pdf/international/india.pdf">Descoperă mirodenii indiene</a>
                     </article>
                 </div>
             </section>
-        </div>
 
+
+            <section id="statistici">
+                <h3>Statistici Culinare</h3>
+                <p>Am pregătit câteva informații fascinante despre gastronomie:</p>
+                <ol>
+                    <li><dfn>Pizza</dfn> - originară din <i lang="it">Italia</i></li>
+                    <li><cite>Cartea Recordurilor Culinare</cite> conține peste 1000 de rețete unice</li>
+                   <li>
+                        <dl>
+                            <dt>Pateuri cu Umplutură de Cartofi</dt>
+                            <dd>Preparat ucrainean pe bază de aluat, cartofi și diverse condimente.</dd>
+                            <dt>Okroshka</dt>
+                            <dd>Supă rece tradițională rusească pe bază de chefir și legume.</dd>
+                        </dl>
+                    </li>
+                </ol>
+            </section>
+            <aside>
+                <h3>Știați că?</h3>
+                <p>Cel mai mare croissant din lume a cântărit 200 kg!</p>
+            </aside>
+            
+        </section>
+        
+
+        <section id="retete">
+            <h2>Rețete Speciale</h2>
+            
+            <details>
+                <summary>Care este cea mai populară rețetă?</summary>
+                <p>Pizza <abbr title="Napoletană">Nap.</abbr> este un favorit global!</p>
+                <p>Inițial foloseam <s>oregano</s>, dar acum recomandăm <ins>busuioc</ins> pentru un gust mai autentic.</p>
+            </details>
+            
+            <details>
+                <summary>Cum pregătim rețetele?</summary>
+                <p>Cu <strong>ingrediente proaspete</strong> și <em>multă pasiune</em>.</p>
+            </details>
+            
+            <blockquote>
+                <p>„Mâncarea este limbajul iubirii pe care îl vorbim cu toții."</p>
+            </blockquote>
+
+            <h3>Cele mai populare rețete tradiționale</h3>
+<div class="table-container">
+    <table class="recipes-table">
+        <caption>Clasamentul rețetelor tradiționale după numărul de preparări</caption>
+        <thead>
+            <tr>
+                <th>Denumire rețetă</th>
+                <th>Țara de origine</th>
+                <th>Timp de preparare</th>
+                <th>Dificultate</th>
+                <th>Popularitate <i class="fa-solid fa-star"></i></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Sarmale cu mămăligă</td>
+                <td>România</td>
+                <td>180 min</td>
+                <td>Medie</td>
+                <td>98%</td>
+            </tr>
+            <tr>
+                <td>Pizza Napoletana</td>
+                <td>Italia</td>
+                <td>90 min</td>
+                <td>Medie</td>
+                <td>96%</td>
+            </tr>
+            <tr>
+                <td>Paella</td>
+                <td>Spania</td>
+                <td>60 min</td>
+                <td>Ridicată</td>
+                <td>92%</td>
+            </tr>
+            <tr>
+                <td colspan="1">Boeuf Bourguignon</td>
+                <td>Franța</td>
+                <td>240 min</td>
+                <td>Ridicată</td>
+                <td>89%</td>
+            </tr>
+            <tr>
+                <td>Cozonac tradițional</td>
+                <td rowspan="2">România</td>
+                <td>120 min</td>
+                <td>Medie</td>
+                <td>85%</td>
+            </tr>
+            <tr>
+                <td>Ciorbă de burtă</td>
+                <td>180 min</td>
+                <td>Scăzută</td>
+                <td>82%</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="4">Total rețete populare</td>
+                <td>6</td>
+            </tr>
+        </tfoot>
+    </table>
+</div>
+
+<p class="icon-text">
+    <i class="fa-solid fa-utensils"></i> Toate rețetele noastre sunt autentice și testate de bucătari profesioniști 
+    <i class="fa-solid fa-bell fa-shake"></i> Fiți atenți la timpul de preparare!
+</p>
+        </section>
+
+        <section id="video">
+            <h2>Tutorial Rețete</h2>
+        
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                    <a href="https://www.youtube.com/embed/hrG40alLaRA" target="videoFrame">Rețetă Pateuri</a>
+                    <a href="https://www.youtube.com/embed/S3DE92LKKkk" target="videoFrame">Rețetă Supă</a>
+                </div>
+        
+                <iframe name="videoFrame" width="560" height="315" src="https://www.youtube.com/embed/hrG40alLaRA" allowfullscreen></iframe>
+            </div>
+        
+            <p>
+                <embed src="./resurse/pdf/carte-retete.pdf" type="application/pdf" width="600" height="400">
+                <a href="./resurse/pdf/carte-retete.pdf" download>Descarcă Carte Rețete</a>
+            </p>
+        </section>
+        
+
+        <section id="formule">
+            <h2>Formule Culinare</h2>
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                    <mi>Q</mi>
+                    <mo>=</mo>
+                    <mi>m</mi>
+                    <mo>×</mo>
+                    <mi>c</mi>
+                    <mo>×</mo>
+                    <mi>Δ</mi>
+                    <mi>T</mi>
+                </mrow>
+            </math>
+            <p>Formula căldurii specifice în prepararea mâncării</p>
+            <div class="legend">
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-primary); font-weight: bold;">Q</span>
+                    <span>Energia termică (J)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-secondary); font-style: italic;">m</span>
+                    <span>Masa alimentului (kg)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-accent); font-style: italic;">c</span>
+                    <span>Căldură specifică (J/kg·°C)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-accent); font-weight: bold;">Δ</span>
+                    <span>Diferența de</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-symbol" style="color: var(--color-secondary); font-style: italic;">T</span>
+                    <span>Temperatură (°C)</span>
+                </div>
+            </div>
+        </section>
+
+        
         <%- include("../fragmente/galerie.ejs", {
             imaginiGalerie: [
                 {
@@ -350,19 +440,6 @@
         }) %>
         
 
-        <section id="retete">
-            <h2>Prezentări video</h2>
-            <p>Vă prezentăm câteva preparate tradiționale și modul lor de preparare. Încercați-le acasă sau veniți să le savurați la noi!</p>
-            <div class="container-iframe">
-                <div class="taburi-iframe">
-                    <a href="https://www.youtube.com/embed/VIOkAAIZp4A" target="ifr-video">Mediteraneană</a>
-                    <a href="https://www.youtube.com/embed/T8_qBcL1bgM" target="ifr-video">Asiatică</a>
-                    <a href="https://www.youtube.com/embed/s6ikoDTO9cg" target="ifr-video">Românească</a>
-                </div>
-                <iframe name="ifr-video" width="560" height="315" src="https://www.youtube.com/embed/qtlhdIfojmc" 
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </section>
     </main>
     
     <%- include("../fragmente/footer.ejs") %>
