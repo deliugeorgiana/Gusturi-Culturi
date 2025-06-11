@@ -1,92 +1,122 @@
-nav {
-  background-color: var(--background-header);
-  --inaltime-meniu: 25px;
-  --latime-buton: 150px;
-  height: var(--inaltime-meniu);
-  color: var(--text-header);
-}
-
-ul.meniu {
-  display: flex;
-  list-style: none;
-  padding: 0;
-  margin-top: 1rem;
-  justify-content: center;
-}
-ul.meniu li div.imag-icon {
-  display: none;
-}
-ul.meniu li:hover > a::before {
-  transform: translate(-50%, -50%) scaleY(1);
-}
-ul.meniu li:hover ul {
-  transform: scale(1);
-  opacity: 1;
-}
-ul.meniu li ul {
-  display: block;
-  background-color: var(--background-header);
-  transform: scale(0);
-  transform-origin: top left;
-  opacity: 0;
+/* Stiluri pentru meniul principal - ecran mare */
+.meniu-principal {
   position: relative;
-  list-style-type: none;
   width: 100%;
-  transition: transform 0.5s linear;
+  margin-top: 1rem;
 }
-ul.meniu li ul li a {
-  display: inline-block;
-  text-decoration-line: underline;
-  text-decoration-style: double;
-  text-decoration-thickness: 2px;
-  text-decoration-color: transparent;
-  transition: text-decoration-color 0.5s linear;
-}
-ul.meniu li ul li a:hover {
-  color: black;
-  text-decoration-color: black;
-}
-ul.meniu ul {
-  display: none;
+.meniu-principal .meniu-lista {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
   padding: 0;
 }
-ul.meniu > li {
-  width: var(--latime-buton);
-  height: var(--inaltime-meniu);
-  box-sizing: border-box;
-  text-align: center;
-  font-weight: bold;
-  line-height: var(--inaltime-meniu);
-  transition: all 0.5s linear;
-  margin-right: 0.75rem;
+.meniu-principal .meniu-lista .meniu-element {
+  position: relative;
+  margin: 0 0.5rem;
+  /* Submeniu */
 }
-ul.meniu > li > a::before {
+.meniu-principal .meniu-lista .meniu-element a {
+  display: block;
+  padding: 0.5rem 1rem;
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.meniu-principal .meniu-lista .meniu-element a:hover {
+  background-color: var(--color-accent);
+  color: var(--color-text-inverse);
+  text-decoration: none;
+  transform: translateY(-2px);
+}
+.meniu-principal .meniu-lista .meniu-element .submeniu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: var(--color-primary);
+  width: 200px;
+  z-index: 100;
+  margin: 0;
+  padding: 0.5rem 0;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.meniu-principal .meniu-lista .meniu-element .submeniu li {
+  margin: 0;
+  width: 100%;
+  position: relative;
+}
+.meniu-principal .meniu-lista .meniu-element .submeniu li a {
+  padding: 0.5rem 1rem;
+  display: block;
+  color: var(--color-text-inverse);
+  transition: background-color 0.2s;
+  position: relative;
+  /* Double underline effect for submenu items */
+}
+.meniu-principal .meniu-lista .meniu-element .submeniu li a::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 95%;
-  height: 95%;
-  transform: translate(-50%, -50%) scaleY(0);
-  transform-origin: center;
-  background-color: rgba(172, 172, 172, 0.5);
-  border: 1px solid black;
-  border-radius: 10px;
-  transition: transform 0.5s linear;
-  z-index: -1;
+  left: 1rem;
+  right: 1rem;
+  bottom: 0;
+  height: 3px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
-
-ul.meniu li:hover > a, ul.meniu li:hover > div {
-  color: var(--background-footer);
+.meniu-principal .meniu-lista .meniu-element .submeniu li a::before {
+  content: "";
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 4px;
+  height: 1px;
+  background: currentColor;
+  transform: scaleX(0);
+  transition: transform 0.3s ease 0.1s;
 }
-
-ul.meniu a, ul.meniu li {
-  position: relative;
-  color: var(--gri-inchis);
-  text-decoration: none;
-  transition: all 0.5s linear;
+.meniu-principal .meniu-lista .meniu-element .submeniu li a:hover {
+  background-color: var(--color-light);
+  transform: none;
+}
+.meniu-principal .meniu-lista .meniu-element .submeniu li a:hover::after, .meniu-principal .meniu-lista .meniu-element .submeniu li a:hover::before {
+  transform: scaleX(1);
+}
+.meniu-principal .meniu-lista .meniu-element:hover .submeniu {
   display: block;
-  height: 100%;
-  cursor: pointer;
-  z-index: 1;
+  animation: fadeInDown 0.3s ease-in-out;
+}
+
+/* Home link cu icon */
+.home-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.home-link i {
+  font-size: 1.1rem;
+}
+
+/* Ascunde butonul hamburger pe ecrane mari */
+#hamburgerLabel {
+  display: none;
+}
+
+#hamburgerToggle {
+  display: none;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
