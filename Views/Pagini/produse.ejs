@@ -29,6 +29,8 @@
 <head>
     <%- include("../fragmente/head") %>
     <link rel="stylesheet" href="/resurse/css/produse.css">
+    <link rel="stylesheet" href="/resurse/css/general.css">
+    <link rel="stylesheet" href="/resurse/css/produs.css">
     <script src="/resurse/js/produse.js" defer></script>
 </head>
 <body>
@@ -164,8 +166,8 @@
                     <h3><%= produs.nume %></h3>
                     <div class="produs-content">
                         <div class="produs-imagine">
-                            <img src="<%= produs.imagine %>" alt="<%= produs.nume %>">
-                            <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.categorie) %></p>
+                            <img src="/resurse/imagini/produse/<%= produs.imagine %>" alt="<%= produs.nume %>">
+                            <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.bucatarie) %></p>
                             <p class="produs-pret">Preț: <%= produs.pret %> lei</p>
                         </div>
                         <div class="produs-detalii">

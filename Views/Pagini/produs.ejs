@@ -23,6 +23,8 @@
 <head>
     <%- include("../fragmente/head") %>
     <link rel="stylesheet" href="/resurse/css/produs.css">
+    <link rel="stylesheet" href="/resurse/css/produse.css">
+    <link rel="stylesheet" href="/resurse/css/general.css">
 </head>
 <body>
     <%- include("../fragmente/header") %>
@@ -32,41 +34,41 @@
             
             <div class="produs-container">
                 <div class="produs-imagine-container">
-                    <img src="/<%= produs.imagine %>" alt="<%= produs.nume %>">
+                    <img src="/resurse/imagini/produse/<%= produs.imagine %>" alt="<%= produs.nume %>">
                     <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.categorie) %></p>
                     <p class="produs-pret">Preț: <%= produs.pret %> lei</p>
                 </div>
                 
-                <div class="produs-info">
-                    <h2>Detalii produs</h2>
-                    <dl>
-                        <dt>Categorie:</dt>
-                        <dd><%= formatareDenumireCategorie(produs.categorie) %></dd>
-                        
-                        <dt>Subcategorie:</dt>
-                        <dd><%= produs.subcategorie ? formatareDenumireCategorie(produs.subcategorie) : "Nespecificat" %></dd>
-                        
-                        <dt>Tip bucătărie:</dt>
-                        <dd><%= produs.tip_bucatarie || "Nespecificat" %></dd>
-                        
-                        <dt>Ingrediente:</dt>
-                        <dd><%= Array.isArray(produs.ingrediente) ? produs.ingrediente.join(', ') : (produs.ingrediente || "Nespecificate") %></dd>
-                        
-                        <dt>Timp de preparare:</dt>
-                        <dd><%= produs.timp_preparare ? `${produs.timp_preparare} minute` : "Nespecificat" %></dd>
-                        
-                        <dt>Data adăugării în meniu:</dt>
-                        <dd><time datetime="<%= produs.data_adaugare %>"><%= formatareData(produs.data_adaugare) %></time></dd>
-                        
-                        <dt>Preparat vegetarian:</dt>
-                        <dd><%= produs.vegetarian ? 'Da' : 'Nu' %></dd>
-                    </dl>
-                    
-                    <h2>Descriere</h2>
-                    <p class="produs-descriere"><%= produs.descriere %></p>
-                    
-                    <a href="/produse" class="buton-inapoi">Înapoi la produse</a>
-                </div>
+            <div class="produs-info">
+    <h2>Detalii produs</h2>
+    <dl>
+        <dt>Categorie:</dt>
+        <dd><%= formatareDenumireCategorie(produs.tip_fel) %></dd>
+        
+        <dt>Subcategorie:</dt>
+        <dd><%= produs.tip_fel === 'traditional' ? 'Preparat tradițional' : formatareDenumireCategorie(produs.tip_fel) %></dd>
+        
+        <dt>Tip bucătărie:</dt>
+        <dd><%= formatareDenumireCategorie(produs.bucatarie) || "Nespecificat" %></dd>
+        
+        <dt>Ingrediente:</dt>
+        <dd><%= Array.isArray(produs.ingrediente) ? produs.ingrediente.join(', ') : (produs.ingrediente || "Nespecificate") %></dd>
+        
+        <dt>Timp de preparare:</dt>
+        <dd><%= produs.timp_preparare ? `${produs.timp_preparare} minute` : "Nespecificat" %></dd>
+        
+        <dt>Data adăugării în meniu:</dt>
+        <dd><time datetime="<%= produs.data_adaugare %>"><%= formatareData(produs.data_adaugare) %></time></dd>
+        
+        <dt>Preparat vegetarian:</dt>
+        <dd><%= produs.vegetarian ? 'Da' : 'Nu' %></dd>
+    </dl>
+    
+    <h2>Descriere</h2>
+    <p class="produs-descriere"><%= produs.descriere %></p>
+    
+    <a href="/produse" class="buton-inapoi">Înapoi la produse</a>
+</div>
             </div>
         </article>
     </main>

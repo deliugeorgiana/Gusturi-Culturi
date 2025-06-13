@@ -21,25 +21,25 @@ client=new Client({
 client.connect()
     .then(() => {
         console.log("Connected to PostgreSQL");
-        return client.query("select * from produse");
+        return client.query("SELECT * FROM feluri_mancare"); // modificat din "produse"
     })
     .then(rezultat => {
         console.log("Rezultat query:", rezultat.rows);
-        return client.query("select * from unnest(enum_range(null::categorie_mare))");
+        return client.query("SELECT * FROM unnest(enum_range(null::tip_bucatarie))"); // modificat din "categorie_mare"
     })
     .then(rezultat => {
         console.log(rezultat.rows);
     })
     .catch(err => {
         console.error("Database error:", err);
-        // Consider exiting if DB connection is critical
-        // process.exit(1);
     });
-client.query("select * from produse", function (err, rezultat) {
+
+// Modifică și celelalte verificări
+client.query("SELECT * FROM feluri_mancare", function (err, rezultat) {
     console.log(err)
     console.log("Rezultat query:", rezultat)
 })
-client.query("select * from unnest(enum_range(null::categorie_mare))", function (err, rezultat) {
+client.query("SELECT * FROM unnest(enum_range(null::tip_bucatarie))", function (err, rezultat) {
     console.log(err)
     console.log(rezultat)
 })
@@ -244,16 +244,16 @@ app.get("/pagina_galerie", function (req, res) {
     res.render("pagini/pagina_galerie", { ip: req.ip, imagini: obGlobal.obImagini.imagini });
 })
 
-// Rută pentru toate produsele
+
 app.get("/produse", function(req, res) {
     let conditieWhere = "";
     const categorie = req.query.categorie;
     
     if (categorie && categorie !== "toate") {
-        conditieWhere = ` WHERE categorie='${categorie}'`;
+        conditieWhere = ` WHERE bucatarie='${categorie}'`; // modificat din "categorie"
     }
     
-    const queryText = `SELECT * FROM produse${conditieWhere} ORDER BY id`;
+    const queryText = `SELECT * FROM feluri_mancare${conditieWhere} ORDER BY id`; // modificat din "produse"
     
     client.query(queryText, function(err, rezultat) {
         if (err) {
@@ -262,7 +262,7 @@ app.get("/produse", function(req, res) {
             return;
         }
         
-        client.query("SELECT unnest(enum_range(NULL::categorie_mare)) as categorie", function(errCategorii, rezCategorii) {
+        client.query("SELECT unnest(enum_range(NULL::tip_bucatarie)) as categorie", function(errCategorii, rezCategorii) { // modificat din "categorie_mare"
             if (errCategorii) {
                 console.error(errCategorii);
                 afisareEroare(res, 500);
@@ -280,7 +280,6 @@ app.get("/produse", function(req, res) {
     });
 });
 
-// Rută pentru pagina unui produs specific
 app.get("/produs/:id", function(req, res) {
     const idProdus = parseInt(req.params.id);
     
@@ -289,7 +288,7 @@ app.get("/produs/:id", function(req, res) {
         return;
     }
     
-    client.query("SELECT * FROM produse WHERE id = $1", [idProdus], function(err, rezultat) {
+    client.query("SELECT * FROM feluri_mancare WHERE id = $1", [idProdus], function(err, rezultat) { // modificat din "produse"
         if (err) {
             console.error(err);
             afisareEroare(res, 500);
@@ -307,12 +306,11 @@ app.get("/produs/:id", function(req, res) {
     });
 });
 
-// Middleware pentru a trimite categoriile la toate template-urile
 app.use(function(req, res, next) {
-    client.query("SELECT unnest(enum_range(NULL::categorie_mare)) as categorie", function(errCategorii, rezCategorii) {
+    client.query("SELECT unnest(enum_range(NULL::tip_bucatarie)) as categorie", function(errCategorii, rezCategorii) { // modificat din "categorie_mare"
         if (errCategorii) {
             console.error(errCategorii);
-            next(); // Continuă chiar dacă există o eroare
+            next();
             return;
         }
         
