@@ -1,0 +1,132 @@
+@media screen and (max-width: 768px) {
+  .container {
+    padding-left: var(--padding-small);
+    padding-right: var(--padding-small);
+  }
+  html {
+    font-size: 12px;
+  }
+  h1 {
+    font-size: 1.1rem;
+    padding-left: 45%;
+  }
+  h2 {
+    font-size: 0.9rem;
+  }
+  header {
+    max-width: 95%;
+    margin: 0 auto;
+  }
+  #grid-pagina {
+    display: block;
+    gap: 5px;
+  }
+  main {
+    padding: 0;
+    margin: 0;
+  }
+  .container-tabel {
+    overflow-x: scroll;
+  }
+  .contaier-iframe {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
+  #taburi-iframe {
+    display: flex;
+    justify-content: center;
+  }
+  #taburi-iframe > a {
+    border-radius: 8px;
+    margin-right: 3px;
+  }
+  #buton-acasa {
+    padding-bottom: 5px;
+  }
+  #hamburger-fa {
+    display: block;
+    margin: 0 auto;
+    padding-top: 5.5px;
+    padding-bottom: 1em;
+    padding-left: 50%;
+  }
+  #hamburger {
+    display: block;
+    margin: 0 auto;
+    width: 100%;
+    height: 0;
+    padding-bottom: 10px;
+  }
+  #hamburger::after {
+    content: "";
+    width: 100%;
+    height: 50%;
+    left: 0;
+    top: 0;
+  }
+  #hamburger:hover nav {
+    display: flex;
+    flex-direction: column;
+    animation-name: animatie_submeniu;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  nav {
+    display: none;
+    text-align: center;
+  }
+  nav ul {
+    display: block;
+  }
+  nav ul .buton-meniu {
+    position: relative;
+  }
+  nav ul .buton-meniu ul {
+    display: none;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    z-index: 10;
+    background-color: var(--culoare-neagra);
+    width: 100%;
+  }
+  nav ul .buton-meniu:hover ul {
+    display: block;
+  }
+  nav ul li {
+    margin-bottom: 0;
+    background-color: var(--culoare-neagra);
+  }
+  @keyframes animatie_submeniu {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 50%, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0% 0%, 100% 0%, 125% 50%, 100% 100%, 0% 100%);
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  #hamburgerLabel .hamburger-line:nth-child(1) {
+    animation: hamburgerAppear 0.6s ease-out 0s forwards;
+  }
+  #hamburgerLabel .hamburger-line:nth-child(2) {
+    animation: hamburgerAppear 0.6s ease-out 0.1s forwards;
+  }
+  #hamburgerLabel .hamburger-line:nth-child(3) {
+    animation: hamburgerAppear 0.6s ease-out 0.2s forwards;
+  }
+  #hamburgerToggle:checked ~ #hamburgerLabel .hamburger-line:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+  }
+  #hamburgerToggle:checked ~ #hamburgerLabel .hamburger-line:nth-child(2) {
+    opacity: 0;
+  }
+  #hamburgerToggle:checked ~ #hamburgerLabel .hamburger-line:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+  }
+}
