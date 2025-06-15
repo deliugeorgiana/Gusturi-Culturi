@@ -400,6 +400,96 @@ app.get("/*.ejs", function(req, res) {
     afisareEroare(res, 400);
 });
 
+app.get("/comparare/:id1/:id2", function(req, res) {
+    // Extrage și validează parametrii
+    const id1 = parseInt(req.params.id1);
+    const id2 = parseInt(req.params.id2);
+    
+    console.log("Cerere comparare produse - ID-uri primite:", id1, id2);
+
+    // Validează ID-urile
+    if (isNaN(id1) || isNaN(id2)) {
+        console.error("ID-uri invalide:", req.params.id1, req.params.id2);
+        afisareEroare(res, 400);
+        return;
+    }
+    
+    // Verifică dacă fișierul template există
+    try {
+        const templatePath = path.join(__dirname, 'views', 'pagini', 'comparare.ejs');
+        if (!fs.existsSync(templatePath)) {
+            console.error("Template-ul nu există:", templatePath);
+            afisareEroare(res, 500, "Eroare de configurare", "Template-ul pentru comparare nu a fost găsit");
+            return;
+        }
+        console.log("Template-ul există:", templatePath);
+    } catch (err) {
+        console.error("Eroare la verificarea template-ului:", err);
+    }
+    
+    // Interogarea bazei de date
+    client.query("SELECT * FROM feluri_mancare WHERE id = $1 OR id = $2", 
+    [id1, id2], 
+    function(err, rezultat) {
+        if (err) {
+            console.error("Eroare SQL:", err);
+            afisareEroare(res, 500);
+            return;
+        }
+        
+        // Verifică dacă s-au găsit ambele produse
+        console.log("Produse găsite:", rezultat.rowCount, "- ID-uri:", rezultat.rows.map(p => p.id));
+        
+        if (rezultat.rowCount != 2) {
+            console.error("Produse negăsite sau număr incorect:", rezultat.rowCount);
+            afisareEroare(res, 404);
+            return;
+        }
+        
+        try {
+            // Funcție helper pentru formatare categorii
+            function formatareDenumireCategorie(categorie) {
+                if (!categorie) return "Necategorizat";
+                
+                const traduceri = {
+                    "romaneasca": "Românească",
+                    "ruseasca": "Rusească",
+                    "italiana": "Italiană",
+                    "franceza": "Franceză",
+                    "chinezeasca": "Chinezească",
+                    "mediteraneana": "Mediteraneană",
+                    "americana": "Americană",
+                    "fel_principal": "Fel principal",
+                    "aperitiv": "Aperitiv",
+                    "desert": "Desert",
+                    "traditional": "Tradițional",
+                    "street_food": "Street food",
+                    "garnitura": "Garnitură",
+                    "festiv": "Festiv"
+                };
+                
+                return traduceri[categorie] || categorie.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+            }
+            
+            // Ordonează rezultatele pentru a avea produsele în ordinea id1, id2
+            let produseOrdonat = [...rezultat.rows];
+            if (produseOrdonat.length > 1 && produseOrdonat[0].id !== id1) {
+                [produseOrdonat[0], produseOrdonat[1]] = [produseOrdonat[1], produseOrdonat[0]];
+            }
+            
+            // Afișează template-ul
+            console.log("Randare template comparare cu produsele:", produseOrdonat.map(p => p.nume));
+            res.render("pagini/comparare", {
+                produse: produseOrdonat,
+                formatareDenumireCategorie: formatareDenumireCategorie
+            });
+        } catch (err) {
+            console.error("Eroare la pregătirea datelor pentru template:", err);
+            afisareEroare(res, 500);
+        }
+    });
+});
+
 
 app.get("/*", function(req, res) {
     try {
@@ -569,6 +659,8 @@ console.log(`Număr de imagini potrivite: ${imaginiPotrivite.length}`);
     const numarImagini = Math.floor(imaginiPotrivite.length / 2) * 2;
     return imaginiPotrivite.slice(0, numarImagini);
 }
+
+
 
 
 

@@ -1,0 +1,103 @@
+#container-comparare {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background-color: #f3c9c9;
+    border: 1px solid #c18d8d;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#container-comparare.hidden {
+    display: none;
+}
+
+.comparare-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+
+.comparare-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+#btn-close-comparare {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.produs-comparare {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    background-color: #a86565;
+}
+
+.produs-comparare button {
+    background: none;
+    border: none;
+    color: #dc3545;
+    cursor: pointer;
+}
+
+.comparare-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#btn-afiseaza-comparare {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#btn-afiseaza-comparare:disabled {
+    background-color: #acacac;
+    cursor: not-allowed;
+}
+
+.btn-compara {
+    background-color: #007bff;
+    color: rgb(224, 184, 184);
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-compara:disabled {
+    background-color: #acacac;
+    cursor: not-allowed;
+}
+
+#btn-reset-comparare {
+    transition: all 0.3s;
+    margin-left: 10px;
+}
+
+#btn-reset-comparare:disabled {
+    opacity: 0.5;
+}
+
+.btn-comparare {
+    cursor: pointer;
+}
