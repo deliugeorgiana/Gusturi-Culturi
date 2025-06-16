@@ -7,14 +7,52 @@
        
         <%- include("../fragmente/head.ejs") %>
         <link rel="stylesheet" href="./resurse/css/general.css">
+        <script src="./resurse/js/oferta.js" defer></script>
     </head>
     <body>
 
     <%- include("../fragmente/header.ejs") %>
 
     <main>
-        
-       
+        <% function formatareDenumireCategorie(categorie) {
+    if (!categorie) return "Necategorizat";
+
+    const traduceri = {
+        "romaneasca": "Românească",
+        "ruseasca": "Rusească",
+        "italiana": "Italiană",
+        "franceza": "Franceză",
+        "chinezeasca": "Chinezească",
+        "mediteraneana": "Mediteraneană",
+        "americana": "Americană"
+    };
+    
+    return traduceri[categorie] || categorie.charAt(0).toUpperCase() + categorie.slice(1);
+}
+%>
+       <% if (locals.oferta) { %>
+<div class="container my-4">
+    <div class="alert alert-warning oferta-container">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h4><i class="bi bi-tags"></i> Oferta zilei!</h4>
+                <p>
+                    <strong><%= formatareDenumireCategorie(oferta.categorie) %>:</strong> 
+                    Reducere <span class="badge bg-danger"><%= oferta.reducere %>%</span> 
+                    la toate produsele din această categorie!
+                </p>
+            </div>
+            <div class="col-md-4 text-center">
+                <p class="mb-0">Oferta expiră în:</p>
+                <div id="oferta-timer" class="oferta-timer" data-end="<%= oferta['data-finalizare'] %>">
+                    00:00:00
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>
+
 <section id="acasa">
             <h2>Bun venit la Gusturi&Culturi</h2>
             <div id="reflexie">Gusturi & Culturi</div>
@@ -447,7 +485,66 @@
         
 
     </main>
+   
+
+<% if (locals.oferta) { %>
+<script>
+// Funcție pentru actualizarea temporizatorului ofertei
+function actualizeazaTimer() {
+    const timerElement = document.getElementById('oferta-timer');
+    if (!timerElement) return;
     
+    const dataExpirare = new Date(timerElement.dataset.end);
+    const acum = new Date();
+    
+    // Diferența de timp în milisecunde
+    let diferenta = dataExpirare - acum;
+    
+    if (diferenta <= 0) {
+        // Oferta a expirat, reîncărcăm pagina
+        timerElement.textContent = "Ofertă expirată";
+        setTimeout(() => location.reload(), 1000);
+        return;
+    }
+    
+    // Calculăm ore, minute, secunde
+    const ore = Math.floor(diferenta / (1000 * 60 * 60));
+    diferenta -= ore * (1000 * 60 * 60);
+    
+    const minute = Math.floor(diferenta / (1000 * 60));
+    diferenta -= minute * (1000 * 60);
+    
+    const secunde = Math.floor(diferenta / 1000);
+    
+    // Formatăm timpul
+    const timeString = `${ore.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}:${secunde.toString().padStart(2, '0')}`;
+    
+    // Verifică dacă suntem în ultimele 10 secunde
+    if (ore === 0 && minute === 0 && secunde <= 10) {
+        timerElement.classList.add('ultimele-secunde');
+        
+        // Adaugă efectul sonor pentru secunda 10
+        if (!document.getElementById('sunet-alerta') && secunde === 10) {
+            const sunet = document.createElement('audio');
+            sunet.id = 'sunet-alerta';
+            sunet.src = '/resurse/sunete/alerta.mp3';
+            sunet.volume = 0.3;
+            document.body.appendChild(sunet);
+            sunet.play();
+        }
+    } else {
+        timerElement.classList.remove('ultimele-secunde');
+    }
+    
+    timerElement.textContent = timeString;
+}
+
+// Actualizează la fiecare secundă
+setInterval(actualizeazaTimer, 1000);
+actualizeazaTimer(); // Prima actualizare
+</script>
+<% } %>
+
     <%- include("../fragmente/footer.ejs") %>
     </body>
 </html>

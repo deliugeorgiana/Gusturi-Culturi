@@ -782,6 +782,51 @@ h3:contains("Descoperă")::before {
     }
 }
 
+/* Stiluri pentru containerul ofertei */
+.oferta-container {
+    border: 2px dashed #ff8800;
+    background-color: #fff9e6;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Stiluri pentru timer */
+.oferta-timer {
+    font-size: 1.8rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    background-color: #343a40;
+    color: white;
+    border-radius: 6px;
+    display: inline-block;
+    min-width: 120px;
+}
+
+/* Stiluri pentru ultimele 10 secunde */
+.ultimele-secunde {
+    color: #ff3333;
+    animation: pulsare 0.5s infinite alternate;
+    background-color: #ffdddd;
+}
+
+@keyframes pulsare {
+    from { transform: scale(1); }
+    to { transform: scale(1.05); }
+}
+
+/* Stiluri pentru prețurile reduse */
+
+
+.pret-original {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 8px;
+}
+
+.pret-redus {
+    font-weight: bold;
+    color: #d9534f;
+}
 @media screen and (max-width:800px){
     html{
         font-size: 12.5px;

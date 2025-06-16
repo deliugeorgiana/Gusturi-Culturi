@@ -1,31 +1,35 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const sharp= require("sharp");
-const router= express.Router();
-const sass= require("sass");
-const pg=require("pg");
+const sharp = require("sharp");
+const router = express.Router();
+const sass = require("sass");
+const pg = require("pg");
 
+// Importă modulul de oferte
+const sistemOferte = require('./resurse/js/oferta');
 
-
-const Client=pg.Client;
-client=new Client({
-    database:"gusturiculturi",
-    user:"postgres",
-    password:"tehniciweb",
-    host:"localhost",
-    port:5432
-})
-
+const Client = pg.Client;
+client = new Client({
+    database: "gusturiculturi",
+    user: "postgres",
+    password: "tehniciweb",
+    host: "localhost",
+    port: 5432
+});
 
 client.connect()
     .then(() => {
         console.log("Connected to PostgreSQL");
-        return client.query("SELECT * FROM feluri_mancare"); // modificat din "produse"
+        
+        // Inițializează sistemul de oferte după conectare la baza de date
+        sistemOferte.initializeazaSistemOferte(client);
+        
+        return client.query("SELECT * FROM feluri_mancare");
     })
     .then(rezultat => {
         console.log("Rezultat query:", rezultat.rows);
-        return client.query("SELECT * FROM unnest(enum_range(null::tip_bucatarie))"); // modificat din "categorie_mare"
+        return client.query("SELECT * FROM unnest(enum_range(null::tip_bucatarie))");
     })
     .then(rezultat => {
         console.log(rezultat.rows);
@@ -44,7 +48,7 @@ client.query("SELECT * FROM unnest(enum_range(null::tip_bucatarie))", function (
     console.log(rezultat)
 })
 
-app=express();
+app = express();
 
 v = [10, 27, 23, 44, 15]
 
@@ -60,18 +64,18 @@ console.log("Folderul curent de lucru: ", process.cwd());
 // Change this to ejs instead of js
 app.set("view engine", "ejs");
 
-obGlobal={
-    obErori:null,
-    obImagini:null,
-    folderScss: path.join(__dirname,"resurse/scss"),
-    folderCss: path.join(__dirname,"resurse/css"),
-    folderBackup: path.join(__dirname,"backup")
+obGlobal = {
+    obErori: null,
+    obImagini: null,
+    folderScss: path.join(__dirname, "resurse/scss"),
+    folderCss: path.join(__dirname, "resurse/css"),
+    folderBackup: path.join(__dirname, "backup")
 }
 
 
 function toRoman(num) {
     const romanNumerals = {
-        1: 'i', 2: 'ii', 3: 'iii', 4: 'iv', 5: 'v', 
+        1: 'i', 2: 'ii', 3: 'iii', 4: 'iv', 5: 'v',
         6: 'vi', 7: 'vii', 8: 'viii', 9: 'ix', 10: 'x',
         11: 'xi', 12: 'xii', 13: 'xiii', 14: 'xiv', 15: 'xv'
     };
@@ -84,12 +88,12 @@ app.use((req, res, next) => {
     next();
 });
 
-function compileazaScss(caleScss, caleCss){
+function compileazaScss(caleScss, caleCss) {
     console.log("cale:", caleCss);
-    if(!caleCss){
-        let numeFisExt = path.basename(caleScss); // "folder1/folder2/ceva.txt" -> "ceva.txt"
-        let numeFis = numeFisExt.split(".")[0]; // "a.scss" -> ["a","scss"]
-        caleCss = numeFis + ".css"; // output: a.css
+    if (!caleCss) {
+        let numeFisExt = path.basename(caleScss);
+        let numeFis = numeFisExt.split(".")[0];
+        caleCss = numeFis + ".css";
     }
 
     if (!path.isAbsolute(caleScss))
@@ -99,7 +103,7 @@ function compileazaScss(caleScss, caleCss){
 
     let caleBackup = path.join(obGlobal.folderBackup, "resurse/css");
     if (!fs.existsSync(caleBackup)) {
-        fs.mkdirSync(caleBackup, {recursive: true});
+        fs.mkdirSync(caleBackup, { recursive: true });
     }
 
     let numeFisCss = path.basename(caleCss);
@@ -111,24 +115,24 @@ function compileazaScss(caleScss, caleCss){
         fs.copyFileSync(caleCss, path.join(caleBackup, numeFisCssBackup));
     }
 
-    let rez = sass.compile(caleScss, {"sourceMap": true});
+    let rez = sass.compile(caleScss, { "sourceMap": true });
     fs.writeFileSync(caleCss, rez.css);
 }
 
 //la pornirea serverului
-vFisiere=fs.readdirSync(obGlobal.folderScss);
-for( let numeFis of vFisiere ){
-    if (path.extname(numeFis)==".scss"){
+vFisiere = fs.readdirSync(obGlobal.folderScss);
+for (let numeFis of vFisiere) {
+    if (path.extname(numeFis) == ".scss") {
         compileazaScss(numeFis);
     }
 }
 
 
-fs.watch(obGlobal.folderScss, function(eveniment, numeFis){
+fs.watch(obGlobal.folderScss, function (eveniment, numeFis) {
     console.log(eveniment, numeFis);
-    if (eveniment=="change" || eveniment=="rename"){
-        let caleCompleta=path.join(obGlobal.folderScss, numeFis);
-        if (fs.existsSync(caleCompleta)){
+    if (eveniment == "change" || eveniment == "rename") {
+        let caleCompleta = path.join(obGlobal.folderScss, numeFis);
+        if (fs.existsSync(caleCompleta)) {
             compileazaScss(caleCompleta);
         }
     }
@@ -140,7 +144,7 @@ function initErori() {
     console.log(continut);
     obGlobal.obErori = JSON.parse(continut);
     console.log(obGlobal.obErori);
-    
+
     obGlobal.obErori.eroare_default.imagine = path.join(obGlobal.obErori.cale_baza, obGlobal.obErori.eroare_default.imagine);
     for (let eroare of obGlobal.obErori.info_erori) {
         eroare.imagine = path.join(obGlobal.obErori.cale_baza, eroare.imagine);
@@ -153,7 +157,7 @@ initErori();
 async function initImagini() {
     try {
         console.log("Starting image initialization...");
-        
+
         // 1. Load and parse the gallery JSON file
         const galeriePath = path.join(__dirname, "resurse/json/galerie.json");
         if (!fs.existsSync(galeriePath)) {
@@ -162,7 +166,7 @@ async function initImagini() {
 
         const fileContent = fs.readFileSync(galeriePath, "utf-8");
         const galleryData = JSON.parse(fileContent);
-        
+
         // 2. Validate the JSON structure
         if (!galleryData?.cale_galerie || !Array.isArray(galleryData?.imagini)) {
             throw new Error("Invalid gallery JSON structure");
@@ -229,7 +233,7 @@ async function initImagini() {
 
     } catch (error) {
         console.error("CRITICAL ERROR in initImagini:", error);
-        
+
         // Provide fallback empty structure
         obGlobal.obImagini = {
             cale_galerie: "resurse/imagini/galerie",
@@ -245,87 +249,97 @@ app.get("/pagina_galerie", function (req, res) {
 })
 
 
-app.get("/produse", function(req, res) {
+app.get("/produse", function (req, res) {
     let conditieWhere = "";
     const categorie = req.query.categorie;
-    
+
     if (categorie && categorie !== "toate") {
-        conditieWhere = ` WHERE bucatarie='${categorie}'`; // modificat din "categorie"
+        conditieWhere = ` WHERE bucatarie='${categorie}'`;
     }
-    
-    const queryText = `SELECT * FROM feluri_mancare${conditieWhere} ORDER BY id`; // modificat din "produse"
-    
-    client.query(queryText, function(err, rezultat) {
+
+    const queryText = `SELECT * FROM feluri_mancare${conditieWhere} ORDER BY id`;
+
+    // Obține oferta curentă
+    const ofertaCurenta = sistemOferte.getOfertaCurenta();
+
+    // O singură interogare și un singur render
+    client.query(queryText, function (err, rezultat) {
         if (err) {
             console.error(err);
             afisareEroare(res, 500);
             return;
         }
-        
-        client.query("SELECT unnest(enum_range(NULL::tip_bucatarie)) as categorie", function(errCategorii, rezCategorii) { // modificat din "categorie_mare"
+
+        client.query("SELECT unnest(enum_range(NULL::tip_bucatarie)) as categorie", function (errCategorii, rezCategorii) {
             if (errCategorii) {
                 console.error(errCategorii);
                 afisareEroare(res, 500);
                 return;
             }
-            
+
             const categorii = rezCategorii.rows.map(row => row.categorie);
-            
+
+            // Un singur render cu toate datele necesare
             res.render("pagini/produse", {
                 produse: rezultat.rows,
                 categorii: categorii,
-                categorie_selectata: categorie || "toate"
+                categorie_selectata: categorie || "toate",
+                oferta: ofertaCurenta
             });
         });
     });
 });
 
-app.get("/produs/:id", function(req, res) {
+app.get("/produs/:id", function (req, res) {
     const idProdus = parseInt(req.params.id);
-    
+
     if (isNaN(idProdus)) {
         afisareEroare(res, 400);
         return;
     }
-    
-    client.query("SELECT * FROM feluri_mancare WHERE id = $1", [idProdus], function(err, rezultat) { // modificat din "produse"
+
+    // Obține oferta curentă pentru a o afișa și pe pagina produsului
+    const ofertaCurenta = sistemOferte.getOfertaCurenta();
+
+    client.query("SELECT * FROM feluri_mancare WHERE id = $1", [idProdus], function (err, rezultat) {
         if (err) {
             console.error(err);
             afisareEroare(res, 500);
             return;
         }
-        
+
         if (rezultat.rowCount === 0) {
             afisareEroare(res, 404);
             return;
         }
-        
+
         res.render("pagini/produs", {
-            produs: rezultat.rows[0]
+            produs: rezultat.rows[0],
+            oferta: ofertaCurenta
         });
     });
 });
 
-app.use(function(req, res, next) {
-    client.query("SELECT unnest(enum_range(NULL::tip_bucatarie)) as categorie", function(errCategorii, rezCategorii) { // modificat din "categorie_mare"
+app.use(function (req, res, next) {
+    client.query("SELECT unnest(enum_range(NULL::tip_bucatarie)) as categorie", function (errCategorii, rezCategorii) {
         if (errCategorii) {
             console.error(errCategorii);
             next();
             return;
         }
-        
+
         res.locals.categorii = rezCategorii.rows.map(row => row.categorie);
         next();
     });
 });
 
 function afisareEroare(res, identificator, titlu, text, imagine) {
-    let eroare = obGlobal.obErori.info_erori.find(function(elem) { 
+    let eroare = obGlobal.obErori.info_erori.find(function (elem) {
         return elem.identificator == identificator;
     });
-    
+
     let titluCustom, textCustom, imagineCustom;
-    
+
     if (eroare) {
         if (eroare.status)
             res.status(identificator);
@@ -338,7 +352,7 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
         textCustom = text || err.text;
         imagineCustom = imagine || err.imagine;
     }
-    
+
     return res.render("pagini/eroare", {
         identificator: identificator,
         titlu: titluCustom,
@@ -347,7 +361,7 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
     });
 }
 
-app.use("/resurse", function(req, res, next) {
+app.use("/resurse", function (req, res, next) {
     let caleFisier = path.join(__dirname, "resurse", req.url);
     if (fs.existsSync(caleFisier) && fs.lstatSync(caleFisier).isDirectory()) {
         return afisareEroare(res, 403);
@@ -361,9 +375,6 @@ app.use("/resurse", express.static(path.join(__dirname, "resurse"), {
     fallthrough: true
 }));
 
-
-
-
 const faviconDir = path.join(__dirname, "resurse/ico/favicon");
 if (!fs.existsSync(faviconDir)) {
     fs.mkdirSync(faviconDir, { recursive: true });
@@ -373,38 +384,37 @@ if (!fs.existsSync(faviconDir)) {
 const faviconPath = path.join(faviconDir, "favicon.ico");
 if (!fs.existsSync(faviconPath)) {
     fs.copyFileSync(
-        path.join(__dirname, "resurse/imagini/favicon/favicon-96x96.png"), 
+        path.join(__dirname, "resurse/imagini/favicon/favicon-96x96.png"),
         faviconPath
     );
     console.log("Favicon generat cu succes");
 }
 
-app.get("/favicon.ico", function(req, res) {
+app.get("/favicon.ico", function (req, res) {
     res.sendFile(faviconPath);
 });
 
-app.get("/index/a", function(req, res) {
+app.get("/index/a", function (req, res) {
     res.render("pagini/index");
 });
 
-app.get("/cerere", function(req, res) {
+app.get("/cerere", function (req, res) {
     res.send("<p style='color:blue'>Buna ziua</p>");
 });
 
-app.get("/fisier", function(req, res) {
-    // Changed sendfile to sendFile (capital F is the correct method name)
+app.get("/fisier", function (req, res) {
     res.sendFile(path.join(__dirname, "package.json"));
 });
 
-app.get("/*.ejs", function(req, res) {
+app.get("/*.ejs", function (req, res) {
     afisareEroare(res, 400);
 });
 
-app.get("/comparare/:id1/:id2", function(req, res) {
+app.get("/comparare/:id1/:id2", function (req, res) {
     // Extrage și validează parametrii
     const id1 = parseInt(req.params.id1);
     const id2 = parseInt(req.params.id2);
-    
+
     console.log("Cerere comparare produse - ID-uri primite:", id1, id2);
 
     // Validează ID-urile
@@ -413,7 +423,7 @@ app.get("/comparare/:id1/:id2", function(req, res) {
         afisareEroare(res, 400);
         return;
     }
-    
+
     // Verifică dacă fișierul template există
     try {
         const templatePath = path.join(__dirname, 'views', 'pagini', 'comparare.ejs');
@@ -426,74 +436,133 @@ app.get("/comparare/:id1/:id2", function(req, res) {
     } catch (err) {
         console.error("Eroare la verificarea template-ului:", err);
     }
-    
+
     // Interogarea bazei de date
-    client.query("SELECT * FROM feluri_mancare WHERE id = $1 OR id = $2", 
-    [id1, id2], 
-    function(err, rezultat) {
-        if (err) {
-            console.error("Eroare SQL:", err);
-            afisareEroare(res, 500);
-            return;
-        }
-        
-        // Verifică dacă s-au găsit ambele produse
-        console.log("Produse găsite:", rezultat.rowCount, "- ID-uri:", rezultat.rows.map(p => p.id));
-        
-        if (rezultat.rowCount != 2) {
-            console.error("Produse negăsite sau număr incorect:", rezultat.rowCount);
-            afisareEroare(res, 404);
-            return;
-        }
-        
-        try {
-            // Funcție helper pentru formatare categorii
-            function formatareDenumireCategorie(categorie) {
-                if (!categorie) return "Necategorizat";
-                
-                const traduceri = {
-                    "romaneasca": "Românească",
-                    "ruseasca": "Rusească",
-                    "italiana": "Italiană",
-                    "franceza": "Franceză",
-                    "chinezeasca": "Chinezească",
-                    "mediteraneana": "Mediteraneană",
-                    "americana": "Americană",
-                    "fel_principal": "Fel principal",
-                    "aperitiv": "Aperitiv",
-                    "desert": "Desert",
-                    "traditional": "Tradițional",
-                    "street_food": "Street food",
-                    "garnitura": "Garnitură",
-                    "festiv": "Festiv"
-                };
-                
-                return traduceri[categorie] || categorie.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+    client.query("SELECT * FROM feluri_mancare WHERE id = $1 OR id = $2",
+        [id1, id2],
+        function (err, rezultat) {
+            if (err) {
+                console.error("Eroare SQL:", err);
+                afisareEroare(res, 500);
+                return;
             }
-            
-            // Ordonează rezultatele pentru a avea produsele în ordinea id1, id2
-            let produseOrdonat = [...rezultat.rows];
-            if (produseOrdonat.length > 1 && produseOrdonat[0].id !== id1) {
-                [produseOrdonat[0], produseOrdonat[1]] = [produseOrdonat[1], produseOrdonat[0]];
+
+            // Verifică dacă s-au găsit ambele produse
+            console.log("Produse găsite:", rezultat.rowCount, "- ID-uri:", rezultat.rows.map(p => p.id));
+
+            if (rezultat.rowCount != 2) {
+                console.error("Produse negăsite sau număr incorect:", rezultat.rowCount);
+                afisareEroare(res, 404);
+                return;
             }
-            
-            // Afișează template-ul
-            console.log("Randare template comparare cu produsele:", produseOrdonat.map(p => p.nume));
-            res.render("pagini/comparare", {
-                produse: produseOrdonat,
-                formatareDenumireCategorie: formatareDenumireCategorie
-            });
-        } catch (err) {
-            console.error("Eroare la pregătirea datelor pentru template:", err);
-            afisareEroare(res, 500);
-        }
-    });
+
+            try {
+                // Funcție helper pentru formatare categorii
+                function formatareDenumireCategorie(categorie) {
+    if (!categorie) return "Necategorizat";
+    
+    const traduceri = {
+        "romaneasca": "Românească",
+        "ruseasca": "Rusească",
+        "italiana": "Italiană",
+        "franceza": "Franceză",
+        "chinezeasca": "Chinezească",
+        "mediteraneana": "Mediteraneană",
+        "americana": "Americană",
+        "fel_principal": "Fel principal",
+        "aperitiv": "Aperitiv",
+        "desert": "Desert",
+        "traditional": "Tradițional",
+        "street_food": "Street food",
+        "garnitura": "Garnitură",
+        "festiv": "Festiv"
+    };
+    
+    return traduceri[categorie] || categorie.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+}
+
+                // Ordonează rezultatele pentru a avea produsele în ordinea id1, id2
+                let produseOrdonat = [...rezultat.rows];
+                if (produseOrdonat.length > 1 && produseOrdonat[0].id !== id1) {
+                    [produseOrdonat[0], produseOrdonat[1]] = [produseOrdonat[1], produseOrdonat[0]];
+                }
+
+                // Obține oferta curentă
+                const ofertaCurenta = sistemOferte.getOfertaCurenta();
+
+                // Afișează template-ul
+                console.log("Randare template comparare cu produsele:", produseOrdonat.map(p => p.nume));
+                res.render("pagini/comparare", {
+                    produse: produseOrdonat,
+                    formatareDenumireCategorie: formatareDenumireCategorie,
+                    oferta: ofertaCurenta
+                });
+            } catch (err) {
+                console.error("Eroare la pregătirea datelor pentru template:", err);
+                afisareEroare(res, 500);
+            }
+        });
 });
 
-
-app.get("/*", function(req, res) {
+// Procesare imagini și servire date galerie
+app.get(["/", "/index", "/home"], async (req, res) => {
     try {
-        res.render("pagini" + req.url, function(err, rezultatRandare) {
+        // Încarcă datele din JSON
+        const dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse", "json", "galerie.json")));
+
+        // Procesează imaginile și pregătește datele pentru afișare
+        const imaginiProcesate = await proceseazaImagini(dateGalerie);
+
+        // Obține oferta curentă
+        const ofertaCurenta = sistemOferte.getOfertaCurenta();
+
+        res.render("pagini/index", {
+            ip: req.ip,
+            cale_galerie: dateGalerie.cale_galerie,
+            imaginiGalerie: imaginiProcesate,
+            path: req.url,
+            oferta: ofertaCurenta
+        });
+    } catch (err) {
+        console.error("Eroare la încărcarea galeriei:", err);
+        res.render("pagini/index", {
+            ip: req.ip,
+            path: req.url,
+            error: "Eroare la încărcarea galeriei de imagini."
+        });
+    }
+});
+
+// Adaugă rută pentru pagina dedicată galeriei
+app.get("/galerie", async (req, res) => {
+    try {
+        const dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse", "json", "galerie.json")));
+        const imaginiProcesate = await proceseazaImagini(dateGalerie);
+
+        // Obține oferta curentă
+        const ofertaCurenta = sistemOferte.getOfertaCurenta();
+
+        res.render("pagini/galerie", {
+            ip: req.ip,
+            cale_galerie: dateGalerie.cale_galerie,
+            imaginiGalerie: imaginiProcesate,
+            path: req.url,
+            oferta: ofertaCurenta
+        });
+    } catch (err) {
+        console.error("Eroare la încărcarea galeriei:", err);
+        res.render("pagini/galerie", {
+            ip: req.ip,
+            path: req.url,
+            error: "Eroare la încărcarea galeriei de imagini."
+        });
+    }
+});
+
+// Ruta catch-all - TREBUIE SĂ FIE ULTIMA RUTĂ
+app.get("/*", function (req, res) {
+    try {
+        res.render("pagini" + req.url, function (err, rezultatRandare) {
             if (err) {
                 if (err.message.startsWith("Failed to lookup view")) {
                     afisareEroare(res, 404);
@@ -514,69 +583,9 @@ app.get("/*", function(req, res) {
     }
 });
 
-const vectFoldere = ["temp", "temp1"];
-vectFoldere.forEach(folder => {
-    const caleFolder = path.join(__dirname, folder);
-    if (!fs.existsSync(caleFolder)) {
-        fs.mkdirSync(caleFolder);
-        console.log("Folderul a fost creat.");
-    } else {
-        console.log("Folderul există deja.");
-    }
-});
-
-
-
-// Procesare imagini și servire date galerie
-app.get(["/", "/index", "/home"], async (req, res) => {
-    try {
-        // Încarcă datele din JSON
-        const dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse", "json", "galerie.json")));
-        
-        // Procesează imaginile și pregătește datele pentru afișare
-        const imaginiProcesate = await proceseazaImagini(dateGalerie);
-        
-        res.render("pagini/index", {
-            ip: req.ip,
-            cale_galerie: dateGalerie.cale_galerie,
-            imaginiGalerie: imaginiProcesate,
-            path: req.url
-        });
-    } catch (err) {
-        console.error("Eroare la încărcarea galeriei:", err);
-        res.render("pagini/index", {
-            ip: req.ip,
-            path: req.url,
-            error: "Eroare la încărcarea galeriei de imagini."
-        });
-    }
-});
-
-// Adaugă rută pentru pagina dedicată galeriei
-app.get("/galerie", async (req, res) => {
-    try {
-        const dateGalerie = JSON.parse(fs.readFileSync(path.join(__dirname, "resurse", "json", "galerie.json")));
-        const imaginiProcesate = await proceseazaImagini(dateGalerie);
-        
-        res.render("pagini/galerie", {
-            ip: req.ip,
-            cale_galerie: dateGalerie.cale_galerie,
-            imaginiGalerie: imaginiProcesate,
-            path: req.url
-        });
-    } catch (err) {
-        console.error("Eroare la încărcarea galeriei:", err);
-        res.render("pagini/galerie", {
-            ip: req.ip,
-            path: req.url,
-            error: "Eroare la încărcarea galeriei de imagini."
-        });
-    }
-});
-
 // Funcție pentru procesarea imaginilor și filtrarea după zi
 async function proceseazaImagini(dateGalerie) {
-      
+
     const zileSaptamana = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
     const dataAzi = new Date();
     const ziCurenta = zileSaptamana[dataAzi.getDay()];
@@ -584,21 +593,21 @@ async function proceseazaImagini(dateGalerie) {
     const caleGalerie = path.join(__dirname, dateGalerie.cale_galerie);
 
     const caleMediu = path.join(caleGalerie, "medium");
-    const caleMic = path.join(caleGalerie, "small");    
-    
+    const caleMic = path.join(caleGalerie, "small");
+
     if (!fs.existsSync(caleMediu)) {
         fs.mkdirSync(caleMediu, { recursive: true });
     }
     if (!fs.existsSync(caleMic)) {
         fs.mkdirSync(caleMic, { recursive: true });
     }
-    
+
     // Generează imagini redimensionate
     for (const img of dateGalerie.imagini) {
         const caleFisier = path.join(caleGalerie, img.fisier_imagine);
         const caleMediuImg = path.join(caleMediu, img.fisier_imagine);
         const caleMicImg = path.join(caleMic, img.fisier_imagine);
-        
+
         if (fs.existsSync(caleFisier)) {
             // Creează versiunea de dimensiune medie dacă nu există
             if (!fs.existsSync(caleMediuImg)) {
@@ -607,7 +616,7 @@ async function proceseazaImagini(dateGalerie) {
                     .toFile(caleMediuImg);
                 console.log(`Imagine medie generată: ${img.fisier_imagine}`);
             }
-            
+
             // Creează versiunea de dimensiune mică dacă nu există
             if (!fs.existsSync(caleMicImg)) {
                 await sharp(caleFisier)
@@ -617,26 +626,22 @@ async function proceseazaImagini(dateGalerie) {
             }
         }
     }
-    
- 
-    
+
     console.log(`Ziua curentă: ${ziCurenta}`);
-    
 
     const imaginiPotrivite = dateGalerie.imagini.filter(img => {
-    if (!img.intervale_zile) return false;
-    
-   
-    console.log(`Verificare imagine ${img.fisier_imagine}:`, img.intervale_zile);
-        
+        if (!img.intervale_zile) return false;
+
+        console.log(`Verificare imagine ${img.fisier_imagine}:`, img.intervale_zile);
+
         return img.intervale_zile.some(interval => {
             const ziStart = interval[0];
             const ziSfarsit = interval[1];
-            
+
             const indexZiStart = zileSaptamana.indexOf(ziStart);
             const indexZiSfarsit = zileSaptamana.indexOf(ziSfarsit);
             const indexZiCurenta = zileSaptamana.indexOf(ziCurenta);
-            
+
             // Verifică dacă ziua curentă este în interval
             if (indexZiStart <= indexZiSfarsit) {
                 return indexZiCurenta >= indexZiStart && indexZiCurenta <= indexZiSfarsit;
@@ -646,10 +651,9 @@ async function proceseazaImagini(dateGalerie) {
             }
         });
     });
-// La sfârșitul funcției, chiar înainte de return:
-console.log(`Ziua curentă este: ${ziCurenta}`);
-console.log(`Număr de imagini potrivite: ${imaginiPotrivite.length}`);
-
+    // La sfârșitul funcției, chiar înainte de return:
+    console.log(`Ziua curentă este: ${ziCurenta}`);
+    console.log(`Număr de imagini potrivite: ${imaginiPotrivite.length}`);
 
     if (imaginiPotrivite.length === 0) {
         console.log("Nu s-au găsit imagini pentru ziua curentă! Afișăm toate imaginile.");
@@ -660,9 +664,16 @@ console.log(`Număr de imagini potrivite: ${imaginiPotrivite.length}`);
     return imaginiPotrivite.slice(0, numarImagini);
 }
 
-
-
-
+const vectFoldere = ["temp", "temp1"];
+vectFoldere.forEach(folder => {
+    const caleFolder = path.join(__dirname, folder);
+    if (!fs.existsSync(caleFolder)) {
+        fs.mkdirSync(caleFolder);
+        console.log("Folderul a fost creat.");
+    } else {
+        console.log("Folderul există deja.");
+    }
+});
 
 app.listen(8080);
 console.log("Serverul a pornit");

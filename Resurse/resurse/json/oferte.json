@@ -1,0 +1,52 @@
+{
+  "oferte": [
+    {
+      "categorie": "italiana",
+      "data-incepere": "2025-06-16T11:47:20.369Z",
+      "data-finalizare": "2025-06-16T11:49:20.369Z",
+      "reducere": 30
+    },
+    {
+      "categorie": "ruseasca",
+      "data-incepere": "2025-06-16T11:45:09.549Z",
+      "data-finalizare": "2025-06-16T11:47:09.549Z",
+      "reducere": 5
+    },
+    {
+      "categorie": "romaneasca",
+      "data-incepere": "2025-06-16T11:43:09.510Z",
+      "data-finalizare": "2025-06-16T11:45:09.510Z",
+      "reducere": 5
+    },
+    {
+      "categorie": "ruseasca",
+      "data-incepere": "2025-06-16T11:41:09.481Z",
+      "data-finalizare": "2025-06-16T11:43:09.481Z",
+      "reducere": 25
+    },
+    {
+      "categorie": "franceza",
+      "data-incepere": "2025-06-16T11:39:09.459Z",
+      "data-finalizare": "2025-06-16T11:41:09.459Z",
+      "reducere": 10
+    },
+    {
+      "categorie": "romaneasca",
+      "data-incepere": "2025-06-16T11:37:04.932Z",
+      "data-finalizare": "2025-06-16T11:39:04.932Z",
+      "reducere": 5
+    },
+    {
+      "categorie": "franceza",
+      "data-incepere": "2025-06-16T11:35:04.900Z",
+      "data-finalizare": "2025-06-16T11:37:04.900Z",
+      "reducere": 35
+    },
+    {
+      "categorie": "romaneasca",
+      "data-incepere": "2025-06-16T11:31:39.544Z",
+      "data-finalizare": "2025-06-16T11:33:39.544Z",
+      "reducere": 20
+    }
+  ]
+}

@@ -169,7 +169,18 @@
                         <div class="produs-imagine">
                             <img src="/resurse/imagini/produse/<%= produs.imagine %>" alt="<%= produs.nume %>">
                             <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.bucatarie) %></p>
-                            <p class="produs-pret">Preț: <%= produs.pret %> lei</p>
+                            <p class="produs-pret">
+                            <% if(locals.oferta && produs.bucatarie === oferta.categorie) { %>
+                                <span class="pret-original"><%= produs.pret %> lei</span>
+                                <span class="pret-redus">
+                                    <%= (produs.pret * (100 - oferta.reducere) / 100).toFixed(2) %> lei
+                                    <span class="badge bg-danger">-<%= oferta.reducere %>%</span>
+                                </span>
+                            <% } else { %>
+                                Preț: <%= produs.pret %> lei
+                            <% } %>
+                        </p>
+                            <p class="produs-gramaj">Gramaj: <%= produs.gramaj_portie %> g</p>
                         </div>
                         <div class="produs-detalii">
                             <details>

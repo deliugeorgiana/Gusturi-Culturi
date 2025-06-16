@@ -37,7 +37,23 @@
                 <div class="produs-imagine-container">
                     <img src="/resurse/imagini/produse/<%= produs.imagine %>" alt="<%= produs.nume %>">
                     <p class="produs-categorie">Categorie: <%= formatareDenumireCategorie(produs.categorie) %></p>
-                    <p class="produs-pret">Preț: <%= produs.pret %> lei</p>
+                    <div class="produs-pret">
+                        <% if(locals.oferta && produs.bucatarie === oferta.categorie) { %>
+                            <div>
+                                <span class="pret-original"><%= produs.pret %> lei</span>
+                                <span class="pret-redus">
+                                    <%= (produs.pret * (100 - oferta.reducere) / 100).toFixed(2) %> lei
+                                    <span class="badge bg-danger">-<%= oferta.reducere %>%</span>
+                                </span>
+                            </div>
+                            <div class="alert alert-info mt-2">
+                                <small><i class="bi bi-info-circle"></i> Preț redus cu <%= oferta.reducere %>% până la 
+                                <%= new Date(oferta['data-finalizare']).toLocaleTimeString('ro-RO', {hour: '2-digit', minute:'2-digit'}) %></small>
+                            </div>
+                        <% } else { %>
+                            <div><%= produs.pret %> lei</div>
+                        <% } %>
+                    </div>
                 </div>
                 
             <div class="produs-info">
