@@ -827,6 +827,100 @@ h3:contains("Descoperă")::before {
     font-weight: bold;
     color: #d9534f;
 }
+
+
+.modal-produs {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7);
+  animation: fadeIn 0.3s;
+}
+
+.modal-continut {
+  position: relative;
+  background-color: #f4b3b3;
+  margin: 5% auto;
+  padding: 20px;
+  border: 1px solid #7a521e;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 4px 8px rgba(122, 82, 30, 0.3);
+  animation: slideIn 0.4s;
+}
+
+.modal-inchide {
+  color: #7a521e;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.modal-inchide:hover,
+.modal-inchide:focus {
+  color: #ad7429;
+  text-decoration: none;
+}
+
+#modal-corp {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.modal-imagine {
+  flex: 1;
+  min-width: 300px;
+  padding: 10px;
+}
+
+.modal-imagine img {
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.modal-detalii {
+  flex: 1;
+  min-width: 300px;
+  padding: 10px;
+}
+.ingrediente-container {
+  margin: 15px 0;
+  padding: 10px;
+  background-color: #f9c6ed;
+  border-radius: 5px;
+}
+
+.ingrediente-container h4 {
+  margin-top: 0;
+  color: #7a521e;
+}
+
+.ingrediente-lista {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.ingrediente-lista li {
+  padding: 3px 0;
+}
+
+.ingrediente-lista li::before {
+  content: "•";
+  color: #ad7429;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
 @media screen and (max-width:800px){
     html{
         font-size: 12.5px;

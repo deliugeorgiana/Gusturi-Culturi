@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="/resurse/css/general.css">
     <link rel="stylesheet" href="/resurse/css/produs.css">
     <script src="/resurse/js/produse.js" defer></script>
+    <script src="/resurse/js/compara.js" defer></script>
+    <script src="/resurse/js/modal-produs.js" defer></script>
 </head>
 <body>
     <%- include("../fragmente/header") %>
@@ -160,10 +162,47 @@
 
     </div>
 </section>
-        
+
+
+
+        <!-- Modal Box pentru afișarea detaliilor produsului -->
+<div id="modal-produs" class="modal-produs">
+  <div class="modal-continut">
+    <span class="modal-inchide">&times;</span>
+    <div id="modal-corp">
+      <div class="modal-imagine">
+        <img id="modal-img" src="" alt="Imagine produs">
+      </div>
+      <div class="modal-detalii">
+        <h2 id="modal-titlu"></h2>
+        <p id="modal-descriere"></p>
+        <div id="modal-ingrediente" class="ingrediente-container"></div>
+        <div class="modal-info">
+          <p>Bucătărie: <span id="modal-bucatarie"></span></p>
+          <p>Calorii: <span id="modal-calorii"></span> kcal</p>
+          <p>Gramaj: <span id="modal-gramaj"></span> g</p>
+          <p>Categorie: <span id="modal-categorie"></span></p>
+        </div>
+        <div id="modal-pret" class="produs-pret">
+          <!-- Prețul va fi adăugat dinamic -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
         <section id="produse-container">
             <% produse.forEach(produs => { %>
-                <article class="produs <%= produs.categorie %>" id="produs_<%= produs.id %>">
+                <article class="produs <%= produs.categorie %>" id="produs_<%= produs.id %>"
+                    data-id="<%= produs.id %>" 
+                    data-nume="<%= produs.nume %>" 
+                    data-descriere="<%= produs.descriere %>" 
+                    data-imagine="/resurse/imagini/produse/<%= produs.imagine %>" 
+                    data-pret="<%= produs.pret %>" 
+                    data-ingrediente='<%= JSON.stringify(produs.ingrediente || []) %>' 
+                    data-bucatarie="<%= produs.bucatarie %>" 
+                    data-calorii="<%= produs.gramaj_portie %>" 
+                    data-gramaj="<%= produs.gramaj_portie %>" 
+                    data-categorie="<%= produs.categorie %>">
                     <h3><%= produs.nume %></h3>
                     <div class="produs-content">
                         <div class="produs-imagine">
