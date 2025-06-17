@@ -921,6 +921,126 @@ h3:contains("Descoperă")::before {
   margin-left: -1em;
 }
 
+
+.orar-popup {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 0 20px rgba(122, 82, 30, 0.5);
+  border-radius: 8px;
+  max-width: 500px;
+  width: 90%;
+  animation: fadeInDown 0.5s;
+}
+
+.orar-content {
+  padding: 20px;
+}
+
+.orar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+
+.orar-header h3 {
+  margin: 0;
+  color: #7a521e;
+}
+
+.orar-close {
+  font-size: 24px;
+  font-weight: bold;
+  color: #7a521e;
+  cursor: pointer;
+  padding: 0 5px;
+}
+
+.orar-close:hover {
+  color: #ad7429;
+}
+
+.tabel-orar {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 15px;
+}
+
+.tabel-orar th, .tabel-orar td {
+  border: 1px solid #ddd;
+  padding: 8px 12px;
+  text-align: left;
+}
+
+.tabel-orar th {
+  background-color: #f8f3e9;
+  color: #7a521e;
+}
+
+.zi-curenta {
+  background-color: #246d97;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.status-orar {
+  text-align: center;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.status-deschis {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-inchis {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.orar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: none;
+}
+
+/* Buton pentru orar în header */
+.btn-orar {
+  background-color: #7a521e;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.btn-orar:hover {
+  background-color: #ad7429;
+}
+
+.btn-orar i {
+  margin-right: 3px;
+}
+
 @media screen and (max-width:800px){
     html{
         font-size: 12.5px;

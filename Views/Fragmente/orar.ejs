@@ -1,0 +1,54 @@
+<% 
+      const ziuaCurenta = new Date().getDay();
+%>
+<div id="container-orar" class="orar-popup">
+  <div class="orar-content">
+    <div class="orar-header">
+      <h3>Program de funcționare</h3>
+      <span class="orar-close">&times;</span>
+    </div>
+    <div class="orar-body">
+      <table class="tabel-orar">
+        <thead>
+          <tr>
+            <th>Ziua</th>
+            <th>Interval orar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="zi-luni <%= (ziuaCurenta === 1) ? 'zi-curenta' : '' %>">
+            <td>Luni</td>
+            <td>10:00 - 22:00</td>
+          </tr>
+          <tr class="zi-marti <%= (ziuaCurenta === 2) ? 'zi-curenta' : '' %>">
+            <td>Marți</td>
+            <td>10:00 - 22:00</td>
+          </tr>
+          <tr class="zi-miercuri <%= (ziuaCurenta === 3) ? 'zi-curenta' : '' %>">
+            <td>Miercuri</td>
+            <td>10:00 - 22:00</td>
+          </tr>
+          <tr class="zi-joi <%= (ziuaCurenta === 4) ? 'zi-curenta' : '' %>">
+            <td>Joi</td>
+            <td>10:00 - 22:00</td>
+          </tr>
+          <tr class="zi-vineri <%= (ziuaCurenta === 5) ? 'zi-curenta' : '' %>">
+            <td>Vineri</td>
+            <td>10:00 - 23:00</td>
+          </tr>
+          <tr class="zi-sambata <%= (ziuaCurenta === 6) ? 'zi-curenta' : '' %>">
+            <td>Sâmbătă</td>
+            <td>11:00 - 23:00</td>
+          </tr>
+          <tr class="zi-duminica <%= (ziuaCurenta === 0) ? 'zi-curenta' : '' %>">
+            <td>Duminică</td>
+            <td>Închis</td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="status-orar" class="status-orar">
+        <!-- Status va fi actualizat prin JavaScript -->
+      </div>
+    </div>
+  </div>
+</div>
