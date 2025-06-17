@@ -219,6 +219,13 @@
                         </button>
                     </div>
 
+                        <% if (celeMaiIeftineProduse[produs.bucatarie] === produs.id) { %>
+                                <div class="cel-mai-ieftin-badge">
+                                    <i class="bi bi-piggy-bank"></i> Cel mai ieftin
+                                </div>
+                        <% } %>
+    
+
                     <h3><%= produs.nume %></h3>
                     <div class="produs-content">
                         <div class="produs-imagine">

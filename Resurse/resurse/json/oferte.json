@@ -1,58 +1,58 @@
 {
   "oferte": [
     {
-      "categorie": "franceza",
-      "data-incepere": "2025-06-17T10:41:45.572Z",
-      "data-finalizare": "2025-06-17T10:43:45.572Z",
-      "reducere": 35
-    },
-    {
-      "categorie": "romaneasca",
-      "data-incepere": "2025-06-17T10:39:36.368Z",
-      "data-finalizare": "2025-06-17T10:41:36.368Z",
+      "categorie": "ruseasca",
+      "data-incepere": "2025-06-17T11:10:22.928Z",
+      "data-finalizare": "2025-06-17T11:12:22.928Z",
       "reducere": 20
     },
     {
-      "categorie": "italiana",
-      "data-incepere": "2025-06-17T10:37:36.315Z",
-      "data-finalizare": "2025-06-17T10:39:36.315Z",
-      "reducere": 10
+      "categorie": "romaneasca",
+      "data-incepere": "2025-06-17T11:08:17.366Z",
+      "data-finalizare": "2025-06-17T11:10:17.366Z",
+      "reducere": 15
     },
     {
       "categorie": "ruseasca",
-      "data-incepere": "2025-06-17T10:35:36.282Z",
-      "data-finalizare": "2025-06-17T10:37:36.282Z",
-      "reducere": 50
+      "data-incepere": "2025-06-17T11:06:17.345Z",
+      "data-finalizare": "2025-06-17T11:08:17.345Z",
+      "reducere": 40
     },
     {
-      "categorie": "franceza",
-      "data-incepere": "2025-06-17T10:33:36.216Z",
-      "data-finalizare": "2025-06-17T10:35:36.216Z",
-      "reducere": 30
+      "categorie": "italiana",
+      "data-incepere": "2025-06-17T11:04:17.311Z",
+      "data-finalizare": "2025-06-17T11:06:17.311Z",
+      "reducere": 5
     },
     {
       "categorie": "romaneasca",
-      "data-incepere": "2025-06-17T10:31:36.202Z",
-      "data-finalizare": "2025-06-17T10:33:36.202Z",
-      "reducere": 30
+      "data-incepere": "2025-06-17T11:02:15.946Z",
+      "data-finalizare": "2025-06-17T11:04:15.946Z",
+      "reducere": 50
     },
     {
-      "categorie": "franceza",
-      "data-incepere": "2025-06-17T10:29:36.157Z",
-      "data-finalizare": "2025-06-17T10:31:36.157Z",
+      "categorie": "italiana",
+      "data-incepere": "2025-06-17T11:00:15.920Z",
+      "data-finalizare": "2025-06-17T11:02:15.920Z",
       "reducere": 5
     },
     {
       "categorie": "ruseasca",
-      "data-incepere": "2025-06-17T10:27:36.060Z",
-      "data-finalizare": "2025-06-17T10:29:36.060Z",
-      "reducere": 25
+      "data-incepere": "2025-06-17T10:58:15.898Z",
+      "data-finalizare": "2025-06-17T11:00:15.898Z",
+      "reducere": 20
     },
     {
-      "categorie": "italiana",
-      "data-incepere": "2025-06-17T10:25:36.025Z",
-      "data-finalizare": "2025-06-17T10:27:36.025Z",
-      "reducere": 25
+      "categorie": "franceza",
+      "data-incepere": "2025-06-17T10:56:15.851Z",
+      "data-finalizare": "2025-06-17T10:58:15.851Z",
+      "reducere": 45
+    },
+    {
+      "categorie": "romaneasca",
+      "data-incepere": "2025-06-17T10:54:15.799Z",
+      "data-finalizare": "2025-06-17T10:56:15.799Z",
+      "reducere": 15
     }
   ]
 }

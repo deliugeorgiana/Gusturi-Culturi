@@ -1120,6 +1120,43 @@ h3:contains("Descoperă")::before {
 }
 
 
+
+/* Stiluri pentru eticheta "Cel mai ieftin" */
+.cel-mai-ieftin-badge {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    background-color: #28a745;
+    color: white;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    animation: pulsate 2s infinite;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 5;
+}
+
+.cel-mai-ieftin-badge i {
+    font-size: 1.1em;
+}
+
+@keyframes pulsate {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Asigură-te că produsul are position: relative pentru poziționarea corectă a etichetei */
+.produs {
+    position: relative;
+}
+
+
 @media screen and (max-width:800px){
     html{
         font-size: 12.5px;

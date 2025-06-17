@@ -249,6 +249,7 @@ app.get("/pagina_galerie", function (req, res) {
 })
 
 
+// Găsește handler-ul rutei /produse și modifică-l:
 app.get("/produse", function (req, res) {
     let conditieWhere = "";
     const categorie = req.query.categorie;
@@ -260,7 +261,7 @@ app.get("/produse", function (req, res) {
     const queryText = `SELECT * FROM feluri_mancare${conditieWhere} ORDER BY id`;
 
     // Obține oferta curentă
-    const ofertaCurenta = sistemOferte.getOfertaCurenta();
+    const ofertaCurenta = sistemOferte ? sistemOferte.getOfertaCurenta() : null;
 
     // O singură interogare și un singur render
     client.query(queryText, function (err, rezultat) {
@@ -278,13 +279,40 @@ app.get("/produse", function (req, res) {
             }
 
             const categorii = rezCategorii.rows.map(row => row.categorie);
+            
+            // Identifică cel mai ieftin produs din fiecare categorie
+            const celeMaiIeftineProduse = {};
+            
+            // Grupează produsele pe categorii
+            const produsePeCategorie = {};
+            for (const produs of rezultat.rows) {
+                const bucatarie = produs.bucatarie || "necunoscuta";
+                if (!produsePeCategorie[bucatarie]) {
+                    produsePeCategorie[bucatarie] = [];
+                }
+                produsePeCategorie[bucatarie].push(produs);
+            }
+            
+            // Pentru fiecare categorie, găsește produsul cu prețul cel mai mic
+            for (const cat in produsePeCategorie) {
+                let celMaiIeftinProdus = produsePeCategorie[cat][0];
+                
+                for (const produs of produsePeCategorie[cat]) {
+                    if (parseFloat(produs.pret) < parseFloat(celMaiIeftinProdus.pret)) {
+                        celMaiIeftinProdus = produs;
+                    }
+                }
+                
+                celeMaiIeftineProduse[cat] = celMaiIeftinProdus.id;
+            }
 
             // Un singur render cu toate datele necesare
             res.render("pagini/produse", {
                 produse: rezultat.rows,
                 categorii: categorii,
                 categorie_selectata: categorie || "toate",
-                oferta: ofertaCurenta
+                oferta: ofertaCurenta,
+                celeMaiIeftineProduse: celeMaiIeftineProduse
             });
         });
     });
