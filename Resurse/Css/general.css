@@ -1120,6 +1120,171 @@ h3:contains("Descoperă")::before {
 }
 
 
+.seturi-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.set-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+}
+
+.set-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.set-card header {
+    background-color: #7a521e;
+    color: white;
+    padding: 1rem;
+}
+
+.set-card h2 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.set-descriere {
+    padding: 1rem;
+    color: #666;
+}
+
+.set-produse {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.set-produse h3 {
+    margin-top: 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.produse-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 1rem;
+}
+
+.set-produs {
+    text-align: center;
+}
+
+.set-produs img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    aspect-ratio: 1;
+    transition: transform 0.2s;
+}
+
+.set-produs img:hover {
+    transform: scale(1.1);
+}
+
+.set-produs span {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.set-pret {
+    padding: 1rem;
+    background-color: #f8f8f8;
+    border-top: 1px solid #e9e9e9;
+}
+
+.calcul-pret {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.suma-originala {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.reducere {
+    color: #e53935;
+    font-weight: bold;
+}
+
+.pret-final {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0;
+    color: #333;
+}
+
+.pret-final strong {
+    font-size: 1.4rem;
+    color: #7a521e;
+}
+
+/* Stiluri pentru seturile de pe pagina produsului */
+.seturi-asociate {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #f0f0f0;
+}
+
+.set-card-mini {
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: #f9f9f9;
+}
+
+.set-card-mini header h3 {
+    margin-top: 0;
+    font-size: 1.1rem;
+}
+
+.produse-grid-mini {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    padding: 0.5rem 0;
+}
+
+.set-produs-mini img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+.set-produs-mini.produs-curent img {
+    border: 2px solid #7a521e;
+    box-shadow: 0 0 0 2px rgba(122, 82, 30, 0.3);
+}
+
+.set-pret-mini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.set-pret-mini .economie {
+    color: #2e7d32;
+    font-size: 0.9rem;
+}
+
 
 /* Stiluri pentru eticheta "Cel mai ieftin" */
 .cel-mai-ieftin-badge {

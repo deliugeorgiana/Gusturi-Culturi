@@ -59,3 +59,4 @@ INSERT INTO feluri_mancare (nume, descriere, pret, gramaj_portie, bucatarie, tim
 ('Papanași', 'Desert românesc din brânză de vaci, serviți cu smântână și dulceață', 18, 280, 'romaneasca', 45, 'desert', '{"branza de vaci","faina","oua","zahar","smantana","dulceata"}', False, 'papanasi.jpg'),
 
 ('Pirozhki', 'Brioșe rusești umplute cu carne sau legume', 15, 200, 'ruseasca', 60, 'street_food', '{"faina","drojdie","lapte","carne tocata","ceapa","morcovi","oua"}', False, 'pirozhki.jpg');
+

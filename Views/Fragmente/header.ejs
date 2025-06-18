@@ -39,6 +39,7 @@
                     <li><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
                 </ul>
             </li>
+
             <li class="meniu-element">
                 <a href="/produse">Produse</a>
                 <ul class="submeniu">
@@ -48,8 +49,10 @@
                             <li><a href="/produse?categorie=<%= categ %>"><%= categ.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) %></a></li>
                         <% }) %>
                     <% } %>
+                    <li><a href="/seturi" <%= locals.path && locals.path === "/seturi" ? "class='activ'" : "" %>>Seturi</a></li>
                 </ul>
             </li>
+            
             <li class="meniu-element"><a href="#categorii">Categorii</a></li>
             <li class="meniu-element"><a href="#ingrediente">Ingrediente</a></li>
             <li class="meniu-element"><a href="#sarbatori">Sărbători</a></li>

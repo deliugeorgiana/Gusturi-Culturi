@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <%- include("../fragmente/head") %>
+    <link rel="stylesheet" href="/resurse/css/general.css">
+    <link rel="stylesheet" href="/resurse/css/seturi.css">
+    <title>Seturi de produse - Gusturi&Culturi</title>
+</head>
+<body>
+    <%- include("../fragmente/header") %>
+    
+    <main>
+        <h1>Seturi de produse</h1>
+        
+        <section class="seturi-container">
+            <% seturi.forEach((set) => { %>
+                <article class="set-card" id="set_<%= set.id %>">
+                    <header>
+                        <h2><%= set.nume %></h2>
+                    </header>
+                    
+                    <div class="set-descriere">
+                        <p><%= set.descriere %></p>
+                    </div>
+                    
+                    <div class="set-produse">
+                        <h3>Produse incluse:</h3>
+                        <div class="produse-grid">
+                            <% for(let i=0; i < set.produs_ids.length; i++) { %>
+                                <div class="set-produs">
+                                    <a href="/produs/<%= set.produs_ids[i] %>">
+                                        <img src="/resurse/imagini/produse/<%= set.produs_imagini[i] %>" alt="<%= set.produs_nume[i] %>">
+                                        <span><%= set.produs_nume[i] %></span>
+                                    </a>
+                                </div>
+                            <% } %>
+                        </div>
+                    </div>
+                    
+                    <div class="set-pret">
+                        <div class="calcul-pret">
+                            <p>Preț produse individual: <span class="suma-originala"><%= set.suma_preturi %> lei</span></p>
+                            <p>Reducere set (<%= set.procent_reducere %>%): <span class="reducere">-<%= set.valoare_reducere %> lei</span></p>
+                        </div>
+                        <p class="pret-final">Preț set: <strong><%= set.pret_final %> lei</strong></p>
+                    </div>
+                </article>
+            <% }) %>
+        </section>
+    </main>
+    
+    <%- include("../fragmente/footer") %>
+</body>
+</html>

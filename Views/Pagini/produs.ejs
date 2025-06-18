@@ -81,6 +81,42 @@
         <dd><%= produs.vegetarian ? 'Da' : 'Nu' %></dd>
     </dl>
     
+    <!-- Adaugă după secțiunea de detalii produs -->
+<% if (locals.seturi && seturi.length > 0) { %>
+<section class="seturi-asociate">
+    <h2>Acest produs face parte din următoarele seturi:</h2>
+    
+    <div class="seturi-container">
+        <% seturi.forEach((set) => { %>
+            <article class="set-card-mini" id="set_mini_<%= set.id %>">
+                <header>
+                    <h3><a href="/seturi#set_<%= set.id %>"><%= set.nume %></a></h3>
+                </header>
+                
+                <div class="set-produse-mini">
+                    <div class="produse-grid-mini">
+                        <% for(let i=0; i < set.produs_ids.length; i++) { %>
+                            <div class="set-produs-mini <%= set.produs_ids[i] == produs.id ? 'produs-curent' : '' %>">
+                                <a href="/produs/<%= set.produs_ids[i] %>">
+                                    <img src="/resurse/imagini/produse/<%= set.produs_imagini[i] %>" alt="<%= set.produs_nume[i] %>">
+                                </a>
+                            </div>
+                        <% } %>
+                    </div>
+                </div>
+                
+                <div class="set-pret-mini">
+                    <p class="pret-final">Preț set: <strong><%= set.pret_final %> lei</strong></p>
+                    <p class="economie">Economisești <%= set.valoare_reducere %> lei</p>
+                </div>
+            </article>
+        <% }) %>
+    </div>
+</section>
+<% } %>
+
+
+
     <h2>Descriere</h2>
     <p class="produs-descriere"><%= produs.descriere %></p>
     
