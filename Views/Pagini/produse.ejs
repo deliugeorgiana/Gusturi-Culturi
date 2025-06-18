@@ -193,6 +193,11 @@
         </div>
 
 
+        <!-- Numar produse -->
+        <div class="info-produse">
+            <p id="numar-produse">Se afișează <strong><span id="numar-produse-afisate"><%= produse.length %></span></strong> produse</p>
+        </div>
+
         <section id="produse-container">
             <% produse.forEach(produs => { %>
                 <article class="produs <%= produs.categorie %>" id="produs_<%= produs.id %>"

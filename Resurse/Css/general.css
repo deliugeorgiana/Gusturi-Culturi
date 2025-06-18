@@ -1375,6 +1375,24 @@ h3:contains("Descoperă")::before {
     margin-bottom: 0;
 }
 
+.info-produse {
+    margin: 1.5rem 0;
+    padding: 0.8rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    border-left: 4px solid #7a521e;
+}
+
+.info-produse p {
+    margin: 0;
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.info-produse strong {
+    color: #7a521e;
+}
+
 /* Stiluri responsive pentru produse similare */
 @media (max-width: 768px) {
     .produse-similare-container {

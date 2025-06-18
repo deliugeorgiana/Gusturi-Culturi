@@ -259,3 +259,50 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
+// Actualizează numărul de produse vizibile după filtrare
+function actualizeazaNumarProduse() {
+    const produse = document.querySelectorAll('.produs:not([style*="display: none"])');
+    const numarProduse = produse.length;
+    document.getElementById('numar-produse-afisate').textContent = numarProduse;
+}
+
+// Adaugă un observer pentru schimbări de stil
+function initObserverProduse() {
+    const produseContainer = document.querySelector('.grid-produse');
+    if (!produseContainer) return;
+    
+    // Configurează un observer pentru a detecta schimbări în DOM
+    const observer = new MutationObserver(actualizeazaNumarProduse);
+    observer.observe(produseContainer, { 
+        attributes: true, 
+        attributeFilter: ['style'],
+        subtree: true,
+        childList: true
+    });
+}
+
+// Asigură-te că funcția de actualizare este apelată după toate evenimentele de filtrare
+document.addEventListener('DOMContentLoaded', function() {
+    // Apelează funcția inițial pentru a afișa numărul corect
+    actualizeazaNumarProduse();
+    
+    // Inițializează observer-ul
+    initObserverProduse();
+    
+    // Adaugă event listener pentru toate butoanele de filtrare/sortare
+    const butoane = document.querySelectorAll('button[id^="btn-"]');
+    butoane.forEach(buton => {
+        buton.addEventListener('click', function() {
+            // Permite finalizarea operațiilor de filtrare înainte de a actualiza numărul
+            setTimeout(actualizeazaNumarProduse, 10);
+        });
+    });
+    
+    // Adaugă listeners pentru toate inputurile de filtrare
+    const inputuri = document.querySelectorAll('input[type="text"], input[type="range"], input[type="radio"], input[type="checkbox"], select');
+    inputuri.forEach(input => {
+        input.addEventListener('change', function() {
+            setTimeout(actualizeazaNumarProduse, 10);
+        });
+    });
+});
