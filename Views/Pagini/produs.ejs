@@ -80,40 +80,71 @@
         <dt>Preparat vegetarian:</dt>
         <dd><%= produs.vegetarian ? 'Da' : 'Nu' %></dd>
     </dl>
-    
-    <!-- Adaugă după secțiunea de detalii produs -->
-<% if (locals.seturi && seturi.length > 0) { %>
-<section class="seturi-asociate">
-    <h2>Acest produs face parte din următoarele seturi:</h2>
-    
-    <div class="seturi-container">
-        <% seturi.forEach((set) => { %>
-            <article class="set-card-mini" id="set_mini_<%= set.id %>">
-                <header>
-                    <h3><a href="/seturi#set_<%= set.id %>"><%= set.nume %></a></h3>
-                </header>
-                
-                <div class="set-produse-mini">
-                    <div class="produse-grid-mini">
-                        <% for(let i=0; i < set.produs_ids.length; i++) { %>
-                            <div class="set-produs-mini <%= set.produs_ids[i] == produs.id ? 'produs-curent' : '' %>">
-                                <a href="/produs/<%= set.produs_ids[i] %>">
-                                    <img src="/resurse/imagini/produse/<%= set.produs_imagini[i] %>" alt="<%= set.produs_nume[i] %>">
-                                </a>
+   
+
+
+<!-- Produse Similare -->
+        <% if (locals.produseSimilare && produseSimilare.length > 0) { %>
+        <section class="produse-similare">
+            <h2>Produse similare</h2>
+            <p class="recomandare-text">Aceste produse s-ar putea să vă placă de asemenea:</p>
+            
+            <div class="produse-similare-container">
+                <% produseSimilare.forEach(prodSimilar => { %>
+                    <article class="produs-similar">
+                        <a href="/produs/<%= prodSimilar.id %>" class="produs-similar-link">
+                            <div class="produs-similar-imagine">
+                                <img src="/resurse/imagini/produse/<%= prodSimilar.imagine %>" alt="<%= prodSimilar.nume %>">
                             </div>
-                        <% } %>
-                    </div>
-                </div>
-                
-                <div class="set-pret-mini">
-                    <p class="pret-final">Preț set: <strong><%= set.pret_final %> lei</strong></p>
-                    <p class="economie">Economisești <%= set.valoare_reducere %> lei</p>
-                </div>
-            </article>
-        <% }) %>
-    </div>
-</section>
-<% } %>
+                            <h3><%= prodSimilar.nume %></h3>
+                            <div class="produs-similar-info">
+                                <span class="produs-similar-categorie"><%= prodSimilar.bucatarie.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) %></span>
+                                <span class="produs-similar-pret"><%= prodSimilar.pret %> lei</span>
+                            </div>
+                            <p class="produs-similar-descriere"><%= prodSimilar.descriere.length > 100 ? prodSimilar.descriere.substring(0, 100) + '...' : prodSimilar.descriere %></p>
+                        </a>
+                    </article>
+                <% }) %>
+            </div>
+        </section>
+        <% } %>
+    
+
+
+    
+    <!-- SETURI -->
+        <% if (locals.seturi && seturi.length > 0) { %>
+        <section class="seturi-asociate">
+            <h2>Acest produs face parte din următoarele seturi:</h2>
+            
+            <div class="seturi-container">
+                <% seturi.forEach((set) => { %>
+                    <article class="set-card-mini" id="set_mini_<%= set.id %>">
+                        <header>
+                            <h3><a href="/seturi#set_<%= set.id %>"><%= set.nume %></a></h3>
+                        </header>
+                        
+                        <div class="set-produse-mini">
+                            <div class="produse-grid-mini">
+                                <% for(let i=0; i < set.produs_ids.length; i++) { %>
+                                    <div class="set-produs-mini <%= set.produs_ids[i] == produs.id ? 'produs-curent' : '' %>">
+                                        <a href="/produs/<%= set.produs_ids[i] %>">
+                                            <img src="/resurse/imagini/produse/<%= set.produs_imagini[i] %>" alt="<%= set.produs_nume[i] %>">
+                                        </a>
+                                    </div>
+                                <% } %>
+                            </div>
+                        </div>
+                        
+                        <div class="set-pret-mini">
+                            <p class="pret-final">Preț set: <strong><%= set.pret_final %> lei</strong></p>
+                            <p class="economie">Economisești <%= set.valoare_reducere %> lei</p>
+                        </div>
+                    </article>
+                <% }) %>
+            </div>
+        </section>
+        <% } %>
 
 
 

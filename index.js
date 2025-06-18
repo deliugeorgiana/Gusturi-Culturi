@@ -374,6 +374,7 @@ app.get("/seturi", function (req, res) {
 });
 
 
+// Modifică secțiunea din ruta produsului
 app.get("/produs/:id", function (req, res) {
     const idProdus = parseInt(req.params.id);
 
@@ -397,65 +398,86 @@ app.get("/produs/:id", function (req, res) {
             afisareEroare(res, 404);
             return;
         }
-
-        // Obține seturile din care face parte produsul
-        const queryText = `
-            SELECT s.id, s.nume, s.descriere,
-                   ARRAY_AGG(p.id) as produs_ids,
-                   ARRAY_AGG(p.nume) as produs_nume,
-                   ARRAY_AGG(p.imagine) as produs_imagini,
-                   ARRAY_AGG(p.pret) as produs_preturi
-            FROM seturi s
-            JOIN asociere_set a ON s.id = a.id_set
-            JOIN feluri_mancare p ON a.id_produs = p.id
-            WHERE EXISTS (
-                SELECT 1 FROM asociere_set a2 
-                WHERE a2.id_set = s.id AND a2.id_produs = $1
-            )
-            GROUP BY s.id, s.nume, s.descriere
-            ORDER BY s.id
+        
+        const produs = rezultatProdus.rows[0];
+        
+        // Obține produse similare - din aceeași bucătărie și/sau tip de fel
+        // CORECTAT: categorie → tip_fel
+        const querySimilare = `
+            SELECT * FROM feluri_mancare 
+            WHERE id != $1 
+            AND (bucatarie = $2 OR tip_fel = $3)
+            ORDER BY 
+                CASE WHEN bucatarie = $2 AND tip_fel = $3 THEN 1
+                     WHEN bucatarie = $2 THEN 2
+                     WHEN tip_fel = $3 THEN 3
+                     ELSE 4
+                END,
+                RANDOM()
+            LIMIT 4
         `;
+        
+        // CORECTAT: produs.categorie → produs.tip_fel
+        client.query(querySimilare, [idProdus, produs.bucatarie, produs.tip_fel], function(errSimilare, rezultatSimilare) {
+            // Gestionează posibile erori
+            if (errSimilare) {
+                console.error("Eroare la obținerea produselor similare:", errSimilare);
+                rezultatSimilare = { rows: [] }; // Setează un array gol pentru produse similare
+            }
 
-        client.query(queryText, [idProdus], function (errSeturi, rezultatSeturi) {
-            if (errSeturi) {
-                console.error("Eroare la obținerea seturilor pentru produs:", errSeturi);
-                
-                // Continuăm fără seturi dacă avem eroare
+            // Obține seturile din care face parte produsul
+            const queryText = `
+                SELECT s.id, s.nume, s.descriere,
+                       ARRAY_AGG(p.id) as produs_ids,
+                       ARRAY_AGG(p.nume) as produs_nume,
+                       ARRAY_AGG(p.imagine) as produs_imagini,
+                       ARRAY_AGG(p.pret) as produs_preturi
+                FROM seturi s
+                JOIN asociere_set a ON s.id = a.id_set
+                JOIN feluri_mancare p ON a.id_produs = p.id
+                WHERE EXISTS (
+                    SELECT 1 FROM asociere_set a2 
+                    WHERE a2.id_set = s.id AND a2.id_produs = $1
+                )
+                GROUP BY s.id, s.nume, s.descriere
+                ORDER BY s.id
+            `;
+
+            client.query(queryText, [idProdus], function (errSeturi, rezultatSeturi) {
+                if (errSeturi) {
+                    console.error("Eroare la obținerea seturilor pentru produs:", errSeturi);
+                    rezultatSeturi = { rows: [] }; // Array gol pentru seturi
+                }
+
+                // Calculează prețurile pentru fiecare set
+                const seturiCuPreturi = rezultatSeturi.rows.map(set => {
+                    // Convertește prețurile la numere și calculează suma
+                    const preturi = set.produs_preturi.map(p => parseFloat(p));
+                    const sumaPreturi = preturi.reduce((total, p) => total + p, 0);
+                    
+                    // Calculează reducerea: min(5, număr_produse) * 5%
+                    const numarProduse = set.produs_ids.length;
+                    const procentReducere = Math.min(5, numarProduse) * 5;
+                    const reducere = sumaPreturi * (procentReducere / 100);
+                    
+                    // Calculează prețul final
+                    const pretFinal = sumaPreturi - reducere;
+                    
+                    return {
+                        ...set,
+                        suma_preturi: sumaPreturi.toFixed(2),
+                        procent_reducere: procentReducere,
+                        valoare_reducere: reducere.toFixed(2),
+                        pret_final: pretFinal.toFixed(2)
+                    };
+                });
+
                 res.render("pagini/produs", {
                     produs: rezultatProdus.rows[0],
                     oferta: ofertaCurenta,
-                    seturi: []
+                    seturi: seturiCuPreturi,
+                    produseSimilare: rezultatSimilare.rows
                 });
-                return;
-            }
-
-            // Calculează prețurile pentru fiecare set
-            const seturiCuPreturi = rezultatSeturi.rows.map(set => {
-                // Convertește prețurile la numere și calculează suma
-                const preturi = set.produs_preturi.map(p => parseFloat(p));
-                const sumaPreturi = preturi.reduce((total, p) => total + p, 0);
-                
-                // Calculează reducerea: min(5, număr_produse) * 5%
-                const numarProduse = set.produs_ids.length;
-                const procentReducere = Math.min(5, numarProduse) * 5;
-                const reducere = sumaPreturi * (procentReducere / 100);
-                
-                // Calculează prețul final
-                const pretFinal = sumaPreturi - reducere;
-                
-                return {
-                    ...set,
-                    suma_preturi: sumaPreturi.toFixed(2),
-                    procent_reducere: procentReducere,
-                    valoare_reducere: reducere.toFixed(2),
-                    pret_final: pretFinal.toFixed(2)
-                };
-            });
-
-            res.render("pagini/produs", {
-                produs: rezultatProdus.rows[0],
-                oferta: ofertaCurenta,
-                seturi: seturiCuPreturi
             });
         });
     });
