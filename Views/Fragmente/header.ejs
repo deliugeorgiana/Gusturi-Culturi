@@ -1,65 +1,60 @@
 <header>
     <h1>
-        <a href="/">Gusturi & Culturi</a>
+        <a href="#">Gusturi & Culturi</a>
     </h1>
-    <div class="theme-toggle-container">
-        <label class="theme-toggle" for="theme-toggle">
-            <input type="checkbox" id="theme-toggle">
-            <span class="slider">
-                <i class="bi bi-sun-fill sun-icon"></i>
-                <i class="bi bi-moon-fill moon-icon"></i>
-            </span>
-        </label>
-    </div>
+
+    
+<div class="theme-toggle-container">
+    <label class="theme-toggle">
+        <input type="checkbox" id="theme-toggle">
+        <span class="slider">
+            <i class="bi bi-sun-fill sun-icon"></i>
+            <i class="bi bi-moon-fill moon-icon"></i>
+        </span>
+    </label>
+</div>
 
 
-    <nav class="meniu-principal">
-        <input type="checkbox" id="hamburgerToggle" style="display:none;">
-        <label for="hamburgerToggle" id="hamburgerLabel">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
-        <ul class="meniu-lista">
-            <li class="meniu-element">
-                <a href="#acasa" class="home-link">
-                    <i class="fa-solid fa-house"></i>
-                    <span class="home-text">Acasă</span>
+     <nav>
+        <ul class="meniu">
+            <li id="butonHome">
+                <a href="#acasa" class="iconHome">
+                    <i class="fa-solid fa-house"></i> 
+                    <span class="textHome">Acasă</span>
+                    <ul class="subcategorie">
+                        <li class="butonSubmeniu"><a href="#despre">Despre</a></li>
+                        <li class="butonSubmeniu"><a href="#prezentare">Prezentare</a></li>
+                    </ul>
                 </a>
-                <ul class="submeniu">
-                    <li><a href="#despre">Despre Noi</a></li>
-                    <li><a href="#prezentare">Prezentare</a></li>
-                </ul>
             </li>
-            <li class="meniu-element">
+            <li class="butonMeniu">
                 <a href="#retete">Rețete</a>
-                <ul class="submeniu">
-                    <li><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
-                    <li><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
-                    <li><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
+                <ul class="subcategorie">
+                    <li class="butonSubmeniu"><a href="./resurse/pdf/categorie/salate.pdf">Salate</a></li>
+                    <li class="butonSubmeniu"><a href="./resurse/pdf/categorie/dulciuri.pdf">Dulciuri</a></li>
+                    <li class="butonSubmeniu"><a href="./resurse/pdf/categorie/supe-ciorbe.pdf">Supe și Ciorbe</a></li>
                 </ul>
             </li>
-
-            <li class="meniu-element">
+            <li class="butonMeniu">
                 <a href="/produse">Produse</a>
-                <ul class="submeniu">
-                    <li><a href="/produse">Toate</a></li>
+                <ul class="subcategorie">
+                    <li class="butonSubmeniu"><a href="/produse">Toate</a></li>
                     <% if (locals.categorii) { %>
                         <% categorii.forEach(categ => { %>
-                            <li><a href="/produse?categorie=<%= categ %>"><%= categ.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) %></a></li>
+                            <li class="butonSubmeniu"><a href="/produse?categorie=<%= categ %>"><%= categ.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase()) %></a></li>
                         <% }) %>
                     <% } %>
-                    <li><a href="/seturi" <%= locals.path && locals.path === "/seturi" ? "class='activ'" : "" %>>Seturi</a></li>
+                    <li class="butonSubmeniu"><a href="/seturi" <%= locals.path && locals.path === "/seturi" ? "class='activ'" : "" %>>Seturi</a></li>
                 </ul>
             </li>
-            
-            <li class="meniu-element"><a href="#categorii">Categorii</a></li>
-            <li class="meniu-element"><a href="#ingrediente">Ingrediente</a></li>
-            <li class="meniu-element"><a href="#sarbatori">Sărbători</a></li>
-            <li class="meniu-element"><a href="#international">Internațional</a></li>
-            <li class="meniu-element"><a href="#contact">Contact</a></li>
+            <li class="butonMeniu"><a href="#categorii">Categorii</a></li>
+            <li class="butonMeniu"><a href="#ingrediente">Ingrediente</a></li>
+            <li class="butonMeniu"><a href="#sarbatori">Sărbători</a></li>
+            <li class="butonMeniu"><a href="#international">Internațional</a></li>
+            <li class="butonMeniu"><a href="#contact">Contact</a></li>
         </ul>
     </nav>
+
 
     <div id="container-comparare" class="hidden">
     <div class="comparare-header">
@@ -77,3 +72,6 @@
         <i class="bi bi-clock"></i> Program
     </button>
 </header>
+
+
+

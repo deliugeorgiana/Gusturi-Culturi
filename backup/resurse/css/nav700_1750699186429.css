@@ -1,0 +1,109 @@
+@media screen and (max-width: 800px) {
+  #hamburgerLabel {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    justify-content: space-between;
+    height: 20px;
+    width: 30px;
+    top: 0;
+    left: 0;
+    padding: 1rem;
+    cursor: pointer;
+    background-color: var(--background-header);
+    z-index: 1000; /* Mărit pentru a fi deasupra */
+    box-sizing: content-box;
+  }
+  #hamburgerLabel .hamburgerLine {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: black;
+    border-radius: 3px;
+    transition: 0.3s ease-in-out;
+  }
+
+      #hamburgerLabel span {
+      display: flex;
+      position: absolute;
+      height: 3px;
+      width: 65%;
+      background: white;
+      border-radius: 3px;
+      opacity: 1;
+      left: 0;
+      top: 9px;
+      transition: 0.3s ease-in-out;
+  }
+
+   #hamburgerLabel span:nth-child(1) {
+      top: 0px;
+  }
+
+  #hamburgerLabel span:nth-child(2) {
+      top: 9px;
+  }
+
+  #hamburgerLabel span:nth-child(3) {
+      top: 18px;
+  }
+  
+  .iconHome .textHome {
+    display: none;
+  }
+  nav {
+    display: none;
+  }
+  header {
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    z-index: 100; /* Adăugat z-index pentru header */
+  }
+  header h1 {
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+  #hamburgerToggle:checked ~ nav {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: fixed;
+    left: 0;
+    top: 0; /* Adăugat pentru poziționare clară */
+    background-color: transparent;
+    z-index: 999; /* Z-index mare pentru meniu */
+  }
+  #hamburgerToggle:checked ~ nav ul.meniu {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem; /* Spațiu pentru hamburger button */
+  }
+  #hamburgerToggle:checked ~ nav ul.meniu > li {
+    width: 100%;
+    background-color: var(--background-header);
+    animation: animatieSubmeniu 2s forwards;
+    transform-origin: left center;
+    position: relative; /* Adăugat pentru z-index context */
+    z-index: 999; /* Z-index pentru fiecare item */
+  }
+  #hamburgerToggle:checked ~ nav ul.meniu li ul {
+    position: static;
+    display: none;
+    transition: none;
+  }
+  #hamburgerToggle:checked ~ nav ul.meniu li:hover ul {
+    display: block;
+    height: auto;
+  }
+  @keyframes animatieSubmeniu {
+    0% {
+      clip-path: polygon(0 0, 0 0, 0 50%, 0 100%, 0 100%);
+    }
+    100% {
+      clip-path: polygon(0% 0%, 100% 0%, 125% 50%, 100% 100%, 0% 100%);
+    }
+  }
+}

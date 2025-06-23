@@ -417,7 +417,7 @@ app.get("/produs/:id", function (req, res) {
             LIMIT 4
         `;
         
-        // CORECTAT: produs.categorie → produs.tip_fel
+        
         client.query(querySimilare, [idProdus, produs.bucatarie, produs.tip_fel], function(errSimilare, rezultatSimilare) {
             // Gestionează posibile erori
             if (errSimilare) {
