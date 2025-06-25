@@ -41,7 +41,7 @@ video {
 /* Stilizare pentru textul bold din subtitrări */
 ::cue(b) {
     font-weight: bold;
-    color: #ffcc00; /* Culoare accentuată pentru textul bolduit */
+    color: #ffcc00; 
 }
 
 /* Adăugare hover effect pentru controlul video */

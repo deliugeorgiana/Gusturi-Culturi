@@ -244,6 +244,7 @@ async function initImagini() {
 }
 
 
+
 app.get("/pagina_galerie", function (req, res) {
     res.render("pagini/pagina_galerie", { ip: req.ip, imagini: obGlobal.obImagini.imagini });
 })

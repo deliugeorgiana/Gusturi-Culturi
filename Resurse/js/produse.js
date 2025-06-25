@@ -206,7 +206,8 @@ document.addEventListener("DOMContentLoaded", function() {
     function calculeazaMedia() {
         const produseVizibile = Array.from(produse).filter(produs => 
             produs.style.display !== "none");
-        
+        const divExistent = document.querySelector(".rezultat-calcul");
+        if (divExistent) divExistent.remove();
         if (produseVizibile.length === 0) {
             alert("Nu există produse care să corespundă filtrelor curente!");
             return;
@@ -220,13 +221,13 @@ document.addEventListener("DOMContentLoaded", function() {
         
         const mediaPret = sumaPret / produseVizibile.length;
         
-        // Afișează rezultatul într-un div cu poziție fixă
+        // Afisează rezultatul intr-un div cu pozitie fixa
         const divRezultat = document.createElement("div");
         divRezultat.className = "rezultat-calcul";
         divRezultat.innerHTML = `<p>Media prețurilor: <strong>${mediaPret.toFixed(2)} lei</strong></p>`;
         document.body.appendChild(divRezultat);
         
-        // Șterge div-ul după 2 secunde
+        // Sterge div-ul după 2 secunde
         setTimeout(() => {
             divRezultat.remove();
         }, 2000);

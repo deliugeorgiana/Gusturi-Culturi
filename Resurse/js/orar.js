@@ -1,6 +1,3 @@
-/**
- * Funcționalitate pentru afișarea și gestionarea orarului
- */
 document.addEventListener('DOMContentLoaded', function() {
     // Selectoare pentru elementele DOM
     const btnOrar = document.getElementById('btn-orar');
@@ -15,24 +12,24 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    // Verifică dacă este deschis în momentul actual
+    // Verifica daca este deschis în momentul actual
     function verificaStatusDeschis() {
         const acum = new Date();
         const zi = acum.getDay(); // 0 = Duminică, 1 = Luni, etc.
         const ora = acum.getHours();
         const minute = acum.getMinutes();
-        const timpCurent = ora + minute / 60; // Timp în format zecimal (ex: 10:30 = 10.5)
+        const timpCurent = ora + minute / 60; // Timp în format zecimal 
 
         let deschis = false;
         let mesaj = "";
 
         switch (zi) {
-            case 0: // Duminică
+            case 0: // Duminica
                 deschis = false;
                 mesaj = "Suntem ÎNCHIȘI astăzi. Ne revedem luni începând cu ora 10:00.";
                 break;
             case 1: // Luni
-            case 2: // Marți
+            case 2: // Marti
             case 3: // Miercuri
             case 4: // Joi
                 if (timpCurent >= 10 && timpCurent < 22) {
@@ -56,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         : "Suntem ÎNCHIȘI. Reveniți mâine începând cu ora 11:00.";
                 }
                 break;
-            case 6: // Sâmbătă
+            case 6: // Sambata
                 if (timpCurent >= 11 && timpCurent < 23) {
                     deschis = true;
                     mesaj = "Suntem DESCHIȘI! Vă așteptăm până la ora 23:00.";
@@ -78,12 +75,12 @@ document.addEventListener('DOMContentLoaded', function() {
         return deschis;
     }
 
-    // Funcție pentru evidențierea zilei curente în tabel
+    // Functie pentru evideniterea zilei curente în tabel
     function evidentiazaZiuaCurenta() {
         const ziuaCurenta = new Date().getDay();
         console.log("Ziua curentă (JavaScript):", ziuaCurenta);
         
-        // Resetează toate clasele zi-curenta
+        // Reseteaza toate clasele zi-curenta
         document.querySelectorAll('.tabel-orar tr').forEach(tr => {
             tr.classList.remove('zi-curenta');
         });
